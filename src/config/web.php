@@ -28,7 +28,7 @@ return [
         ],
         'urlManager' => [
             'enablePrettyUrl' => getenv('APP_PRETTY_URLS'),
-            'showScriptName' => !getenv('APP_PRETTY_URLS') || YII_ENV_TEST ? true : false,
+            'showScriptName' => YII_ENV_TEST ? true : false,
         ]
     ],
 ];
