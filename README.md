@@ -1,6 +1,6 @@
 # TimeSheet
 
-:octocat: [`dmstr/docker-yii2-app`](https://github.com/mr-php/timesheet)
+:octocat: [`mr-php/timesheet`](https://github.com/mr-php/timesheet)
 
 ## Introduction
 
