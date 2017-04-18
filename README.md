@@ -1,16 +1,13 @@
-Docker Yii 2.0 Application
+Docker TimeSheet Application
 ==========================
 
-:octocat: [`dmstr/docker-yii2-app`](https://github.com/dmstr/docker-yii2-app)
-:factory: [`dmstr/docker-yii2-app`](https://git.hrzg.de/dmstr/docker-yii2-app/pipelines)
-:whale: [`dmstr/yii2-app`](https://hub.docker.com/r/dmstr/yii2-app/)
-:cd: [`dmstr/php-yii2`](https://hub.docker.com/r/dmstr/php-yii2/)
-
-[![Build Status](https://travis-ci.org/dmstr/docker-yii2-app.svg?branch=master)](https://travis-ci.org/dmstr/docker-yii2-app)
+:octocat: [`dmstr/docker-yii2-app`](https://github.com/cornernote/docker-timesheet)
 
 ## Introduction
 
-This is a minimal dockerized application template for Yii 2.0 Framework in about 100 lines of code.
+This is a timesheet application intended to generate invoices on [Saasu](https://www.saasu.com/) based on time entries at [Toggl](https://toggl.com/). 
+
+The application is dockerized and built using Yii 2.0 Framework.
 
 
 ## Requirements
@@ -29,6 +26,7 @@ Prepare `docker-compose` environment
 and application    
     
     cp src/app.env-dist src/app.env
+    cp src/config/local.php-dist src/config/local.php
     mkdir web/assets
 
 Start stack
@@ -81,7 +79,4 @@ Run tests in codeception (`forrest`) container
 - [Yii 2.0 Framework guide](http://www.yiiframework.com/doc-2.0/guide-index.html)
 - [Docker documentation](https://docs.docker.com)
 
-    
----
 
-#### ![dmstr logo](http://t.phundament.com/dmstr-16-cropped.png) Built by [dmstr](http://diemeisterei.de)
