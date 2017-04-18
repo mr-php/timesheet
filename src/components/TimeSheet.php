@@ -93,8 +93,8 @@ class TimeSheet extends Component
         if ($data) {
             foreach ($data as $sid => $toggl) {
                 foreach ($toggl['timeEntries'] as $timeEntry) {
-                    $pid = Inflector::slug($toggl['projects'][$timeEntry['pid']]['name']);
-                    $description = $timeEntry['description'];
+                    $pid = !empty($timeEntry['pid']) ? Inflector::slug($toggl['projects'][$timeEntry['pid']]['name']) : 'none';
+                    $description = !empty($timeEntry['description']) ? $timeEntry['description'] : 'no description';
                     $date = date('Y-m-d', strtotime($timeEntry['start']));
                     $hours = $timeEntry['duration'] > 0 ? $timeEntry['duration'] / 60 / 60 : 0;
                     $rate = $this->getStaffRate($sid, $pid);

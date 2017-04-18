@@ -74,7 +74,7 @@ $project = $timeSheet->projects[$pid];
                         <?php echo '$' . number_format($total['amount'], 2); ?>
                     </td>
                     <td class="text-right">
-                        <?php echo '$' . number_format($total['amount'] / 1.1, 2); ?>
+                        <?php echo '$' . number_format($total['amount'] / ($timeSheet->getProjectTaxRate($pid) + 1), 2); ?>
                     </td>
                 </tr>
             </table>
