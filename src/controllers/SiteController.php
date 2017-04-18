@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\NullUser;
 use Yii;
 use yii\filters\auth\HttpBasicAuth;
 use yii\helpers\Url;
@@ -28,11 +29,14 @@ class SiteController extends Controller
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        if (getenv('HEROKU')) {
+        if ($this->action->id != 'error') {
             $behaviors['basicAuth'] = [
                 'class' => HttpBasicAuth::className(),
                 'auth' => function ($username, $password) {
-                    return ($username == 'admin' && $password == getenv('APP_PASSWORD'));
+                    if ($username == 'admin' && $password == getenv('APP_PASSWORD')) {
+                        return new NullUser();
+                    }
+                    return null;
                 },
             ];
         }
