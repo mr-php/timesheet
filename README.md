@@ -1,7 +1,6 @@
-Docker TimeSheet Application
-==========================
+# TimeSheet
 
-:octocat: [`dmstr/docker-yii2-app`](https://github.com/cornernote/docker-timesheet)
+:octocat: [`dmstr/docker-yii2-app`](https://github.com/mr-php/timesheet)
 
 ## Introduction
 
@@ -78,5 +77,4 @@ Run tests in codeception (`forrest`) container
     
 - [Yii 2.0 Framework guide](http://www.yiiframework.com/doc-2.0/guide-index.html)
 - [Docker documentation](https://docs.docker.com)
-
 
