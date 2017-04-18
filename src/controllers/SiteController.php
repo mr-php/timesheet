@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\filters\auth\HttpBasicAuth;
 use yii\helpers\Url;
 use yii\web\Controller;
 
@@ -11,6 +12,33 @@ use yii\web\Controller;
  */
 class SiteController extends Controller
 {
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+        Yii::$app->user->enableSession = false;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        if (getenv('HEROKU')) {
+            $behaviors['basicAuth'] = [
+                'class' => HttpBasicAuth::className(),
+                'auth' => function ($username, $password) {
+                    return ($username == 'admin' && $password == getenv('APP_PASSWORD'));
+                },
+            ];
+        }
+        return $behaviors;
+    }
+
     /**
      * @inheritdoc
      */

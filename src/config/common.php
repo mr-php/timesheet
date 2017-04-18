@@ -44,6 +44,10 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'user' => [
+            'class' => 'yii\web\User',
+            'identityClass'=>'app\components\NullUser',
+        ],
         'saasu' => [
             'class' => 'app\components\Saasu',
         ],
