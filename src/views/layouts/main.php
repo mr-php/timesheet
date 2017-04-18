@@ -49,6 +49,9 @@ echo Nav::widget([
         [
             'label' => Yii::t('app', 'Saasu Export'),
             'url' => ['/site/export-saasu'],
+            'linkOptions' => [
+                'data-confirm' => Yii::t('app', 'Are you sure?'),
+            ],
         ],
     ],
     'options' => ['class' => 'navbar-nav'],

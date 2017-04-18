@@ -23,7 +23,7 @@ if (!$totals){
     foreach ($totals['time'] as $date => $daily) {
         if ($date == 'total') continue;
         ?>
-        <li class="<?= $active ?>"><a href="#day-<?= $date ?>"><?= date('D, j-M', strtotime($date)) ?></a></li>
+        <li class="<?= $active ?>"><a href="#day-<?= $date ?>"><?= date('D, j M', strtotime($date)) ?></a></li>
         <?php
         $active = '';
     }

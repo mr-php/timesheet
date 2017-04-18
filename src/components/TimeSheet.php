@@ -237,27 +237,4 @@ class TimeSheet extends Component
         return isset($this->projects[$pid]['tax_rate']) ? $this->projects[$pid]['tax_rate'] : 0;
     }
 
-    public function import()
-    {
-        $data = [];
-        $lastInvoiceDate = Yii::$app->cache->get('lastInvoiceDate') ?: 'last monday';
-        foreach ($this->staff as $sid => $staff) {
-            $toggl = TogglClient::factory([
-                'api_key' => $staff['toggl_api_key'],
-                'apiVersion' => 'v8',
-            ]);
-            $data[$sid]['workspaces'] = $toggl->getWorkspaces();
-            foreach ($data[$sid]['workspaces'] as $workspace) {
-                foreach ($toggl->getProjects(['id' => $workspace['id']]) as $project) {
-                    $data[$sid]['projects'][$project['id']] = $project;
-                }
-            }
-            $data[$sid]['clients'] = $toggl->getClients();
-            $data[$sid]['timeEntries'] = $toggl->getTimeEntries([
-                'start_date' => date('c', strtotime('00:00', strtotime($lastInvoiceDate))),
-            ]);
-        }
-        return $data;
-    }
-
 }

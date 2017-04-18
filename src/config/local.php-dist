@@ -1,11 +1,30 @@
 <?php
+$emailBody = <<< EOF
+Hello,
+
+Please find {InvoiceType.PrintDescription} {InvoiceNumber} for {project} attached.
+
+{times}
+EOF;
+
 return [
     'components' => [
+        'saasu' => [
+            'wsAccessKey' => 'D4A92597762C4FDCAF66FF03C988B7B2',
+            'fileUid' => 41555,
+            'layout' => 'S', // S = Service | I = Item
+            'taxAccountUid' => 76840, // (required for layout=S) see saasu > view > accounts
+            //'inventoryItemUid' => 56982, // (required for layout=I) see saasu > items
+            'fromEmail' => 'admin@mailinator.com',
+            'emailTemplate' => 'invoice',
+            'emailSubject' => '{InvoiceType.PrintDescription} {InvoiceNumber} for {project}',
+            'emailBody' => $emailBody,
+        ],
         'timeSheet' => [
             'staff' => [
                 'admin' => [
                     'name' => 'Admin',
-                    'toggl_api_key' => 'ABCD1234',
+                    'toggl_api_key' => '817212b50437a8531fdac89bc22e7dc8',
                     'rate' => 100,
                     'cost' => 50,
                     'multiplier' => 1,

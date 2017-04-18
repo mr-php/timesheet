@@ -20,7 +20,7 @@ if (!$times) {
 <ul id="invoices-tab" class="nav nav-pills" role="tablist">
     <?php
     $active = 'active';
-    foreach ($times as $pid => $invoice) {
+    foreach ($times as $pid => $_times) {
         ?>
         <li class="<?= $active ?>"><a href="#invoice-<?= $pid ?>"><?= $pid ?></a></li>
         <?php

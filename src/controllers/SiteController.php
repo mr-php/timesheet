@@ -12,7 +12,7 @@ use yii\web\Controller;
 class SiteController extends Controller
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function actions()
     {
@@ -30,10 +30,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        /** @var \app\components\TimeSheet $timeSheet */
-        $timeSheet = Yii::$app->timeSheet;
-        $times = $timeSheet->getTimes(Yii::$app->cache->get('toggl'));
-        $totals = $timeSheet->getTotals($times);
+        $times = Yii::$app->timeSheet->getTimes(Yii::$app->cache->get('toggl'));
+        $totals = Yii::$app->timeSheet->getTotals($times);
         return $this->render('index', [
             'times' => $times,
             'totals' => $totals,
@@ -41,22 +39,29 @@ class SiteController extends Controller
     }
 
     /**
+     * Imports data from Toggl
+     *
      * @return \yii\web\Response
      */
     public function actionImportToggl()
     {
-        Yii::$app->cache->set('toggl', Yii::$app->timeSheet->import());
+        Yii::$app->cache->set('toggl', Yii::$app->toggl->import(Yii::$app->timeSheet->staff));
         return $this->redirect(Url::home());
     }
 
     /**
+     * Exports data to Saasu
+     *
      * @return \yii\web\Response
      */
     public function actionExportSaasu()
     {
-        Yii::$app->timeSheet->export();
+        $times = Yii::$app->timeSheet->getTimes(Yii::$app->cache->get('toggl'));
+        foreach ($times as $pid => $_times) {
+            Yii::$app->saasu->createInvoice($pid, $_times);
+        }
         Yii::$app->cache->set('lastInvoiceDate', date('Y-m-d'));
-        return $this->redirect(Url::home());
+        return $this->redirect(['/site/import-toggl']);
     }
 
 }

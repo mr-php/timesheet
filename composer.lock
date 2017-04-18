@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4c5539ff69813e42ac3fca3dd41d205",
+    "content-hash": "2f21f054d0f819f52118a07f16903778",
     "packages": [
         {
             "name": "ajt/guzzle-toggl",
@@ -340,6 +340,52 @@
                 "yii2"
             ],
             "time": "2015-04-28T08:24:33+00:00"
+        },
+        {
+            "name": "dlin/saasu",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dlin-me/saasu.git",
+                "reference": "b1a16d82b11c4fba378ff7c781a69134def969d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dlin-me/saasu/zipball/b1a16d82b11c4fba378ff7c781a69134def969d8",
+                "reference": "b1a16d82b11c4fba378ff7c781a69134def969d8",
+                "shasum": ""
+            },
+            "require": {
+                "guzzle/guzzle": ">3.3.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Dlin\\Saasu": "src/",
+                    "Dlin\\Saasu\\Tests": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Lin",
+                    "homepage": "http://dlin.me"
+                }
+            ],
+            "description": "PHP Library for Saasu API",
+            "keywords": [
+                "Accounting",
+                "saasu",
+                "webservice"
+            ],
+            "time": "2013-12-02 01:03:44"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -833,7 +879,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "dlin/saasu": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

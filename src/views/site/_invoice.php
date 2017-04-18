@@ -45,7 +45,7 @@ $project = $timeSheet->projects[$pid];
                             $total['amount'] += $task['hours'] * $task['rate'];
                             ?>
                             <tr>
-                                <td><?= $date . ' ' . $sid . ': ' . str_replace("\n", '<br/>', $task['description']) ?></td>
+                                <td><?= $date . ' ' . $sid . ': ' . number_format($task['hours'], 2) . 'h - ' . str_replace("\n", '<br/>', $task['description']) ?></td>
                                 <td class="text-right">
                                     <?php echo number_format($task['hours'], 2); ?>
                                 </td>

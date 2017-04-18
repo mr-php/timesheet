@@ -15,7 +15,7 @@ $timeSheet = Yii::$app->timeSheet;
 
 <h3>
     <?php
-    echo date('D, j-M', strtotime($date));
+    echo date('D, j M', strtotime($date));
     echo ': ';
     echo number_format($daily['total'], 2);
     echo 'h = $';
