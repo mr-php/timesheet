@@ -67,6 +67,13 @@ echo Nav::widget([
                 'target' => '_blank',
             ],
         ],
+        [
+            'label' => 'Saasu',
+            'url' => 'https://secure.saasu.com/',
+            'linkOptions' => [
+                'target' => '_blank',
+            ],
+        ],
     ],
 ]);
 NavBar::end();
