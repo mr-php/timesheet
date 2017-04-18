@@ -24,6 +24,7 @@ use yii\helpers\Url;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <link rel="shortcut icon" href="<?= Yii::getAlias('@web'); ?>/favicon.png" type="image/png">
     <?php $this->registerCss('body{padding-top: 60px;}'); ?>
     <?php $this->head() ?>
 </head>
