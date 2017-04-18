@@ -27,7 +27,8 @@ return [
             'cookieValidationKey' => getenv('APP_COOKIE_VALIDATION_KEY'),
         ],
         'urlManager' => [
-            'enablePrettyUrl' => getenv('APP_PRETTY_URLS')
+            'enablePrettyUrl' => getenv('APP_PRETTY_URLS'),
+            'showScriptName' => !getenv('APP_PRETTY_URLS') || YII_ENV_TEST ? true : false,
         ]
     ],
 ];
