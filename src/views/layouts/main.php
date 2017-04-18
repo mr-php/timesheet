@@ -25,7 +25,27 @@ use yii\helpers\Url;
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <link rel="shortcut icon" href="<?= Yii::getAlias('@web'); ?>/favicon.png" type="image/png">
-    <?php $this->registerCss('body{padding-top: 60px;}'); ?>
+    <style>
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        body {
+            padding-top: 60px;
+            margin-bottom: 45px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 45px;
+            background-color: #f8f8f8;
+            border-top: 1px solid #e7e7e7;
+            padding-top: 10px;
+        }
+    </style>
     <?php $this->head() ?>
 </head>
 <body>
@@ -79,13 +99,12 @@ echo Nav::widget([
 NavBar::end();
 ?>
 
-<div class="wrap">
+<div class="container">
     <?= $content ?>
 </div>
 
 <footer class="footer">
     <div class="container">
-        <hr/>
         <p class="pull-left">
             <span class="label label-primary"><?= Yii::$app->id; ?></span>
         </p>
