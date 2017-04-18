@@ -11,6 +11,7 @@ namespace app\controllers;
  */
 
 use Yii;
+use yii\helpers\Url;
 use yii\web\Controller;
 
 /**
@@ -38,5 +39,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionImportToggl()
+    {
+        Yii::$app->timeSheet->import();
+        return $this->redirect(Url::home());
     }
 }

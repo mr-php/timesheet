@@ -13,7 +13,8 @@
 
 // Basic configuration, used in web and console applications
 return [
-    'id' => 'app',
+    'id' => getenv('APP_NAME'),
+    'name' => getenv('APP_TITLE'),
     'language' => 'en',
     'basePath' => dirname(__DIR__),
     'vendorPath' => '@app/../vendor',
@@ -23,6 +24,9 @@ return [
         'log',
     ],
     'components' => [
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
         'timeSheet' => [
             'class' => 'app\components\TimeSheet',
             'staff' => [
@@ -34,21 +38,34 @@ return [
                     'multiplier' => 1,
                     'tax_rate' => 0.1,
                     'projects' => [
-                        'test' => [
+                        'testing' => [
                             'rate' => 200,
                             'multiplier' => 0.75,
+                        ],
+                        'afiink' => [
+                            'rate' => 121,
                         ],
                     ],
                 ],
             ],
             'projects' => [
-                'test' => [
+                'testing' => [
                     'name' => 'Test',
                     'email' => 'test@mailinator.com',
                     'saasu_contact_uid' => '123',
+                    'saasu_tax_code' => 'G1', // 'G1,G2',
+                    'tax_rate' => 0.1,
                     'base_rate' => 150,
                     'base_hours' => 2,
                     'cap_hours' => 4,
+                ],
+                'afiink' => [
+                    'name' => 'AFI Console',
+                    'email' => 'meagan@afibranding.com.au',
+                    'saasu_contact_uid' => 215455,
+                    'saasu_tax_code' => 'G1', // 'G1,G2',
+                    'tax_rate' => 0.1,
+                    'cap_hours' => 24,
                 ],
             ],
         ],

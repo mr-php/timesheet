@@ -14,4 +14,4 @@ services:
       - ./tests:/app/tests
       - ./codeception.yml:/app/codeception.yml
     ports:
-      - 80:80
+      - 20080:80

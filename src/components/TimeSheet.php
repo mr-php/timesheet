@@ -3,6 +3,7 @@
 namespace app\components;
 
 use AJT\Toggl\TogglClient;
+use Yii;
 use yii\base\Component;
 use yii\helpers\Inflector;
 
@@ -12,12 +13,6 @@ class TimeSheet extends Component
     public $staff = [];
 
     public $projects = [];
-
-    public function init()
-    {
-        $this->initToggl();
-        parent::init();
-    }
 
     public function getTimes()
     {
@@ -36,14 +31,12 @@ class TimeSheet extends Component
                     foreach ($staff as $date => $tasks) {
                         foreach ($tasks as $description => $item) {
                             // get the amount
-                            if ($type == 'time') {
-                                $amount = $item['hours'];
-                            }
                             if ($type == 'profit') {
                                 $amount = ($item['hours'] * $this->getStaffProfit($sid, $pid)) / ($this->getStaffTaxRate($sid, $pid) + 1);
-                            }
-                            if ($type == 'cost') {
+                            } elseif ($type == 'cost') {
                                 $amount = ($item['hours'] * $this->getStaffCost($sid, $pid)) / ($this->getStaffTaxRate($sid, $pid) + 1);
+                            } else {
+                                $amount = $item['hours'];
                             }
                             // init the output
                             if (!isset($totals[$type]['total']['total']))
@@ -87,28 +80,37 @@ class TimeSheet extends Component
         return $totals;
     }
 
+    public function getInvoices($times)
+    {
+
+        return $times;
+    }
+
     public function convertTimeEntries()
     {
         $times = [];
-        foreach ($this->_toggl as $sid => $toggl) {
-            foreach ($toggl['timeEntries'] as $timeEntry) {
-                $pid = Inflector::slug($toggl['projects'][$timeEntry['pid']]['name']);
-                $description = $timeEntry['description'];
-                $date = date('Y-m-d', strtotime($timeEntry['start']));
-                $hours = $timeEntry['duration'] > 0 ? $timeEntry['duration'] / 60 / 60 : 0;
-                $rate = $this->getStaffRate($sid, $pid);
-                $multiplier = $this->getStaffMultiplier($sid, $pid);
-                if (!isset($times[$pid][$sid][$date][$description])) {
-                    $times[$pid][$sid][$date][$description] = [
-                        'pid' => $pid,
-                        'sid' => $sid,
-                        'date' => $date,
-                        'description' => $description,
-                        'rate' => $rate,
-                        'hours' => 0,
-                    ];
+        $data = Yii::$app->cache->get('toggl');
+        if ($data) {
+            foreach ($data as $sid => $toggl) {
+                foreach ($toggl['timeEntries'] as $timeEntry) {
+                    $pid = Inflector::slug($toggl['projects'][$timeEntry['pid']]['name']);
+                    $description = $timeEntry['description'];
+                    $date = date('Y-m-d', strtotime($timeEntry['start']));
+                    $hours = $timeEntry['duration'] > 0 ? $timeEntry['duration'] / 60 / 60 : 0;
+                    $rate = $this->getStaffRate($sid, $pid);
+                    $multiplier = $this->getStaffMultiplier($sid, $pid);
+                    if (!isset($times[$pid][$sid][$date][$description])) {
+                        $times[$pid][$sid][$date][$description] = [
+                            'pid' => $pid,
+                            'sid' => $sid,
+                            'date' => $date,
+                            'description' => $description,
+                            'rate' => $rate,
+                            'hours' => 0,
+                        ];
+                    }
+                    $times[$pid][$sid][$date][$description]['hours'] += $hours * $multiplier;
                 }
-                $times[$pid][$sid][$date][$description]['hours'] += $hours * $multiplier;
             }
         }
         return $times;
@@ -145,14 +147,14 @@ class TimeSheet extends Component
             // add base hours
             $baseRate = isset($this->projects[$pid]['base_rate']) ? $this->projects[$pid]['base_rate'] : 0;
             if ($baseRate) {
-                array_unshift($times[$pid][0][date('Y-m-d')], array(
+                $times[$pid][key($this->staff)][date('Y-m-d')]['Base ' . $baseHours . ' hours'] = [
                     'pid' => $pid,
                     'sid' => 0,
                     'date' => date('Y-m-d'),
                     'description' => 'Base ' . $baseHours . ' hours',
                     'rate' => $baseRate / $baseHours,
                     'hours' => $baseHours,
-                ));
+                ];
             }
         }
         return $times;
@@ -228,28 +230,32 @@ class TimeSheet extends Component
         return $this->staff[$sid]['tax_rate'];
     }
 
-    private $_toggl;
-
-    private function initToggl()
+    public function getProjectTaxRate($pid)
     {
-        $this->_toggl = [];
+        return isset($this->projects[$pid]['tax_rate']) ? $this->projects[$pid]['tax_rate'] : 0;
+    }
+
+    public function import()
+    {
+        $data = [];
         foreach ($this->staff as $sid => $staff) {
             $toggl = TogglClient::factory([
                 'api_key' => $staff['toggl_api_key'],
                 'apiVersion' => 'v8',
             ]);
-            $this->_toggl[$sid]['workspaces'] = $toggl->getWorkspaces();
-            foreach ($this->_toggl[$sid]['workspaces'] as $workspace) {
+            $data[$sid]['workspaces'] = $toggl->getWorkspaces();
+            foreach ($data[$sid]['workspaces'] as $workspace) {
                 foreach ($toggl->getProjects(['id' => $workspace['id']]) as $project) {
-                    $this->_toggl[$sid]['projects'][$project['id']] = $project;
+                    $data[$sid]['projects'][$project['id']] = $project;
                 }
             }
-            $this->_toggl[$sid]['clients'] = $toggl->getClients();
-            $this->_toggl[$sid]['timeEntries'] = $toggl->getTimeEntries([
+            $data[$sid]['clients'] = $toggl->getClients();
+            $data[$sid]['timeEntries'] = $toggl->getTimeEntries([
                 //'start_date' => date('c', strtotime('00:00 -1week')),
                 //'end_date' => date('c', strtotime('00:00 -0week')),
             ]);
         }
+        Yii::$app->cache->set('toggl', $data);
     }
 
 }
