@@ -41,14 +41,14 @@ NavBar::begin([
 echo Nav::widget([
     'items' => [
         [
-            'label' => Yii::t('app', 'Toggl Import'),
+            'label' => Yii::t('app', 'Import Toggl'),
             'url' => ['/site/import-toggl'],
             'linkOptions' => [
                 'data-confirm' => Yii::t('app', 'Are you sure?'),
             ],
         ],
         [
-            'label' => Yii::t('app', 'Saasu Export'),
+            'label' => Yii::t('app', 'Export Saasu'),
             'url' => ['/site/export-saasu'],
             'linkOptions' => [
                 'data-confirm' => Yii::t('app', 'Are you sure?'),
@@ -56,6 +56,18 @@ echo Nav::widget([
         ],
     ],
     'options' => ['class' => 'navbar-nav'],
+]);
+echo Nav::widget([
+    'options' => ['class' => 'navbar-nav navbar-right'],
+    'items' => [
+        [
+            'label' => 'Toggl',
+            'url' => 'https://toggl.com/app',
+            'linkOptions' => [
+                'target' => '_blank',
+            ],
+        ],
+    ],
 ]);
 NavBar::end();
 ?>
