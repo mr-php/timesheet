@@ -1,8 +1,6 @@
 .idea
 vendor
 .env
-runtime
-web/assets
 docker-compose.override.yml
 app.env
 _artifacts
