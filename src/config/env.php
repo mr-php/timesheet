@@ -1,14 +1,5 @@
 <?php
 
-/**
- * @link http://www.diemeisterei.de/
- *
- * @copyright Copyright (c) 2016 diemeisterei GmbH, Stuttgart
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 // Version check
 $version = is_file(__DIR__.'/../version') ? file_get_contents(__DIR__.'/../version') : 'dev';
 defined('APP_VERSION') or define('APP_VERSION', $version);

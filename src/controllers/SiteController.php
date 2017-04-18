@@ -2,14 +2,6 @@
 
 namespace app\controllers;
 
-/*
- * @link http://www.diemeisterei.de/
- * @copyright Copyright (c) 2016 diemeisterei GmbH, Stuttgart
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 use Yii;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -38,12 +30,33 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        /** @var \app\components\TimeSheet $timeSheet */
+        $timeSheet = Yii::$app->timeSheet;
+        $times = $timeSheet->getTimes(Yii::$app->cache->get('toggl'));
+        $totals = $timeSheet->getTotals($times);
+        return $this->render('index', [
+            'times' => $times,
+            'totals' => $totals,
+        ]);
     }
 
+    /**
+     * @return \yii\web\Response
+     */
     public function actionImportToggl()
     {
-        Yii::$app->timeSheet->import();
+        Yii::$app->cache->set('toggl', Yii::$app->timeSheet->import());
         return $this->redirect(Url::home());
     }
+
+    /**
+     * @return \yii\web\Response
+     */
+    public function actionExportSaasu()
+    {
+        Yii::$app->timeSheet->export();
+        Yii::$app->cache->set('lastInvoiceDate', date('Y-m-d'));
+        return $this->redirect(Url::home());
+    }
+
 }

@@ -1,17 +1,9 @@
 <?php
 
-/**
- * @link http://www.diemeisterei.de/
- *
- * @copyright Copyright (c) 2016 diemeisterei GmbH, Stuttgart
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-//date_default_timezone_set('Australia/Adelaide');
-
 // Basic configuration, used in web and console applications
+
+date_default_timezone_set(getenv('APP_TIMEZONE'));
+
 return [
     'id' => getenv('APP_NAME'),
     'name' => getenv('APP_TITLE'),

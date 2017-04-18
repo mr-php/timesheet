@@ -11,38 +11,6 @@ use yii\web\Controller;
  */
 class TestController extends Controller
 {
-    public function actionIndex()
-    {
-        $times = Yii::$app->timeSheet->getTimes();
-        $times = Yii::$app->timeSheet->getTotals($times);
-        print_r($times);
-    }
-
-    public function actionToggl()
-    {
-        $toggl = TogglClient::factory([
-            'api_key' => '817212b50437a8531fdac89bc22e7dc8',
-            'apiVersion' => 'v8'
-        ]);
-        $workspaces = $toggl->getWorkspaces();
-        print 'Workspaces' . "\n";
-        print_r($workspaces);
-        foreach ($workspaces as $workspace) {
-            print 'Projects' . "\n";
-            $projects = $toggl->getProjects(['id' => $workspace['id']]);
-            print_r($projects);
-        }
-
-        $clients = $toggl->getClients();
-        $timeEntries = $toggl->getTimeEntries([
-            //'start_date' => date('c', strtotime('00:00 -1week')),
-            //'end_date' => date('c', strtotime('00:00 -0week')),
-        ]);
-        print 'Clients' . "\n";
-        print_r($clients);
-        print 'Time Entries' . "\n";
-        print_r($timeEntries);
-    }
 
     public function actionSaasu()
     {

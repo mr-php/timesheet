@@ -5,10 +5,10 @@ use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
-//$this->title = $this->title;
+/**
+ * @var $this \yii\web\View
+ * @var $content string
+ */
 
 // Register asset bundles
 \yii\web\YiiAsset::register($this);
@@ -55,7 +55,6 @@ echo Nav::widget([
 ]);
 NavBar::end();
 ?>
-
 
 <div class="wrap">
     <?= $content ?>

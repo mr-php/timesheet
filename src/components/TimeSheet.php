@@ -7,6 +7,10 @@ use Yii;
 use yii\base\Component;
 use yii\helpers\Inflector;
 
+/**
+ * TimeSheet
+ * @package app\components
+ */
 class TimeSheet extends Component
 {
 
@@ -14,9 +18,9 @@ class TimeSheet extends Component
 
     public $projects = [];
 
-    public function getTimes()
+    public function getTimes($togglData)
     {
-        $times = $this->convertTimeEntries();
+        $times = $this->convertTimeEntries($togglData);
         $times = $this->applyBaseRates($times);
         $times = $this->applyCapRates($times);
         return $times;
@@ -80,20 +84,13 @@ class TimeSheet extends Component
         return $totals;
     }
 
-    public function getInvoices($times)
-    {
-
-        return $times;
-    }
-
-    public function convertTimeEntries()
+    public function convertTimeEntries($togglData)
     {
         $times = [];
-        $data = Yii::$app->cache->get('toggl');
-        if ($data) {
-            foreach ($data as $sid => $toggl) {
-                foreach ($toggl['timeEntries'] as $timeEntry) {
-                    $pid = !empty($timeEntry['pid']) ? Inflector::slug($toggl['projects'][$timeEntry['pid']]['name']) : 'none';
+        if ($togglData) {
+            foreach ($togglData as $sid => $data) {
+                foreach ($data['timeEntries'] as $timeEntry) {
+                    $pid = !empty($timeEntry['pid']) ? Inflector::slug($data['projects'][$timeEntry['pid']]['name']) : 'none';
                     $description = !empty($timeEntry['description']) ? $timeEntry['description'] : 'no description';
                     $date = date('Y-m-d', strtotime($timeEntry['start']));
                     $hours = $timeEntry['duration'] > 0 ? $timeEntry['duration'] / 60 / 60 : 0;
@@ -243,6 +240,7 @@ class TimeSheet extends Component
     public function import()
     {
         $data = [];
+        $lastInvoiceDate = Yii::$app->cache->get('lastInvoiceDate') ?: 'last monday';
         foreach ($this->staff as $sid => $staff) {
             $toggl = TogglClient::factory([
                 'api_key' => $staff['toggl_api_key'],
@@ -256,11 +254,10 @@ class TimeSheet extends Component
             }
             $data[$sid]['clients'] = $toggl->getClients();
             $data[$sid]['timeEntries'] = $toggl->getTimeEntries([
-                //'start_date' => date('c', strtotime('00:00 -1week')),
-                //'end_date' => date('c', strtotime('00:00 -0week')),
+                'start_date' => date('c', strtotime('00:00', strtotime($lastInvoiceDate))),
             ]);
         }
-        Yii::$app->cache->set('toggl', $data);
+        return $data;
     }
 
 }
