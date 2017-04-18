@@ -128,13 +128,14 @@ class TimeSheet extends Component
                             if ($baseHours > 0) {
                                 $baseHours -= $item['hours'];
                                 $times[$pid][$sid][$date][$description]['rate'] = 0;
+                                $times[$pid][$sid][$date][$description]['description'] = $description . ' (base hours)';
                                 if ($baseHours < 0) {
                                     $times[$pid][$sid][$date][$description]['hours'] = $item['hours'] + $baseHours;
-                                    $times[$pid][$sid][$date]['Base Hours: ' . $description] = [
+                                    $times[$pid][$sid][$date]['base-hours-leftover: ' . $description] = [
                                         'pid' => $pid,
                                         'sid' => $sid,
                                         'date' => $date,
-                                        'description' => 'Base Hours:' . $description,
+                                        'description' => $description,
                                         'rate' => $item['rate'],
                                         'hours' => $baseHours * -1,
                                     ];
@@ -146,13 +147,17 @@ class TimeSheet extends Component
             }
             // add base hours
             $baseRate = isset($this->projects[$pid]['base_rate']) ? $this->projects[$pid]['base_rate'] : 0;
+            $baseHours = isset($this->projects[$pid]['base_hours']) ? $this->projects[$pid]['base_hours'] : 0;
             if ($baseRate) {
-                $times[$pid][key($this->staff)][date('Y-m-d')]['Base ' . $baseHours . ' hours'] = [
+                $sid = key($this->staff);
+                $date = date('Y-m-d');
+                $description = $baseHours ? 'Base ' . $baseHours . ' hours' : 'Base rate';
+                $times[$pid][$sid][$date][$description] = [
                     'pid' => $pid,
-                    'sid' => 0,
-                    'date' => date('Y-m-d'),
-                    'description' => 'Base ' . $baseHours . ' hours',
-                    'rate' => $baseRate / $baseHours,
+                    'sid' => $sid,
+                    'date' => $date,
+                    'description' => $description,
+                    'rate' => $baseHours ? round($baseRate / $baseHours, 2) : $baseRate,
                     'hours' => $baseHours,
                 ];
             }

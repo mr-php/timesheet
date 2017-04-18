@@ -7,3 +7,4 @@ docker-compose.override.yml
 app.env
 _artifacts
 tests/codeception/_output
+src/config/local.php
