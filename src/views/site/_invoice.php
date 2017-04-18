@@ -6,6 +6,7 @@
  * @var array $times
  */
 
+use app\components\Helper;
 use yii\web\View;
 
 /** @var \app\components\TimeSheet $timeSheet */
@@ -45,7 +46,7 @@ $project = $timeSheet->projects[$pid];
                             $total['amount'] += $task['hours'] * $task['rate'];
                             ?>
                             <tr>
-                                <td><?= $date . ' ' . $sid . ': ' . number_format($task['hours'], 2) . 'h - ' . str_replace("\n", '<br/>', $task['description']) ?></td>
+                                <td><?= $date . ' ' . Yii::$app->timeSheet->staff[$task['sid']]['name'] . ' ' . Helper::formatHours($task['hours']) . ' - ' . str_replace("\n", '<br/>', $task['description']) ?></td>
                                 <td class="text-right">
                                     <?php echo number_format($task['hours'], 2); ?>
                                 </td>

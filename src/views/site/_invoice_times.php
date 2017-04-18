@@ -5,14 +5,16 @@
  * @var array $times
  */
 
+use app\components\Helper;
 use yii\web\View;
 
 $contents = [];
 $total = 0;
 foreach ($times as $sid => $dates) {
+    $staff = Yii::$app->timeSheet->staff[$sid];
     $staffTotal = 0;
     $contents[] = '================================';
-    $contents[] = "Hours per Task by {$sid}";
+    $contents[] = "Hours per Task by {$staff['name']}";
     $contents[] = '================================';
     foreach ($dates as $date => $tasks) {
         foreach ($tasks as $task) {
@@ -25,20 +27,20 @@ foreach ($times as $sid => $dates) {
         $dayTasks = [];
         foreach ($tasks as $task) {
             $dayTotal += $task['hours'];
-            $dayTasks[] = number_format($task['hours'], 2) . ' - ' . htmlspecialchars($task['description']);
+            $dayTasks[] = Helper::formatHours($task['hours']) . ' - ' . htmlspecialchars($task['description']);
         }
         $contents[] = date('Y-m-d - l', strtotime($date));
         $contents[] = '--------------------------------';
         $contents[] = implode("\r\n", $dayTasks);
         $contents[] = '--------------------------------';
-        $contents[] = number_format($dayTotal, 2) . " - day total";
+        $contents[] = Helper::formatHours($dayTotal) . " - day total";
         $contents[] = '================================';
     }
-    $contents[] = number_format($staffTotal, 2) . " - Total for {$sid}";
+    $contents[] = Helper::formatHours($staffTotal) . " - Total for {$staff['name']}";
     $contents[] = '================================';
     $contents[] = '';
 }
 $contents[] = '================================';
-$contents[] = number_format($total, 2) . " - Grand Total";
+$contents[] = Helper::formatHours($total) . " - Grand Total";
 $contents[] = '================================';
 echo implode("\r\n", $contents);

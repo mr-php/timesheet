@@ -5,12 +5,13 @@
  * @var array $totals
  */
 
+use app\components\Helper;
 use yii\web\View;
 
 /** @var \app\components\TimeSheet $timeSheet */
 $timeSheet = Yii::$app->timeSheet;
 
-if (!$totals){
+if (!$totals) {
     return;
 }
 ?>
@@ -18,8 +19,8 @@ if (!$totals){
 <h2>
     <?php
     echo Yii::t('app', 'Summary') . ': ';
-    echo number_format($totals['time']['total']['total'], 2);
-    echo 'h = $';
+    echo Helper::formatHours($totals['time']['total']['total']);
+    echo ' = $';
     echo number_format($totals['profit']['total']['total'], 2);
     ?>
 </h2>
@@ -33,7 +34,7 @@ if (!$totals){
             ?>
             <div class="row">
                 <div class="col-md-2">
-                    <strong><?= $sid ?></strong>
+                    <strong><?= Yii::$app->timeSheet->staff[$sid]['name'] ?></strong>
                 </div>
                 <div class="col-md-10">
                     <table class="table table-condensed">
@@ -55,7 +56,7 @@ if (!$totals){
                             $staffProfit = $timeSheet->getStaffProfit($sid, $pid);
                             ?>
                             <tr>
-                                <td><?= $pid ?></td>
+                                <td><?= Yii::$app->timeSheet->projects[$pid]['name'] ?></td>
                                 <td class="text-right">
                                     <?= number_format($hours, 2) ?>
                                 </td>
@@ -102,7 +103,7 @@ if (!$totals){
             ?>
             <div class="row">
                 <div class="col-md-2">
-                    <strong><?= $pid ?></strong>
+                    <strong><?= Yii::$app->timeSheet->projects[$pid]['name'] ?></strong>
                 </div>
                 <div class="col-md-10">
                     <table class="table table-condensed">
@@ -124,7 +125,7 @@ if (!$totals){
                             $staffProfit = $timeSheet->getStaffProfit($sid, $pid);
                             ?>
                             <tr>
-                                <td><?= $sid ?></td>
+                                <td><?= Yii::$app->timeSheet->staff[$sid]['name'] ?></td>
                                 <td class="text-right">
                                     <?= number_format($hours, 2) ?>
                                 </td>
