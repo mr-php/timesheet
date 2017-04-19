@@ -10,12 +10,12 @@ class TimeSheetSettingsForm extends Model
     /**
      * @var string
      */
-    public $timesheetStaff;
+    public $staff;
 
     /**
      * @var string
      */
-    public $timesheetProjects;
+    public $projects;
 
     /**
      * @inheritdoc
@@ -23,7 +23,7 @@ class TimeSheetSettingsForm extends Model
     public function rules(): array
     {
         return [
-            [['timesheetStaff', 'timesheetProjects'], 'required'],
+            [['staff', 'projects'], 'required'],
         ];
     }
 
@@ -33,8 +33,8 @@ class TimeSheetSettingsForm extends Model
     public function attributeLabels(): array
     {
         return [
-            'timesheetStaff' => Yii::t('app', 'Staff'),
-            'timesheetProjects' => Yii::t('app', 'Projects'),
+            'staff' => Yii::t('app', 'Staff'),
+            'projects' => Yii::t('app', 'Projects'),
         ];
     }
 }

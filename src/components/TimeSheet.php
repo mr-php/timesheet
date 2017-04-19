@@ -6,6 +6,7 @@ use AJT\Toggl\TogglClient;
 use Yii;
 use yii\base\Component;
 use yii\helpers\Inflector;
+use yii\helpers\Json;
 
 /**
  * TimeSheet
@@ -17,6 +18,18 @@ class TimeSheet extends Component
     public $staff = [];
 
     public $projects = [];
+
+    public function init()
+    {
+        parent::init();
+        $settings = ['staff', 'projects'];
+        foreach ($settings as $key) {
+            $value = Yii::$app->settings->get('TimeSheetSettingsForm', $key);
+            if ($value) {
+                $this->$key = Json::decode($value);
+            }
+        }
+    }
 
     public function getTimes($togglData)
     {

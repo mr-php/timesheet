@@ -11,42 +11,42 @@ class SaasuSettingsForm extends Model
     /**
      * @var string
      */
-    public $saasuWsAccessKey;
+    public $wsAccessKey;
 
     /**
      * @var int
      */
-    public $saasuFileUid;
+    public $fileUid;
 
     /**
      * @var string
      */
-    public $saasuLayout = 'S';
+    public $layout = 'S';
 
     /**
      * @var int
      */
-    public $saasuTaxAccountUid;
+    public $taxAccountUid;
 
     /**
      * @var int
      */
-    public $saasuInventoryItemUid;
+    public $inventoryItemUid;
 
     /**
      * @var string
      */
-    public $saasuFromEmail;
+    public $fromEmail;
 
     /**
      * @var string
      */
-    public $saasuEmailSubject;
+    public $emailSubject;
 
     /**
      * @var string
      */
-    public $saasuEmailBody;
+    public $emailBody;
 
     /**
      * @inheritdoc
@@ -54,8 +54,8 @@ class SaasuSettingsForm extends Model
     public function rules(): array
     {
         return [
-            [['saasuWsAccessKey', 'saasuFileUid', 'saasuLayout', 'saasuTaxAccountUid', 'saasuInventoryItemUid',
-                'saasuFromEmail', 'saasuEmailSubject', 'saasuEmailBody'], 'required'],
+            [['wsAccessKey', 'fileUid', 'layout', 'taxAccountUid', 'inventoryItemUid',
+                'fromEmail', 'emailSubject', 'emailBody'], 'required'],
         ];
     }
 
@@ -65,14 +65,14 @@ class SaasuSettingsForm extends Model
     public function attributeLabels(): array
     {
         return [
-            'saasuWsAccessKey' => Yii::t('app', 'Access Key'),
-            'saasuFileUid' => Yii::t('app', 'File UID'),
-            'saasuLayout' => Yii::t('app', 'Layout'),
-            'saasuTaxAccountUid' => Yii::t('app', 'Tax Account IID'),
-            'saasuInventoryItemUid' => Yii::t('app', 'Inventory Item UID'),
-            'saasuFromEmail' => Yii::t('app', 'From Email'),
-            'saasuEmailSubject' => Yii::t('app', 'Email Subject'),
-            'saasuEmailBody' => Yii::t('app', 'Email Body'),
+            'wsAccessKey' => Yii::t('app', 'Access Key'),
+            'fileUid' => Yii::t('app', 'File UID'),
+            'layout' => Yii::t('app', 'Layout'),
+            'taxAccountUid' => Yii::t('app', 'Tax Account IID'),
+            'inventoryItemUid' => Yii::t('app', 'Inventory Item UID'),
+            'fromEmail' => Yii::t('app', 'From Email'),
+            'emailSubject' => Yii::t('app', 'Email Subject'),
+            'emailBody' => Yii::t('app', 'Email Body'),
         ];
     }
 }

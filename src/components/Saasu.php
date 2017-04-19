@@ -72,6 +72,22 @@ class Saasu extends Component
     private $_api;
 
     /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+        $settings = ['wsAccessKey', 'fileUid', 'layout', 'taxAccountUid', 'inventoryItemUid',
+            'fromEmail', 'emailSubject', 'emailBody'];
+        foreach ($settings as $key) {
+            $value = Yii::$app->settings->get('SaasuSettingsForm', $key);
+            if ($value) {
+                $this->$key = $value;
+            }
+        }
+    }
+
+    /**
      * @return SaasuAPI
      */
     public function getApi()
