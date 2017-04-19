@@ -14,5 +14,3 @@ services:
       - MYSQL_USER=timesheet
       - MYSQL_DATABASE=timesheet
       - MYSQL_PASSWORD=timesheet
-    ports:
-      - 3306
