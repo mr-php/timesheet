@@ -155,7 +155,7 @@ class TimeSheet extends Component
                     'date' => $date,
                     'description' => $description,
                     'rate' => $baseHours ? round($baseRate / $baseHours, 2) : $baseRate,
-                    'hours' => $baseHours,
+                    'hours' => $baseHours ? $baseHours : 1,
                 ];
             }
         }
