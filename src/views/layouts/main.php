@@ -25,6 +25,7 @@ use yii\helpers\Url;
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <link rel="shortcut icon" href="<?= Yii::getAlias('@web'); ?>/favicon.png" type="image/png">
+    <?php $this->head() ?>
     <style>
         html {
             position: relative;
@@ -33,7 +34,7 @@ use yii\helpers\Url;
 
         body {
             padding-top: 60px;
-            margin-bottom: 45px;
+            margin-bottom: 50px;
         }
 
         .footer {
@@ -46,7 +47,6 @@ use yii\helpers\Url;
             padding-top: 10px;
         }
     </style>
-    <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
