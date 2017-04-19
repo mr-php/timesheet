@@ -24,6 +24,7 @@ Yii::$container = new yii\di\Container;
  * @property \app\components\Saasu $saasu
  * @property \app\components\TimeSheet $timeSheet
  * @property \app\components\Toggl $toggl
+ * @property \yii2mod\settings\components\Settings $settings
  */
 abstract class BaseApplication extends yii\base\Application
 {

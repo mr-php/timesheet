@@ -3,10 +3,12 @@
 namespace app\controllers;
 
 use app\components\NullUser;
+use app\models\forms\TimeSheetSettingsForm;
 use Yii;
 use yii\filters\auth\HttpBasicAuth;
 use yii\helpers\Url;
 use yii\web\Controller;
+use yii2mod\settings\actions\SettingsAction;
 
 /**
  * Site controller.
@@ -51,6 +53,16 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+            ],
+            'timesheet-settings' => [
+                'class' => SettingsAction::class,
+                'view' => 'timesheet-settings',
+                'modelClass' => TimeSheetSettingsForm::class,
+            ],
+            'saasu-settings' => [
+                'class' => SettingsAction::class,
+                'view' => 'saasu-settings',
+                'modelClass' => \app\models\forms\SaasuSettingsForm::class,
             ],
         ];
     }

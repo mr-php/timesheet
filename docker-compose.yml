@@ -2,3 +2,15 @@ version: '2'
 services:
     php:
         image: ${STACK_PHP_IMAGE}
+        depends_on:
+            - db
+    db:
+        command: --character-set-server=utf8 --collation-server=utf8_general_ci
+        image: percona:5.7
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=timesheet
+            - MYSQL_DATABASE=timesheet
+            - MYSQL_PASSWORD=timesheet
+        ports:
+            - '3306'

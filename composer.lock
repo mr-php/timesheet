@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d0740c7d0c6e6690bac6be968fe4494",
+    "content-hash": "bf33f70234d89ad96fe24b22554c3abc",
     "packages": [
         {
             "name": "ajt/guzzle-toggl",
@@ -219,6 +219,40 @@
                     "Gruntfile.js",
                     "node_modules",
                     "package.json"
+                ]
+            }
+        },
+        {
+            "name": "bower-asset/x-editable",
+            "version": "1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vitalets/x-editable.git",
+                "reference": "f32802f48a33b8a7ec9cca32eec4ca844b7d39b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vitalets/x-editable/zipball/f32802f48a33b8a7ec9cca32eec4ca844b7d39b2",
+                "reference": "f32802f48a33b8a7ec9cca32eec4ca844b7d39b2",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.6"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-ignore": [
+                    "CHANGELOG.txt",
+                    "Gruntfile.js",
+                    "LICENSE-MIT",
+                    "Package.nuspec",
+                    "README.md",
+                    "composer.json",
+                    "package.json",
+                    "node_modules",
+                    "components",
+                    "src",
+                    "test"
                 ]
             }
         },
@@ -712,6 +746,144 @@
                 "environment"
             ],
             "time": "2016-09-01T10:05:43+00:00"
+        },
+        {
+            "name": "yii2mod/yii2-editable",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/yii2-editable.git",
+                "reference": "8b66bfd73e986f53649bccab6663fc9b10dbeb0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/yii2-editable/zipball/8b66bfd73e986f53649bccab6663fc9b10dbeb0c",
+                "reference": "8b66bfd73e986f53649bccab6663fc9b10dbeb0c",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/x-editable": "*",
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\editable\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Chepurnoi",
+                    "email": "igorzfort@gmail.com"
+                }
+            ],
+            "description": "Yii2 editable field extension",
+            "keywords": [
+                "yii2",
+                "yii2 editable",
+                "yii2 editable column",
+                "yii2 editable field"
+            ],
+            "time": "2017-01-01T15:18:57+00:00"
+        },
+        {
+            "name": "yii2mod/yii2-enum",
+            "version": "1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/yii2-enum.git",
+                "reference": "65a97ab187ee6496cbaee7dfc57fb148fa823bef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/yii2-enum/zipball/65a97ab187ee6496cbaee7dfc57fb148fa823bef",
+                "reference": "65a97ab187ee6496cbaee7dfc57fb148fa823bef",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\enum\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Semenov",
+                    "email": "disemx@gmail.com"
+                }
+            ],
+            "description": "Yii2 Enumerable helpers",
+            "keywords": [
+                "enumerable helper",
+                "yii2",
+                "yii2 enum"
+            ],
+            "time": "2017-01-09T22:46:32+00:00"
+        },
+        {
+            "name": "yii2mod/yii2-settings",
+            "version": "2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/yii2-settings.git",
+                "reference": "5221f62c4449ad554cbfb24821c8d262ef0b088a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/yii2-settings/zipball/5221f62c4449ad554cbfb24821c8d262ef0b088a",
+                "reference": "5221f62c4449ad554cbfb24821c8d262ef0b088a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "yii2mod/yii2-editable": "*",
+                "yii2mod/yii2-enum": "*",
+                "yiisoft/yii2": ">=2.0.8"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\settings\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Chepurnoy",
+                    "email": "igorzfort@gmail.com"
+                }
+            ],
+            "description": "Yii2 Settings Module",
+            "keywords": [
+                "Settings",
+                "config",
+                "storage",
+                "yii2"
+            ],
+            "time": "2017-04-13T13:14:48+00:00"
         },
         {
             "name": "yiisoft/yii2",

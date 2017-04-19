@@ -1,5 +1,5 @@
 {
-    "name": "dmstr/yii2-app",
+    "name": "mr-php/timesheet",
     "minimum-stability": "stable",
     "require": {
         "fxp/composer-asset-plugin": "*",
@@ -9,7 +9,8 @@
         "yiisoft/yii2-debug": "2.*",
         "codemix/yii2-streamlog": "^1.0.0",
         "ajt/guzzle-toggl": "^0.12.0",
-        "dlin/saasu": "dev-master"
+        "dlin/saasu": "dev-master",
+        "yii2mod/yii2-settings": "*"
     },
     "config": {
         "fxp-asset": {

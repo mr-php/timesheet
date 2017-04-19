@@ -12,12 +12,13 @@ return [
         'log',
     ],
     'components' => [
+        'db' => require(__DIR__ . '/db.php'),
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
             'class' => 'yii\web\User',
-            'identityClass'=>'app\components\NullUser',
+            'identityClass' => 'app\components\NullUser',
         ],
         'saasu' => [
             'class' => 'app\components\Saasu',
@@ -27,6 +28,9 @@ return [
         ],
         'toggl' => [
             'class' => 'app\components\Toggl',
+        ],
+        'settings' => [
+            'class' => 'yii2mod\settings\components\Settings',
         ],
     ],
 ];
