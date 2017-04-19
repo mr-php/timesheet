@@ -10,8 +10,6 @@
 use app\components\Helper;
 use yii\web\View;
 
-/** @var \app\components\TimeSheet $timeSheet */
-$timeSheet = Yii::$app->timeSheet;
 ?>
 
 <h3>
@@ -53,13 +51,13 @@ $timeSheet = Yii::$app->timeSheet;
                                     <?= number_format($hours, 2) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format(($hours * $timeSheet->getStaffCost($sid, $pid)) / ($timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
+                                    <?= number_format(($hours * Yii::$app->timeSheet->getStaffCost($sid, $pid)) / (Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format(($hours * ($timeSheet->getStaffCost($sid, $pid) + $timeSheet->getStaffProfit($sid, $pid))) / ($timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
+                                    <?= number_format(($hours * (Yii::$app->timeSheet->getStaffCost($sid, $pid) + Yii::$app->timeSheet->getStaffProfit($sid, $pid))) / (Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format(($hours * $timeSheet->getStaffProfit($sid, $pid)) / ($timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
+                                    <?= number_format(($hours * Yii::$app->timeSheet->getStaffProfit($sid, $pid)) / (Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
                                 </td>
                             </tr>
                             <?php
@@ -116,13 +114,13 @@ $timeSheet = Yii::$app->timeSheet;
                                     <?= number_format($hours, 2) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format(($hours * $timeSheet->getStaffCost($sid, $pid)) / ($timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
+                                    <?= number_format(($hours * Yii::$app->timeSheet->getStaffCost($sid, $pid)) / (Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format(($hours * ($timeSheet->getStaffCost($sid, $pid) + $timeSheet->getStaffProfit($sid, $pid))) / ($timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
+                                    <?= number_format(($hours * (Yii::$app->timeSheet->getStaffCost($sid, $pid) + Yii::$app->timeSheet->getStaffProfit($sid, $pid))) / (Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format(($hours * $timeSheet->getStaffProfit($sid, $pid)) / ($timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
+                                    <?= number_format(($hours * Yii::$app->timeSheet->getStaffProfit($sid, $pid)) / (Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
                                 </td>
                             </tr>
                             <?php

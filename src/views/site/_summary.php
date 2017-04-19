@@ -8,9 +8,6 @@
 use app\components\Helper;
 use yii\web\View;
 
-/** @var \app\components\TimeSheet $timeSheet */
-$timeSheet = Yii::$app->timeSheet;
-
 if (!$totals) {
     return;
 }
@@ -48,9 +45,9 @@ if (!$totals) {
                         <?php
                         foreach ($projects as $pid => $hours) {
                             if ($pid == 'total') continue;
-                            $staffTaxRate = $timeSheet->getStaffTaxRate($sid, $pid);
-                            $staffCost = $timeSheet->getStaffCost($sid, $pid);
-                            $staffProfit = $timeSheet->getStaffProfit($sid, $pid);
+                            $staffTaxRate = Yii::$app->timeSheet->getStaffTaxRate($sid, $pid);
+                            $staffCost = Yii::$app->timeSheet->getStaffCost($sid, $pid);
+                            $staffProfit = Yii::$app->timeSheet->getStaffProfit($sid, $pid);
                             ?>
                             <tr>
                                 <td><?= Yii::$app->timeSheet->projects[$pid]['name'] ?></td>
@@ -114,9 +111,9 @@ if (!$totals) {
                         <?php
                         foreach ($staffs as $sid => $hours) {
                             if ($sid == 'total') continue;
-                            $staffTaxRate = $timeSheet->getStaffTaxRate($sid, $pid);
-                            $staffCost = $timeSheet->getStaffCost($sid, $pid);
-                            $staffProfit = $timeSheet->getStaffProfit($sid, $pid);
+                            $staffTaxRate = Yii::$app->timeSheet->getStaffTaxRate($sid, $pid);
+                            $staffCost = Yii::$app->timeSheet->getStaffCost($sid, $pid);
+                            $staffProfit = Yii::$app->timeSheet->getStaffProfit($sid, $pid);
                             ?>
                             <tr>
                                 <td><?= Yii::$app->timeSheet->staff[$sid]['name'] ?></td>

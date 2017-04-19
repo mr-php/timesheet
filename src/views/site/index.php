@@ -7,31 +7,14 @@
  * @var array $totals
  */
 
-use yii\bootstrap\Alert;
 use yii\web\View;
 
 $this->title = Yii::$app->name;
-
-/** @var \app\components\TimeSheet $timeSheet */
-$timeSheet = Yii::$app->timeSheet;
 ?>
 
 <div class="site-index">
     <div class="container">
-        <?php
-        foreach ($toggl as $sid => $data) {
-            if (isset($data['current']['id'])) {
-                echo Alert::widget([
-                    'body' => Yii::t('app', '{sid} has a current timer: {description}', [
-                        'sid' => $timeSheet->staff[$sid]['name'],
-                        'description' => isset($data['current']['description']) ? $data['current']['description'] : 'no description',
-                    ]),
-                    'options' => ['class' => 'alert-danger'],
-                    'closeButton' => false,
-                ]);
-            }
-        }
-        ?>
+        <?= $this->render('_current', ['toggl' => $toggl]) ?>
         <ul id="main-tab" class="nav nav-pills" role="tablist">
             <li class="active"><a href="#summary">Summary</a></li>
             <li><a href="#daily">Daily</a></li>

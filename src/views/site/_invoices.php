@@ -7,9 +7,6 @@
 
 use yii\web\View;
 
-/** @var \app\components\TimeSheet $timeSheet */
-$timeSheet = Yii::$app->timeSheet;
-
 if (!$times) {
     return;
 }

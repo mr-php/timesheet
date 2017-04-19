@@ -9,9 +9,7 @@
 use app\components\Helper;
 use yii\web\View;
 
-/** @var \app\components\TimeSheet $timeSheet */
-$timeSheet = Yii::$app->timeSheet;
-$project = $timeSheet->projects[$pid];
+$project = Yii::$app->timeSheet->projects[$pid];
 ?>
 
 
@@ -56,7 +54,7 @@ $project = $timeSheet->projects[$pid];
                                     <?php echo '$' . number_format($task['hours'] * $task['rate'], 2); ?>
                                 </td>
                                 <td class="text-right">
-                                    <?php echo '$' . number_format($task['hours'] * $task['rate'] / ($timeSheet->getProjectTaxRate($pid) + 1), 2); ?>
+                                    <?php echo '$' . number_format($task['hours'] * $task['rate'] / (Yii::$app->timeSheet->getProjectTaxRate($pid) + 1), 2); ?>
                                 </td>
                             </tr>
                             <?php
@@ -75,7 +73,7 @@ $project = $timeSheet->projects[$pid];
                         <?php echo '$' . number_format($total['amount'], 2); ?>
                     </td>
                     <td class="text-right">
-                        <?php echo '$' . number_format($total['amount'] / ($timeSheet->getProjectTaxRate($pid) + 1), 2); ?>
+                        <?php echo '$' . number_format($total['amount'] / (Yii::$app->timeSheet->getProjectTaxRate($pid) + 1), 2); ?>
                     </td>
                 </tr>
             </table>
