@@ -4,7 +4,7 @@ Head over to http://labs.play-with-docker.com/ and create a new instance.
 
 Download an application definition
 
-    curl -Lo docker-compose.yml https://raw.githubusercontent.com/mr-php/timesheet/master/docs/resurces/play-with-docker/docker-compose.yml
+    curl -Lo docker-compose.yml https://raw.githubusercontent.com/mr-php/timesheet/master/docs/resources/play-with-docker/docker-compose.yml
 
 Run the application setup
 
