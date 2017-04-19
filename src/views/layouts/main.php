@@ -94,6 +94,20 @@ echo Nav::widget([
                 'target' => '_blank',
             ],
         ],
+        [
+            'label' => 'GitHub',
+            'url' => 'https://github.com/mr-php/timesheet',
+            'linkOptions' => [
+                'target' => '_blank',
+            ],
+        ],
+        [
+            'label' => 'Heroku',
+            'url' => 'https://dashboard.heroku.com/apps/mrphp-timesheet/settings',
+            'linkOptions' => [
+                'target' => '_blank',
+            ],
+        ],
     ],
 ]);
 NavBar::end();
