@@ -15,26 +15,26 @@ class Toggl extends Component
 
     public static function import($staffList)
     {
-        $data = [];
+        $toggl = [];
         $lastInvoiceDate = Yii::$app->cache->get('lastInvoiceDate') ?: 'last monday';
         foreach ($staffList as $sid => $staff) {
-            $toggl = TogglClient::factory([
+            $client = TogglClient::factory([
                 'api_key' => $staff['toggl_api_key'],
                 'apiVersion' => 'v8',
             ]);
-            $data[$sid]['workspaces'] = $toggl->getWorkspaces();
-            foreach ($data[$sid]['workspaces'] as $workspace) {
-                foreach ($toggl->getProjects(['id' => $workspace['id']]) as $project) {
-                    $data[$sid]['projects'][$project['id']] = $project;
+            $toggl[$sid]['workspaces'] = $client->getWorkspaces();
+            foreach ($toggl[$sid]['workspaces'] as $workspace) {
+                foreach ($client->getProjects(['id' => $workspace['id']]) as $project) {
+                    $toggl[$sid]['projects'][$project['id']] = $project;
                 }
             }
-            $data[$sid]['clients'] = $toggl->getClients();
-            $data[$sid]['timeEntries'] = $toggl->getTimeEntries([
+            $toggl[$sid]['clients'] = $client->getClients();
+            $toggl[$sid]['timeEntries'] = $client->getTimeEntries([
                 'start_date' => date('c', strtotime('00:00', strtotime($lastInvoiceDate))),
             ]);
-            $data[$sid]['current'] = $toggl->GetCurrentTimeEntry();
+            $toggl[$sid]['current'] = $client->GetCurrentTimeEntry();
         }
-        return $data;
+        return $toggl;
     }
 
 }
