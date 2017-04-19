@@ -32,16 +32,21 @@ Start stack
 
     docker-compose up -d
 
-Show containers
-
-    docker-compose ps
-
 Run composer installation
 
     docker-compose run --rm php composer install
 
+Access the app at `http://127.0.0.1:20080`, the default login is:
+
+    username: admin
+    password: secret
+
 
 ## Develop
+
+Show containers
+
+    docker-compose ps
 
 Create bash    
     
