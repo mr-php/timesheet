@@ -15,7 +15,7 @@ $project = $timeSheet->projects[$pid];
 ?>
 
 
-<h3><?php echo $pid; ?></h3>
+<h3><?= Yii::$app->timeSheet->projects[$pid]['name'] ?></h3>
 
 <table class="table">
     <tr>

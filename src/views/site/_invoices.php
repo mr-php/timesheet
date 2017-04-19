@@ -22,7 +22,7 @@ if (!$times) {
     $active = 'active';
     foreach ($times as $pid => $_times) {
         ?>
-        <li class="<?= $active ?>"><a href="#invoice-<?= $pid ?>"><?= $pid ?></a></li>
+        <li class="<?= $active ?>"><a href="#invoice-<?= $pid ?>"><?= Yii::$app->timeSheet->projects[$pid]['name'] ?></a></li>
         <?php
         $active = '';
     }
