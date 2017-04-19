@@ -81,34 +81,53 @@ echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
         [
-            'label' => 'Toggl',
-            'url' => 'https://toggl.com/app',
-            'linkOptions' => [
-                'target' => '_blank',
+            'label' => Yii::t('app', 'Settings'),
+            'items' => [
+                [
+                    'label' => 'TimeSheet Settings',
+                    'url' => ['/site/timesheet-settings'],
+                ],
+                [
+                    'label' => 'Saasu Settings',
+                    'url' => ['/site/saasu-settings'],
+                ],
             ],
         ],
         [
-            'label' => 'Saasu',
-            'url' => 'https://secure.saasu.com/',
-            'linkOptions' => [
-                'target' => '_blank',
-            ],
-        ],
-        [
-            'label' => 'GitHub',
-            'url' => 'https://github.com/mr-php/timesheet',
-            'linkOptions' => [
-                'target' => '_blank',
-            ],
-        ],
-        [
-            'label' => 'Heroku',
-            'url' => 'https://dashboard.heroku.com/apps/mrphp-timesheet/settings',
-            'linkOptions' => [
-                'target' => '_blank',
+            'label' => Yii::t('app', 'Links'),
+            'items' => [
+                [
+                    'label' => 'Toggl',
+                    'url' => 'https://toggl.com/app',
+                    'linkOptions' => [
+                        'target' => '_blank',
+                    ],
+                ],
+                [
+                    'label' => 'Saasu',
+                    'url' => 'https://secure.saasu.com/',
+                    'linkOptions' => [
+                        'target' => '_blank',
+                    ],
+                ],
+                [
+                    'label' => 'GitHub',
+                    'url' => 'https://github.com/mr-php/timesheet',
+                    'linkOptions' => [
+                        'target' => '_blank',
+                    ],
+                ],
+                [
+                    'label' => 'Heroku',
+                    'url' => 'https://dashboard.heroku.com/apps/mrphp-timesheet/settings',
+                    'linkOptions' => [
+                        'target' => '_blank',
+                    ],
+                ],
             ],
         ],
     ],
+
 ]);
 NavBar::end();
 ?>
