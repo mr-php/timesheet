@@ -62,9 +62,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $times = Yii::$app->timeSheet->getTimes(Yii::$app->cache->get('toggl'));
+        $toggl = Yii::$app->cache->get('toggl');
+        $times = Yii::$app->timeSheet->getTimes($toggl);
         $totals = Yii::$app->timeSheet->getTotals($times);
         return $this->render('index', [
+            'toggl' => $toggl,
             'times' => $times,
             'totals' => $totals,
         ]);

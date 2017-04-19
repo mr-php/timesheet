@@ -32,6 +32,7 @@ class Toggl extends Component
             $data[$sid]['timeEntries'] = $toggl->getTimeEntries([
                 'start_date' => date('c', strtotime('00:00', strtotime($lastInvoiceDate))),
             ]);
+            $data[$sid]['current'] = $toggl->GetCurrentTimeEntry();
         }
         return $data;
     }
