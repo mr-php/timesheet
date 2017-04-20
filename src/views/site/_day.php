@@ -50,15 +50,15 @@ use yii\web\View;
                 <div class="col-md-9">
                     <table class="table table-condensed">
                         <tr>
-                            <th width="40%">profile</th>
-                            <th width="15%">hours</th>
-                            <th width="15%">
+                            <th width="28%">project</th>
+                            <th width="18%" class="text-right">hours</th>
+                            <th width="18%" class="text-right">
                                 S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
                             </th>
-                            <th width="15%">
+                            <th width="18%" class="text-right">
                                 C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
                             </th>
-                            <th width="15%">
+                            <th width="18%" class="text-right">
                                 P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
                             </th>
                         </tr>
@@ -101,18 +101,16 @@ use yii\web\View;
                         }
                         ?>
                         <tr>
-                            <th>Total</th>
-                            <th class="text-right">
-                                <?= Helper::formatHours($daily['staff'][$sid]['total']) ?>
+                            <th width="28%">project</th>
+                            <th width="18%" class="text-right">hours</th>
+                            <th width="18%" class="text-right">
+                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
                             </th>
-                            <th class="text-right">
-                                <?= '$' . number_format($totals['sell'][$date]['staff'][$sid]['total'], 2) ?>
+                            <th width="18%" class="text-right">
+                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
                             </th>
-                            <th class="text-right">
-                                <?= '$' . number_format($totals['cost'][$date]['staff'][$sid]['total'], 2) ?>
-                            </th>
-                            <th class="text-right">
-                                <?= '$' . number_format($totals['sell'][$date]['staff'][$sid]['total'] - $totals['cost'][$date]['staff'][$sid]['total'], 2) ?>
+                            <th width="18%" class="text-right">
+                                P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
                             </th>
                         </tr>
                     </table>
@@ -145,15 +143,15 @@ use yii\web\View;
                 <div class="col-md-9">
                     <table class="table table-condensed">
                         <tr>
-                            <th width="40%">staff</th>
-                            <th width="15%">hours</th>
-                            <th width="15%">
+                            <th width="28%">project</th>
+                            <th width="18%">hours</th>
+                            <th width="18%">
                                 S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
                             </th>
-                            <th width="15%">
+                            <th width="18%">
                                 C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
                             </th>
-                            <th width="15%">
+                            <th width="18%">
                                 P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
                             </th>
                         </tr>

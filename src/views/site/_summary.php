@@ -51,15 +51,15 @@ if (!$totals) {
                 <div class="col-md-9">
                     <table class="table table-condensed">
                         <tr>
-                            <th width="40%">project</th>
-                            <th width="15%">hours</th>
-                            <th width="15%">
+                            <th width="28%">project</th>
+                            <th width="18%" class="text-right">hours</th>
+                            <th width="18%" class="text-right">
                                 S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
                             </th>
-                            <th width="15%">
+                            <th width="18%" class="text-right">
                                 C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
                             </th>
-                            <th width="15%">
+                            <th width="18%" class="text-right">
                                 P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
                             </th>
                         </tr>
@@ -146,15 +146,15 @@ if (!$totals) {
                 <div class="col-md-9">
                     <table class="table table-condensed">
                         <tr>
-                            <th width="40%">staff</th>
-                            <th width="15%">hours</th>
-                            <th width="15%">
+                            <th width="28%">project</th>
+                            <th width="18%" class="text-right">hours</th>
+                            <th width="18%" class="text-right">
                                 S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
                             </th>
-                            <th width="15%">
+                            <th width="18%" class="text-right">
                                 C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
                             </th>
-                            <th width="15%">
+                            <th width="18%" class="text-right">
                                 P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
                             </th>
                         </tr>
