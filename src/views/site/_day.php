@@ -31,7 +31,7 @@ use yii\web\View;
             $staff = Yii::$app->timeSheet->staff[$sid];
             ?>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <?= Gravatar::widget([
                         'email' => $staff['email'],
                         'options' => [
@@ -43,7 +43,7 @@ use yii\web\View;
                     ]) ?>
                     <strong><?= $staff['name'] ?></strong>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-9">
                     <table class="table table-condensed">
                         <tr>
                             <th width="40%">profile</th>
@@ -128,7 +128,7 @@ use yii\web\View;
             $project = Yii::$app->timeSheet->projects[$pid];
             ?>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <?= Gravatar::widget([
                         'email' => $project['email'],
                         'options' => [
@@ -140,7 +140,7 @@ use yii\web\View;
                     ]) ?>
                     <strong><?= $project['name'] ?></strong>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-9">
                     <table class="table table-condensed">
                         <tr>
                             <th width="40%">staff</th>
