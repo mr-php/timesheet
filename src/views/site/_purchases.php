@@ -28,7 +28,7 @@ if (!$times) {
 <div class="tab-content">
     <?php
     $active = 'active';
-    foreach ($times as $pid => $_times) {
+    foreach ($times as $sid => $_times) {
         ?>
         <div role="tabpanel" class="tab-pane <?= $active ?>" id="purchase-<?= $sid ?>">
             <?= $this->render('_purchase', ['sid' => $sid, 'times' => $_times]) ?>

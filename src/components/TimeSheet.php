@@ -143,7 +143,8 @@ class TimeSheet extends Component
                     $description = !empty($timeEntry['description']) ? $timeEntry['description'] : 'no description';
                     $date = date('Y-m-d', strtotime($timeEntry['start']));
                     $hours = $timeEntry['duration'] > 0 ? $timeEntry['duration'] / 60 / 60 : 0;
-                    $rate = $this->getStaffRate($sid, $pid);
+                    $sell = $this->getStaffSell($sid, $pid);
+                    $cost = $this->getStaffCost($sid, $pid);
                     $multiplier = $this->getStaffMultiplier($sid, $pid);
                     if (!isset($times[$pid][$sid][$date][$description])) {
                         $times[$pid][$sid][$date][$description] = [
@@ -151,7 +152,8 @@ class TimeSheet extends Component
                             'sid' => $sid,
                             'date' => $date,
                             'description' => $description,
-                            'rate' => $rate,
+                            'sell' => $sell,
+                            'cost' => $cost,
                             'hours' => 0,
                         ];
                     }
@@ -177,7 +179,7 @@ class TimeSheet extends Component
                         foreach ($tasks as $description => $item) {
                             if ($baseHours > 0) {
                                 $baseHours -= $item['hours'];
-                                $times[$pid][$sid][$date][$description]['rate'] = 0;
+                                $times[$pid][$sid][$date][$description]['sell'] = 0;
                                 $times[$pid][$sid][$date][$description]['description'] = $description . ' (base hours)';
                                 if ($baseHours < 0) {
                                     $times[$pid][$sid][$date][$description]['hours'] = $item['hours'] + $baseHours;
@@ -186,7 +188,8 @@ class TimeSheet extends Component
                                         'sid' => $sid,
                                         'date' => $date,
                                         'description' => $description,
-                                        'rate' => $item['rate'],
+                                        'sell' => $item['sell'],
+                                        'cost' => $item['cost'],
                                         'hours' => $baseHours * -1,
                                     ];
                                 }
@@ -207,7 +210,8 @@ class TimeSheet extends Component
                     'sid' => $sid,
                     'date' => $date,
                     'description' => $description,
-                    'rate' => $baseHours ? round($baseRate / $baseHours, 2) : $baseRate,
+                    'sell' => $baseHours ? round($baseRate / $baseHours, 2) : $baseRate,
+                    'cost' => 0,
                     'hours' => $baseHours ? $baseHours : 1,
                 ];
             }
@@ -231,15 +235,13 @@ class TimeSheet extends Component
                             $capHours -= $item['hours'];
                             if ($capHours < 0) {
                                 $times[$pid][$sid][$date][$description]['hours'] += $capHours;
-                                if (!$times[$pid][$sid][$date][$description]['hours']) {
-                                    unset($times[$pid][$sid][$date][$description]);
-                                }
                                 $times[$pid][$sid][$date][$description] = array(
                                     'pid' => $pid,
                                     'sid' => $sid,
                                     'date' => $date,
                                     'description' => $description,
-                                    'rate' => 0,
+                                    'sell' => 0,
+                                    'cost' => $item['cost'],
                                     'hours' => $capHours * -1,
                                 );
                                 $capHours = 0;
@@ -259,7 +261,7 @@ class TimeSheet extends Component
      */
     public function getStaffProfit($sid, $pid = null)
     {
-        return $this->getStaffRate($sid, $pid) * $this->getStaffMultiplier($sid, $pid) - $this->getStaffCost($sid, $pid);
+        return $this->getStaffSell($sid, $pid) * $this->getStaffMultiplier($sid, $pid) - $this->getStaffCost($sid, $pid);
     }
 
     /**
@@ -267,12 +269,12 @@ class TimeSheet extends Component
      * @param null $pid
      * @return mixed
      */
-    public function getStaffRate($sid, $pid = null)
+    public function getStaffSell($sid, $pid = null)
     {
-        if ($pid && isset($this->staff[$sid]['projects'][$pid]['rate'])) {
-            return $this->staff[$sid]['projects'][$pid]['rate'];
+        if ($pid && isset($this->staff[$sid]['projects'][$pid]['sell'])) {
+            return $this->staff[$sid]['projects'][$pid]['sell'];
         }
-        return $this->staff[$sid]['rate'];
+        return $this->staff[$sid]['sell'];
     }
 
     /**

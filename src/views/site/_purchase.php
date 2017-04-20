@@ -39,20 +39,20 @@ $staff = Yii::$app->timeSheet->staff[$sid];
                     foreach ($dates as $date => $tasks) {
                         foreach ($tasks as $task) {
                             $total['quantity'] += $task['hours'];
-                            $total['amount'] += $task['hours'] * $task['rate'];
+                            $total['amount'] += $task['hours'] * $task['cost'];
                             ?>
                             <tr>
                                 <td><?= $date . ' ' . Yii::$app->timeSheet->projects[$task['pid']]['name'] . ' ' . Helper::formatHours($task['hours']) . ' - ' . str_replace("\n", '<br/>', $task['description']) ?></td>
                                 <td class="text-right">
                                     <?php echo number_format($task['hours'], 2); ?>
                                 </td>
-                                <td class="text-right"><?php echo $task['rate']; ?>
+                                <td class="text-right"><?php echo $task['cost']; ?>
                                 </td>
                                 <td class="text-right">
-                                    <?php echo '$' . number_format($task['hours'] * $task['rate'], 2); ?>
+                                    <?php echo '$' . number_format($task['hours'] * $task['cost'], 2); ?>
                                 </td>
                                 <td class="text-right">
-                                    <?php echo '$' . number_format($task['hours'] * $task['rate'] / (Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1), 2); ?>
+                                    <?php echo '$' . number_format($task['hours'] * $task['cost'] / (Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1), 2); ?>
                                 </td>
                             </tr>
                             <?php

@@ -143,12 +143,12 @@ class Saasu extends Component
                     if ($this->layout == InvoiceLayout::Service) {
                         $item = new ServiceInvoiceItem();
                         $item->accountUid = $this->saleAccountUid;
-                        $item->totalAmountInclTax = round($task['hours'] * $task['rate'], 2);
+                        $item->totalAmountInclTax = round($task['hours'] * $task['sell'], 2);
                     } elseif ($this->layout == InvoiceLayout::Item) {
                         $item = new ItemInvoiceItem();
                         $item->inventoryItemUid = $this->inventoryItemUid;
                         $item->quantity = round($task['hours'], 2);
-                        $item->unitPriceInclTax = round($task['rate'], 2);
+                        $item->unitPriceInclTax = round($task['sell'], 2);
                     } else {
                         throw new Exception('invalid layout');
                     }
@@ -194,12 +194,12 @@ class Saasu extends Component
                     if ($this->layout == InvoiceLayout::Service) {
                         $item = new ServiceInvoiceItem();
                         $item->accountUid = $this->purchaseAccountUid;
-                        $item->totalAmountInclTax = round($task['hours'] * $task['rate'], 2);
+                        $item->totalAmountInclTax = round($task['hours'] * $task['cost'], 2);
                     } elseif ($this->layout == InvoiceLayout::Item) {
                         $item = new ItemInvoiceItem();
                         $item->inventoryItemUid = $this->inventoryItemUid;
                         $item->quantity = round($task['hours'], 2);
-                        $item->unitPriceInclTax = round($task['rate'], 2);
+                        $item->unitPriceInclTax = round($task['cost'], 2);
                     } else {
                         throw new Exception('invalid layout');
                     }
