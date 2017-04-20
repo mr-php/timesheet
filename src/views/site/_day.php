@@ -68,10 +68,8 @@ use yii\web\View;
                             $project = Yii::$app->timeSheet->projects[$pid];
                             $staffTaxRate = Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1;
                             $projectTaxRate = Yii::$app->timeSheet->getProjectTaxRate($pid) + 1;
-                            $staffCost = Yii::$app->timeSheet->getStaffCost($sid, $pid) / Yii::$app->timeSheet->getStaffMultiplier($sid, $pid);
-                            $staffSell = Yii::$app->timeSheet->getStaffSell($sid, $pid);
-                            $cost = ($hours * $staffCost) / $staffTaxRate;
-                            $sell = ($hours * $staffSell) / $projectTaxRate;
+                            $cost = $totals['cost'][$date]['staff'][$sid][$pid];
+                            $sell = $totals['sell'][$date]['staff'][$sid][$pid];
                             ?>
                             <tr>
                                 <td>
@@ -165,10 +163,8 @@ use yii\web\View;
                             $staff = Yii::$app->timeSheet->staff[$sid];
                             $staffTaxRate = Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1;
                             $projectTaxRate = Yii::$app->timeSheet->getProjectTaxRate($pid) + 1;
-                            $staffCost = Yii::$app->timeSheet->getStaffCost($sid, $pid) / Yii::$app->timeSheet->getStaffMultiplier($sid, $pid);
-                            $staffSell = Yii::$app->timeSheet->getStaffSell($sid, $pid);
-                            $cost = ($hours * $staffCost) / $staffTaxRate;
-                            $sell = ($hours * $staffSell) / $projectTaxRate;
+                            $cost = $totals['cost'][$date]['project'][$pid][$sid];
+                            $sell = $totals['sell'][$date]['project'][$pid][$sid];
                             ?>
                             <tr>
                                 <td>

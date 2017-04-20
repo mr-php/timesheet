@@ -89,9 +89,9 @@ class TimeSheet extends Component
                             $staffTaxRate = $this->getStaffTaxRate($sid, $pid) + 1;
                             $projectTaxRate = $this->getProjectTaxRate($pid) + 1;
                             if ($type == 'sell') {
-                                $amount = ($item['hours'] * $this->getStaffSell($sid, $pid)) / $projectTaxRate;
+                                $amount = ($item['hours'] * $item['sell']) / $projectTaxRate;
                             } elseif ($type == 'cost') {
-                                $amount = ($item['hours'] * $this->getStaffCost($sid, $pid)) / $this->getStaffMultiplier($sid, $pid) / $staffTaxRate;
+                                $amount = ($item['hours'] * $item['cost']) / $this->getStaffMultiplier($sid, $pid) / $staffTaxRate;
                             } else {
                                 $amount = $item['hours'];
                             }
