@@ -5,17 +5,19 @@ namespace app\models\forms;
 use Yii;
 use yii\base\Model;
 
-class TimeSheetSettingsForm extends Model
+class TogglSettingsForm extends Model
 {
-    /**
-     * @var string
-     */
-    public $staff;
 
     /**
      * @var string
      */
-    public $projects;
+    public $startDate;
+
+    /**
+     * @var string
+     */
+    public $endDate;
+
 
     /**
      * @inheritdoc
@@ -23,7 +25,7 @@ class TimeSheetSettingsForm extends Model
     public function rules()
     {
         return [
-            [['staff', 'projects'], 'required'],
+            [['startDate', 'endDate'], 'safe'],
         ];
     }
 
@@ -33,8 +35,8 @@ class TimeSheetSettingsForm extends Model
     public function attributeLabels()
     {
         return [
-            'staff' => Yii::t('app', 'Staff'),
-            'projects' => Yii::t('app', 'Projects'),
+            'startDate' => Yii::t('app', 'Start Date'),
+            'endDate' => Yii::t('app', 'End Date'),
         ];
     }
 }

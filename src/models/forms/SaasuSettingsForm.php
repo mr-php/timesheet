@@ -51,7 +51,7 @@ class SaasuSettingsForm extends Model
     /**
      * @inheritdoc
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             [['wsAccessKey', 'fileUid', 'layout', 'taxAccountUid', 'inventoryItemUid',
@@ -62,7 +62,7 @@ class SaasuSettingsForm extends Model
     /**
      * @inheritdoc
      */
-    public function attributeLabels(): array
+    public function attributeLabels()
     {
         return [
             'wsAccessKey' => Yii::t('app', 'Access Key'),

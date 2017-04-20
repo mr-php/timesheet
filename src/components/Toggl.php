@@ -13,10 +13,27 @@ use yii\base\Component;
 class Toggl extends Component
 {
 
-    public static function import($staffList)
+    public $startDate;
+    public $endDate;
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+        $settings = ['startDate', 'endDate'];
+        foreach ($settings as $key) {
+            $value = Yii::$app->settings->get('TogglSettingsForm', $key);
+            if ($value) {
+                $this->$key = $value;
+            }
+        }
+    }
+
+    public function import($staffList)
     {
         $toggl = [];
-        $lastInvoiceDate = Yii::$app->cache->get('lastInvoiceDate') ?: 'last monday';
         foreach ($staffList as $sid => $staff) {
             $client = TogglClient::factory([
                 'api_key' => $staff['toggl_api_key'],
@@ -29,10 +46,13 @@ class Toggl extends Component
                 }
             }
             $toggl[$sid]['clients'] = $client->getClients();
-            $toggl[$sid]['timeEntries'] = $client->getTimeEntries([
-                'start_date' => date('c', strtotime('00:00', strtotime($lastInvoiceDate))),
-            ]);
             $toggl[$sid]['current'] = $client->GetCurrentTimeEntry();
+            $params = [];
+            if ($this->startDate)
+                $params['start_date'] = date('c', strtotime('00:00', strtotime($this->startDate)));
+            if ($this->endDate)
+                $params['end_date'] = date('c', strtotime('00:00', strtotime($this->endDate)));
+            $toggl[$sid]['timeEntries'] = $client->getTimeEntries($params);
         }
         return $toggl;
     }

@@ -88,6 +88,10 @@ echo Nav::widget([
                     'url' => ['/site/timesheet-settings'],
                 ],
                 [
+                    'label' => 'Toggl Settings',
+                    'url' => ['/site/toggl-settings'],
+                ],
+                [
                     'label' => 'Saasu Settings',
                     'url' => ['/site/saasu-settings'],
                 ],

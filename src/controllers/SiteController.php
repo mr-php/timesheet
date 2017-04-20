@@ -3,7 +3,9 @@
 namespace app\controllers;
 
 use app\components\NullUser;
+use app\models\forms\SaasuSettingsForm;
 use app\models\forms\TimeSheetSettingsForm;
+use app\models\forms\TogglSettingsForm;
 use Yii;
 use yii\filters\auth\HttpBasicAuth;
 use yii\helpers\Url;
@@ -59,10 +61,15 @@ class SiteController extends Controller
                 'view' => 'timesheet-settings',
                 'modelClass' => TimeSheetSettingsForm::class,
             ],
+            'toggl-settings' => [
+                'class' => SettingsAction::class,
+                'view' => 'toggl-settings',
+                'modelClass' => TogglSettingsForm::class,
+            ],
             'saasu-settings' => [
                 'class' => SettingsAction::class,
                 'view' => 'saasu-settings',
-                'modelClass' => \app\models\forms\SaasuSettingsForm::class,
+                'modelClass' => SaasuSettingsForm::class,
             ],
         ];
     }
@@ -106,7 +113,7 @@ class SiteController extends Controller
         foreach ($times as $pid => $_times) {
             Yii::$app->saasu->createInvoice($pid, $_times);
         }
-        Yii::$app->cache->set('lastInvoiceDate', date('Y-m-d'));
+        Yii::$app->settings->set('TogglSettingsForm', 'startDate', date('Y-m-d'));
         return $this->redirect(['/site/import-toggl']);
     }
 
