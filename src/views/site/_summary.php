@@ -19,11 +19,11 @@ if (!$totals) {
     echo Yii::t('app', 'Summary') . ': ';
     echo Helper::formatHours($totals['time']['total']['total']);
     echo ' | ';
-    echo number_format($totals['sell']['total']['total'], 2);
+    echo number_format($totals['sell']['total']['total'], 0);
     echo ' - ';
-    echo number_format($totals['cost']['total']['total'], 2);
+    echo number_format($totals['cost']['total']['total'], 0);
     echo ' = ';
-    echo '$' . number_format($totals['sell']['total']['total'] - $totals['cost']['total']['total'], 2);
+    echo '$' . number_format($totals['sell']['total']['total'] - $totals['cost']['total']['total'], 0);
     ?>
 </h2>
 

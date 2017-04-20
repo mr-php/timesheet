@@ -19,11 +19,11 @@ use yii\web\View;
     echo ': ';
     echo Helper::formatHours($daily['total']);
     echo ' | ';
-    echo number_format($totals['sell'][$date]['total'], 2);
+    echo number_format($totals['sell'][$date]['total'], 0);
     echo ' - ';
-    echo number_format($totals['cost'][$date]['total'], 2);
+    echo number_format($totals['cost'][$date]['total'], 0);
     echo ' = ';
-    echo '$' . number_format($totals['sell'][$date]['total'] - $totals['cost'][$date]['total'], 2);
+    echo '$' . number_format($totals['sell'][$date]['total'] - $totals['cost'][$date]['total'], 0);
     ?>
 </h3>
 <div class="row">
