@@ -26,6 +26,7 @@ use yii\helpers\Url;
     <title><?= Html::encode($this->title) ?></title>
     <link rel="shortcut icon" href="<?= Yii::getAlias('@web'); ?>/favicon.png" type="image/png">
     <?php $this->head() ?>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/slate/bootstrap.min.css" rel="stylesheet">
     <style>
         html {
             position: relative;
@@ -42,8 +43,8 @@ use yii\helpers\Url;
             bottom: 0;
             width: 100%;
             height: 45px;
-            background-color: #f8f8f8;
-            border-top: 1px solid #e7e7e7;
+            background-color: #3a3f44;
+            border-top: 1px solid rgba(0, 0, 0, 0.6);
             padding-top: 10px;
         }
     </style>
