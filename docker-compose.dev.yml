@@ -15,3 +15,6 @@ services:
       - ./codeception.yml:/app/codeception.yml
     ports:
       - 20080:80
+  db:
+    volumes:
+      - ./runtime/mysql:/var/lib/mysql

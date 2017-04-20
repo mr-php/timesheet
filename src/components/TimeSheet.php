@@ -80,16 +80,18 @@ class TimeSheet extends Component
     public function getTotals($times)
     {
         $totals = [];
-        foreach (['time', 'profit', 'cost'] as $type) {
+        foreach (['time', 'sell', 'cost'] as $type) {
             foreach ($times as $pid => $time) {
                 foreach ($time as $sid => $staff) {
                     foreach ($staff as $date => $tasks) {
                         foreach ($tasks as $description => $item) {
                             // get the amount
-                            if ($type == 'profit') {
-                                $amount = ($item['hours'] * $this->getStaffProfit($sid, $pid)) / ($this->getStaffTaxRate($sid, $pid) + 1);
+                            $staffTaxRate = $this->getStaffTaxRate($sid, $pid) + 1;
+                            $projectTaxRate = $this->getProjectTaxRate($pid) + 1;
+                            if ($type == 'sell') {
+                                $amount = ($item['hours'] * $this->getStaffSell($sid, $pid)) / $projectTaxRate;
                             } elseif ($type == 'cost') {
-                                $amount = ($item['hours'] * $this->getStaffCost($sid, $pid)) / ($this->getStaffTaxRate($sid, $pid) + 1);
+                                $amount = ($item['hours'] * $this->getStaffCost($sid, $pid)) / $this->getStaffMultiplier($sid, $pid) / $staffTaxRate;
                             } else {
                                 $amount = $item['hours'];
                             }

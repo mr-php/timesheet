@@ -18,7 +18,7 @@ if (!$totals) {
     echo Yii::t('app', 'Summary') . ': ';
     echo Helper::formatHours($totals['time']['total']['total']);
     echo ' = $';
-    echo number_format($totals['profit']['total']['total'], 2);
+    echo number_format($totals['sell']['total']['total'] - $totals['cost']['total']['total'], 2);
     ?>
 </h2>
 
@@ -85,10 +85,10 @@ if (!$totals) {
                                 <?= '$' . number_format($totals['cost']['total']['staff'][$sid]['total'], 2) ?>
                             </th>
                             <th class="text-right">
-                                <?= '$' . number_format($totals['cost']['total']['staff'][$sid]['total'] + $totals['profit']['total']['staff'][$sid]['total'], 2) ?>
+                                <?= '$' . number_format($totals['sell']['total']['staff'][$sid]['total'], 2) ?>
                             </th>
                             <th class="text-right">
-                                <?= '$' . number_format($totals['profit']['total']['staff'][$sid]['total'], 2) ?>
+                                <?= '$' . number_format($totals['sell']['total']['staff'][$sid]['total'] - $totals['cost']['total']['staff'][$sid]['total'], 2) ?>
                             </th>
                         </tr>
                     </table>
@@ -160,10 +160,10 @@ if (!$totals) {
                                 <?= '$' . number_format($totals['cost']['total']['project'][$pid]['total'], 2) ?>
                             </th>
                             <th class="text-right">
-                                <?= '$' . number_format($totals['cost']['total']['project'][$pid]['total'] + $totals['profit']['total']['project'][$pid]['total'], 2) ?>
+                                <?= '$' . number_format($totals['sell']['total']['project'][$pid]['total'], 2) ?>
                             </th>
                             <th class="text-right">
-                                <?= '$' . number_format($totals['profit']['total']['project'][$pid]['total'], 2) ?>
+                                <?= '$' . number_format($totals['sell']['total']['project'][$pid]['total'] - $totals['cost']['total']['project'][$pid]['total'], 2) ?>
                             </th>
                         </tr>
                     </table>
