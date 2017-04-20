@@ -64,12 +64,22 @@ class Saasu extends Component
     /**
      * @var string
      */
-    public $emailSubject;
+    public $saleEmailSubject;
 
     /**
      * @var string
      */
-    public $emailBody;
+    public $saleEmailBody;
+
+    /**
+     * @var string
+     */
+    public $purchaseEmailSubject;
+
+    /**
+     * @var string
+     */
+    public $purchaseEmailBody;
 
     /**
      * @var SaasuAPI
@@ -83,7 +93,7 @@ class Saasu extends Component
     {
         parent::init();
         $settings = ['wsAccessKey', 'fileUid', 'layout', 'saleAccountUid', 'purchaseAccountUid', 'inventoryItemUid',
-            'fromEmail', 'emailSubject', 'emailBody'];
+            'fromEmail', 'saleEmailSubject', 'saleEmailBody', 'purchaseEmailSubject', 'purchaseEmailBody'];
         foreach ($settings as $key) {
             $value = Yii::$app->settings->get('SaasuSettingsForm', $key);
             if ($value) {
@@ -118,8 +128,8 @@ class Saasu extends Component
         $instruction->emailToContact = 'true';
         $instruction->emailMessage->to = $project['email'];
         $instruction->emailMessage->from = $this->fromEmail;
-        $instruction->emailMessage->subject = strtr($this->emailSubject, ['{project}' => $project['name']]);
-        $instruction->emailMessage->body = strtr($this->emailBody, [
+        $instruction->emailMessage->subject = strtr($this->saleEmailSubject, ['{project}' => $project['name']]);
+        $instruction->emailMessage->body = strtr($this->saleEmailBody, [
             '{project}' => $project['name'],
             '{times}' => Yii::$app->view->render('/site/_sale_times' . '', ['times' => $times]),
         ]);
@@ -181,8 +191,8 @@ class Saasu extends Component
         $instruction->emailToContact = 'true';
         $instruction->emailMessage->to = isset($staff['email']) ? $staff['email'] : $this->fromEmail;
         $instruction->emailMessage->from = $this->fromEmail;
-        $instruction->emailMessage->subject = strtr($this->emailSubject, ['{staff}' => $staff['name']]);
-        $instruction->emailMessage->body = strtr($this->emailBody, [
+        $instruction->emailMessage->subject = strtr($this->purchaseEmailSubject, ['{staff}' => $staff['name']]);
+        $instruction->emailMessage->body = strtr($this->purchaseEmailBody, [
             '{staff}' => $staff['name'],
             '{times}' => Yii::$app->view->render('/site/_purchase_times' . '', ['times' => $times]),
         ]);
@@ -194,7 +204,7 @@ class Saasu extends Component
         $invoice->transactionType = TransactionType::Purchase;
         $invoice->status = InvoiceStatus::Invoice;
         $invoice->layout = $this->layout;
-        $invoice->invoiceNumber = "<Auto Number>";
+        //$invoice->invoiceNumber = "<Auto Number>";
         $invoice->date = DateTime::getDate(time());
         $invoice->dueOrExpiryDate = DateTime::getDate(time() + 86400 * 7);
         $invoice->summary = "Development by {$staff['name']}";

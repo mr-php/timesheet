@@ -50,12 +50,22 @@ class SaasuSettingsForm extends Model
     /**
      * @var string
      */
-    public $emailSubject;
+    public $saleEmailSubject;
 
     /**
      * @var string
      */
-    public $emailBody;
+    public $saleEmailBody;
+
+    /**
+     * @var string
+     */
+    public $purchaseEmailSubject;
+
+    /**
+     * @var string
+     */
+    public $purchaseEmailBody;
 
     /**
      * @inheritdoc
@@ -64,7 +74,7 @@ class SaasuSettingsForm extends Model
     {
         return [
             [['wsAccessKey', 'fileUid', 'layout', 'saleAccountUid', 'purchaseAccountUid', 'inventoryItemUid',
-                'fromEmail', 'emailSubject', 'emailBody'], 'required'],
+                'fromEmail', 'saleEmailSubject', 'saleEmailBody', 'purchaseEmailSubject', 'purchaseEmailBody'], 'required'],
         ];
     }
 
@@ -81,8 +91,10 @@ class SaasuSettingsForm extends Model
             'purchaseAccountUid' => Yii::t('app', 'Purchase Account IID'),
             'inventoryItemUid' => Yii::t('app', 'Inventory Item UID'),
             'fromEmail' => Yii::t('app', 'From Email'),
-            'emailSubject' => Yii::t('app', 'Email Subject'),
-            'emailBody' => Yii::t('app', 'Email Body'),
+            'saleEmailSubject' => Yii::t('app', 'Sale Email Subject'),
+            'saleEmailBody' => Yii::t('app', 'Sale Email Body'),
+            'purchaseEmailSubject' => Yii::t('app', 'Purchase Email Subject'),
+            'purchaseEmailBody' => Yii::t('app', 'Purchase Email Body'),
         ];
     }
 }

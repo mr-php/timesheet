@@ -25,6 +25,10 @@ $project = Yii::$app->timeSheet->projects[$pid];
         <td><?php echo $project['saasu_contact_uid']; ?></td>
     </tr>
     <tr>
+        <td><?= Yii::t('app', 'Saasu Tax Code') ?></td>
+        <td><?= $project['saasu_tax_code'] ?></td>
+    </tr>
+    <tr>
         <td>Items</td>
         <td>
             <table class="table table-condensed">

@@ -16,18 +16,18 @@ $staff = Yii::$app->timeSheet->staff[$sid];
 <h3><?= $staff['name'] ?></h3>
 
 <table class="table">
-    <?php if (isset($staff['email'])) { ?>
-        <tr>
-            <td width="15%"><?= Yii::t('app', 'Email') ?></td>
-            <td width="85%"><?php echo $staff['email']; ?></td>
-        </tr>
-    <?php } ?>
-    <?php if (isset($staff['saasu_contact_uid'])) { ?>
-        <tr>
-            <td><?= Yii::t('app', 'Saasu Contact UID') ?></td>
-            <td><?= $staff['saasu_contact_uid'] ?></td>
-        </tr>
-    <?php } ?>
+    <tr>
+        <td width="15%"><?= Yii::t('app', 'Email') ?></td>
+        <td width="85%"><?php echo $staff['email']; ?></td>
+    </tr>
+    <tr>
+        <td><?= Yii::t('app', 'Saasu Contact UID') ?></td>
+        <td><?= $staff['saasu_contact_uid'] ?></td>
+    </tr>
+    <tr>
+        <td><?= Yii::t('app', 'Saasu Tax Code') ?></td>
+        <td><?= $staff['saasu_tax_code'] ?></td>
+    </tr>
     <tr>
         <td>Items</td>
         <td>

@@ -24,9 +24,13 @@ $this->title = Yii::t('app', 'Saasu Settings');
 
 <?php echo $form->field($model, 'fromEmail'); ?>
 
-<?php echo $form->field($model, 'emailSubject'); ?>
+<?php echo $form->field($model, 'saleEmailSubject'); ?>
 
-<?php echo $form->field($model, 'emailBody')->textarea(); ?>
+<?php echo $form->field($model, 'saleEmailBody')->textarea(); ?>
+
+<?php echo $form->field($model, 'purchaseEmailSubject'); ?>
+
+<?php echo $form->field($model, 'purchaseEmailBody')->textarea(); ?>
 
 <?php echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
 

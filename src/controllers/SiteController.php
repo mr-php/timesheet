@@ -116,7 +116,7 @@ class SiteController extends Controller
         $toggl = Json::decode(Yii::$app->settings->get('app', 'toggl'));
         $times = Yii::$app->timeSheet->getTimes($toggl);
         foreach ($times as $pid => $_times) {
-            //Yii::$app->saasu->createSaleInvoice($pid, $_times);
+            Yii::$app->saasu->createSaleInvoice($pid, $_times);
         }
         // create purchase invoices
         $staffTimes = Yii::$app->timeSheet->getStaffTimes($times);
