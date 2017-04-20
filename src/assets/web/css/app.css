@@ -17,3 +17,7 @@ body {
     border-top: 1px solid rgba(0, 0, 0, 0.6);
     padding-top: 10px;
 }
+
+.img-circle {
+    border-radius: 50%;
+}

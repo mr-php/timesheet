@@ -225,7 +225,7 @@ class Saasu extends Component
                     } else {
                         throw new Exception('invalid layout');
                     }
-                    $item->description = date('Y-m-d', strtotime($task['date'])) . ' ' . Yii::$app->timeSheet->staff[$task['sid']]['name'] . ' ' . Helper::formatHours($task['hours']) . ' - ' . $task['description'];
+                    $item->description = date('Y-m-d', strtotime($task['date'])) . ' ' . Yii::$app->timeSheet->projects[$task['pid']]['name'] . ' ' . Helper::formatHours($task['hours']) . ' - ' . $task['description'];
                     $item->taxCode = $staff['saasu_tax_code'];
                     $invoice->invoiceItems[] = $item;
                 }

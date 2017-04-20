@@ -6,6 +6,7 @@
  */
 
 use app\components\Helper;
+use cebe\gravatar\Gravatar;
 use yii\web\View;
 
 if (!$totals) {
@@ -28,10 +29,20 @@ if (!$totals) {
         <?php
         foreach ($totals['time']['total']['staff'] as $sid => $projects) {
             if ($sid == 'total') continue;
+            $staff = Yii::$app->timeSheet->staff[$sid];
             ?>
             <div class="row">
                 <div class="col-md-2">
-                    <strong><?= Yii::$app->timeSheet->staff[$sid]['name'] ?></strong>
+                    <?= Gravatar::widget([
+                        'email' => $staff['email'],
+                        'options' => [
+                            'alt' => $staff['name'],
+                            'class' => 'img-circle',
+                        ],
+                        'size' => 16,
+                        'defaultImage' => 'wavatar',
+                    ]) ?>
+                    <strong><?= $staff['name'] ?></strong>
                 </div>
                 <div class="col-md-10">
                     <table class="table table-condensed">
@@ -51,6 +62,7 @@ if (!$totals) {
                         <?php
                         foreach ($projects as $pid => $hours) {
                             if ($pid == 'total') continue;
+                            $project = Yii::$app->timeSheet->projects[$pid];
                             $staffTaxRate = Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1;
                             $projectTaxRate = Yii::$app->timeSheet->getProjectTaxRate($pid) + 1;
                             $staffCost = Yii::$app->timeSheet->getStaffCost($sid, $pid) / Yii::$app->timeSheet->getStaffMultiplier($sid, $pid);
@@ -59,7 +71,18 @@ if (!$totals) {
                             $sell = ($hours * $staffSell) / $projectTaxRate;
                             ?>
                             <tr>
-                                <td><?= Yii::$app->timeSheet->projects[$pid]['name'] ?></td>
+                                <td>
+                                    <?= Gravatar::widget([
+                                        'email' => $project['email'],
+                                        'options' => [
+                                            'alt' => $project['name'],
+                                            'class' => 'img-circle',
+                                        ],
+                                        'size' => 16,
+                                        'defaultImage' => 'wavatar',
+                                    ]) ?>
+                                    <?= $project['name'] ?>
+                                </td>
                                 <td class="text-right">
                                     <?= Helper::formatHours($hours) ?>
                                 </td>
@@ -103,10 +126,20 @@ if (!$totals) {
         <?php
         foreach ($totals['time']['total']['project'] as $pid => $staffs) {
             if ($pid == 'total') continue;
+            $project = Yii::$app->timeSheet->projects[$pid];
             ?>
             <div class="row">
                 <div class="col-md-2">
-                    <strong><?= Yii::$app->timeSheet->projects[$pid]['name'] ?></strong>
+                    <?= Gravatar::widget([
+                        'email' => $project['email'],
+                        'options' => [
+                            'alt' => $project['name'],
+                            'class' => 'img-circle',
+                        ],
+                        'size' => 16,
+                        'defaultImage' => 'wavatar',
+                    ]) ?>
+                    <strong><?= $project['name'] ?></strong>
                 </div>
                 <div class="col-md-10">
                     <table class="table table-condensed">
@@ -126,6 +159,7 @@ if (!$totals) {
                         <?php
                         foreach ($staffs as $sid => $hours) {
                             if ($sid == 'total') continue;
+                            $staff = Yii::$app->timeSheet->staff[$sid];
                             $staffTaxRate = Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1;
                             $projectTaxRate = Yii::$app->timeSheet->getProjectTaxRate($pid) + 1;
                             $staffCost = Yii::$app->timeSheet->getStaffCost($sid, $pid) / Yii::$app->timeSheet->getStaffMultiplier($sid, $pid);
@@ -134,7 +168,18 @@ if (!$totals) {
                             $sell = ($hours * $staffSell) / $projectTaxRate;
                             ?>
                             <tr>
-                                <td><?= Yii::$app->timeSheet->staff[$sid]['name'] ?></td>
+                                <td>
+                                    <?= Gravatar::widget([
+                                        'email' => $staff['email'],
+                                        'options' => [
+                                            'alt' => $staff['name'],
+                                            'class' => 'img-circle',
+                                        ],
+                                        'size' => 16,
+                                        'defaultImage' => 'wavatar',
+                                    ]) ?>
+                                    <?= $staff['name'] ?>
+                                </td>
                                 <td class="text-right">
                                     <?= Helper::formatHours($hours) ?>
                                 </td>
