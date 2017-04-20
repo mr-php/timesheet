@@ -59,9 +59,15 @@ class TimeSheet extends Component
     public function getStaffTimes($times)
     {
         $staffTimes = [];
-        foreach ($times as $pid => $_) {
-            foreach ($_ as $sid => $__) {
-                $staffTimes[$sid][$pid] = $__;
+        foreach ($times as $pid => $staff) {
+            foreach ($staff as $sid => $dates) {
+                $multiplier = $this->getStaffMultiplier($sid, $pid);
+                foreach ($dates as $date => $tasks) {
+                    foreach ($tasks as $description => $task) {
+                        $task['hours'] = $task['hours'] / $multiplier;
+                        $staffTimes[$sid][$pid][$date][$description] = $task;
+                    }
+                }
             }
         }
         return $staffTimes;
@@ -300,7 +306,7 @@ class TimeSheet extends Component
         if ($pid && isset($this->staff[$sid]['projects'][$pid]['multiplier'])) {
             return $this->staff[$sid]['projects'][$pid]['multiplier'];
         }
-        return $this->staff[$sid]['multiplier'];
+        return isset($this->staff[$sid]['multiplier']) ? $this->staff[$sid]['multiplier'] : 1;
     }
 
     /**
@@ -313,7 +319,7 @@ class TimeSheet extends Component
         if ($pid && isset($this->staff[$sid]['projects'][$pid]['tax_rate'])) {
             return $this->staff[$sid]['projects'][$pid]['tax_rate'];
         }
-        return $this->staff[$sid]['tax_rate'];
+        return isset($this->staff[$sid]['tax_rate']) ? $this->staff[$sid]['tax_rate'] : 0;
     }
 
     /**
