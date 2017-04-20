@@ -13,7 +13,7 @@ $project = Yii::$app->timeSheet->projects[$pid];
 ?>
 
 
-<h3><?= Yii::$app->timeSheet->projects[$pid]['name'] ?></h3>
+<h3><?= $project['name'] ?></h3>
 
 <table class="table">
     <tr>
@@ -82,7 +82,7 @@ $project = Yii::$app->timeSheet->projects[$pid];
     <tr>
         <td><?= Yii::t('app', 'Times') ?></td>
         <td>
-            <pre><?= $this->render('_invoice_times', ['times' => $times]); ?></pre>
+            <pre><?= $this->render('_sale_times', ['times' => $times]); ?></pre>
         </td>
     </tr>
 </table>

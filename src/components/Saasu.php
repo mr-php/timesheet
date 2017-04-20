@@ -44,7 +44,12 @@ class Saasu extends Component
     /**
      * @var int
      */
-    public $taxAccountUid;
+    public $saleAccountUid;
+
+    /**
+     * @var int
+     */
+    public $purchaseAccountUid;
 
     /**
      * @var int
@@ -77,7 +82,7 @@ class Saasu extends Component
     public function init()
     {
         parent::init();
-        $settings = ['wsAccessKey', 'fileUid', 'layout', 'taxAccountUid', 'inventoryItemUid',
+        $settings = ['wsAccessKey', 'fileUid', 'layout', 'saleAccountUid', 'purchaseAccountUid', 'inventoryItemUid',
             'fromEmail', 'emailSubject', 'emailBody'];
         foreach ($settings as $key) {
             $value = Yii::$app->settings->get('SaasuSettingsForm', $key);
@@ -103,7 +108,7 @@ class Saasu extends Component
      * @param array $times
      * @throws Exception
      */
-    public function createInvoice($pid, $times)
+    public function createSaleInvoice($pid, $times)
     {
         $project = Yii::$app->timeSheet->projects[$pid];
 
@@ -137,7 +142,7 @@ class Saasu extends Component
                 foreach ($tasks as $task) {
                     if ($this->layout == InvoiceLayout::Service) {
                         $item = new ServiceInvoiceItem();
-                        $item->accountUid = $this->taxAccountUid;
+                        $item->accountUid = $this->saleAccountUid;
                         $item->totalAmountInclTax = round($task['hours'] * $task['rate'], 2);
                     } elseif ($this->layout == InvoiceLayout::Item) {
                         $item = new ItemInvoiceItem();
@@ -157,4 +162,56 @@ class Saasu extends Component
         // save entities
         $this->api->saveEntity($invoice, $instruction);
     }
+
+    /**
+     * @param string $sid
+     * @param array $times
+     * @throws Exception
+     */
+    public function createPurchaseInvoice($sid, $times)
+    {
+        $staff = Yii::$app->timeSheet->staff[$sid];
+        if (!isset($staff['saasu_contact_uid'])) {
+            return;
+        }
+
+        // create an invoice
+        $invoice = new Invoice();
+        $invoice->contactUid = $staff['saasu_contact_uid'];
+        $invoice->invoiceType = InvoiceTypeAU::TaxInvoice;
+        $invoice->transactionType = TransactionType::Purchase;
+        $invoice->status = InvoiceStatus::Invoice;
+        $invoice->layout = $this->layout;
+        $invoice->invoiceNumber = "<Auto Number>";
+        $invoice->date = DateTime::getDate(time());
+        $invoice->dueOrExpiryDate = DateTime::getDate(time() + 86400 * 7);
+        $invoice->summary = "Development by {$staff['name']}";
+        $invoice->tags = ['timesheet'];
+        $invoice->invoiceItems = [];
+        foreach ($times as $sid => $dates) {
+            foreach ($dates as $date => $tasks) {
+                foreach ($tasks as $task) {
+                    if ($this->layout == InvoiceLayout::Service) {
+                        $item = new ServiceInvoiceItem();
+                        $item->accountUid = $this->purchaseAccountUid;
+                        $item->totalAmountInclTax = round($task['hours'] * $task['rate'], 2);
+                    } elseif ($this->layout == InvoiceLayout::Item) {
+                        $item = new ItemInvoiceItem();
+                        $item->inventoryItemUid = $this->inventoryItemUid;
+                        $item->quantity = round($task['hours'], 2);
+                        $item->unitPriceInclTax = round($task['rate'], 2);
+                    } else {
+                        throw new Exception('invalid layout');
+                    }
+                    $item->description = date('Y-m-d', strtotime($task['date'])) . ' ' . Yii::$app->timeSheet->staff[$task['sid']]['name'] . ' ' . Helper::formatHours($task['hours']) . ' - ' . $task['description'];
+                    $item->taxCode = $staff['saasu_tax_code'];
+                    $invoice->invoiceItems[] = $item;
+                }
+            }
+        }
+
+        // save entities
+        $this->api->saveEntity($invoice);
+    }
+
 }

@@ -53,6 +53,21 @@ class TimeSheet extends Component
     }
 
     /**
+     * @param array $times
+     * @return array
+     */
+    public function getStaffTimes($times)
+    {
+        $staffTimes = [];
+        foreach ($times as $pid => $_) {
+            foreach ($_ as $sid => $__) {
+                $staffTimes[$sid][$pid] = $__;
+            }
+        }
+        return $staffTimes;
+    }
+
+    /**
      * @param $times
      * @return array
      */

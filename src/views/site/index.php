@@ -4,6 +4,7 @@
  * @var View $this
  * @var array $toggl
  * @var array $times
+ * @var array $staffTimes
  * @var array $totals
  */
 
@@ -17,7 +18,8 @@ $this->title = Yii::$app->name;
     <ul id="main-tab" class="nav nav-pills" role="tablist">
         <li class="active"><a href="#summary">Summary</a></li>
         <li><a href="#daily">Daily</a></li>
-        <li><a href="#invoices">Invoices</a></li>
+        <li><a href="#sales">Sales</a></li>
+        <li><a href="#purchases">Purchases</a></li>
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="summary">
@@ -26,8 +28,11 @@ $this->title = Yii::$app->name;
         <div role="tabpanel" class="tab-pane" id="daily">
             <?= $this->render('_daily', ['totals' => $totals]) ?>
         </div>
-        <div role="tabpanel" class="tab-pane" id="invoices">
-            <?= $this->render('_invoices', ['times' => $times]) ?>
+        <div role="tabpanel" class="tab-pane" id="sales">
+            <?= $this->render('_sales', ['times' => $times]) ?>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="purchases">
+            <?= $this->render('_purchases', ['times' => $staffTimes]) ?>
         </div>
     </div>
 </div>
@@ -42,7 +47,11 @@ $this->title = Yii::$app->name;
         e.preventDefault();
         $(this).tab('show');
     });
-    $('#invoices-tab').find('a').click(function (e) {
+    $('#sales-tab').find('a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+    $('#purchases-tab').find('a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
     });

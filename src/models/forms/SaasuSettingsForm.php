@@ -30,7 +30,12 @@ class SaasuSettingsForm extends Model
     /**
      * @var int
      */
-    public $taxAccountUid;
+    public $saleAccountUid;
+
+    /**
+     * @var int
+     */
+    public $purchaseAccountUid;
 
     /**
      * @var int
@@ -58,7 +63,7 @@ class SaasuSettingsForm extends Model
     public function rules()
     {
         return [
-            [['wsAccessKey', 'fileUid', 'layout', 'taxAccountUid', 'inventoryItemUid',
+            [['wsAccessKey', 'fileUid', 'layout', 'saleAccountUid', 'purchaseAccountUid', 'inventoryItemUid',
                 'fromEmail', 'emailSubject', 'emailBody'], 'required'],
         ];
     }
@@ -72,7 +77,8 @@ class SaasuSettingsForm extends Model
             'wsAccessKey' => Yii::t('app', 'Access Key'),
             'fileUid' => Yii::t('app', 'File UID'),
             'layout' => Yii::t('app', 'Layout'),
-            'taxAccountUid' => Yii::t('app', 'Tax Account IID'),
+            'saleAccountUid' => Yii::t('app', 'Sale Account IID'),
+            'purchaseAccountUid' => Yii::t('app', 'Purchase Account IID'),
             'inventoryItemUid' => Yii::t('app', 'Inventory Item UID'),
             'fromEmail' => Yii::t('app', 'From Email'),
             'emailSubject' => Yii::t('app', 'Email Subject'),

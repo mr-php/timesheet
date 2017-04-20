@@ -16,7 +16,9 @@ $this->title = Yii::t('app', 'Saasu Settings');
 
 <?php echo $form->field($model, 'layout'); ?>
 
-<?php echo $form->field($model, 'taxAccountUid'); ?>
+<?php echo $form->field($model, 'saleAccountUid'); ?>
+
+<?php echo $form->field($model, 'purchaseAccountUid'); ?>
 
 <?php echo $form->field($model, 'inventoryItemUid'); ?>
 

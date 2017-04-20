@@ -12,14 +12,14 @@ if (!$times) {
 }
 ?>
 
-<h2><?= Yii::t('app', 'Invoices') ?></h2>
+<h2><?= Yii::t('app', 'Sales') ?></h2>
 
-<ul id="invoices-tab" class="nav nav-pills" role="tablist">
+<ul id="sales-tab" class="nav nav-pills" role="tablist">
     <?php
     $active = 'active';
     foreach ($times as $pid => $_times) {
         ?>
-        <li class="<?= $active ?>"><a href="#invoice-<?= $pid ?>"><?= Yii::$app->timeSheet->projects[$pid]['name'] ?></a></li>
+        <li class="<?= $active ?>"><a href="#sales-<?= $pid ?>"><?= Yii::$app->timeSheet->projects[$pid]['name'] ?></a></li>
         <?php
         $active = '';
     }
@@ -30,8 +30,8 @@ if (!$times) {
     $active = 'active';
     foreach ($times as $pid => $_times) {
         ?>
-        <div role="tabpanel" class="tab-pane <?= $active ?>" id="invoice-<?= $pid ?>">
-            <?= $this->render('_invoice', ['pid' => $pid, 'times' => $_times]) ?>
+        <div role="tabpanel" class="tab-pane <?= $active ?>" id="sales-<?= $pid ?>">
+            <?= $this->render('_sale', ['pid' => $pid, 'times' => $_times]) ?>
         </div>
         <?php
         $active = '';

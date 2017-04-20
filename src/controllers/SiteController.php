@@ -84,10 +84,12 @@ class SiteController extends Controller
     {
         $toggl = Json::decode(Yii::$app->settings->get('app', 'toggl'));
         $times = Yii::$app->timeSheet->getTimes($toggl);
+        $staffTimes = Yii::$app->timeSheet->getStaffTimes($times);
         $totals = Yii::$app->timeSheet->getTotals($times);
         return $this->render('index', [
             'toggl' => $toggl,
             'times' => $times,
+            'staffTimes' => $staffTimes,
             'totals' => $totals,
         ]);
     }
@@ -110,10 +112,21 @@ class SiteController extends Controller
      */
     public function actionExportSaasu()
     {
-        $times = Yii::$app->timeSheet->getTimes(Yii::$app->cache->get('toggl'));
+        // create sale invoices
+        $toggl = Json::decode(Yii::$app->settings->get('app', 'toggl'));
+        $times = Yii::$app->timeSheet->getTimes($toggl);
         foreach ($times as $pid => $_times) {
-            Yii::$app->saasu->createInvoice($pid, $_times);
+            //Yii::$app->saasu->createSaleInvoice($pid, $_times);
         }
+        // create purchase invoices
+        $staffTimes = Yii::$app->timeSheet->getStaffTimes($times);
+        //debug($times);
+        debug($staffTimes);
+        die;
+        foreach ($staffTimes as $sid => $_times) {
+            //Yii::$app->saasu->createPurchaseInvoice($sid, $_times);
+        }
+
         Yii::$app->settings->set('TogglSettingsForm', 'startDate', date('Y-m-d'));
         return $this->redirect(['/site/import-toggl']);
     }
@@ -127,10 +140,12 @@ class SiteController extends Controller
     {
         $toggl = Json::decode(Yii::$app->settings->get('app', 'toggl'));
         $times = Yii::$app->timeSheet->getTimes($toggl);
+        $staffTimes = Yii::$app->timeSheet->getStaffTimes($times);
         $totals = Yii::$app->timeSheet->getTotals($times);
         return $this->render('dump', [
             'toggl' => $toggl,
             'times' => $times,
+            'staffTimes' => $staffTimes,
             'totals' => $totals,
         ]);
     }

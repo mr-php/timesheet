@@ -4,6 +4,7 @@
  * @var View $this
  * @var array $toggl
  * @var array $times
+ * @var array $staffTimes
  * @var array $totals
  */
 
@@ -17,6 +18,7 @@ $this->title = Yii::$app->name;
     <ul id="dump-tab" class="nav nav-pills" role="tablist">
         <li class="active"><a href="#toggl">$toggl</a></li>
         <li><a href="#times">$times</a></li>
+        <li><a href="#staff-times">$staffTimes</a></li>
         <li><a href="#totals">$totals</a></li>
         <li><a href="#staff">$staff</a></li>
         <li><a href="#projects">$projects</a></li>
@@ -29,6 +31,10 @@ $this->title = Yii::$app->name;
         <div role="tabpanel" class="tab-pane" id="times">
             <h3><code>$times = Yii::$app->timeSheet->getTimes($toggl);</code></h3>
             <pre><?= VarDumper::export($times) ?></pre>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="staff-times">
+            <h3><code>$staffTimes = Yii::$app->timeSheet->getStaffTimes($times);</code></h3>
+            <pre><?= VarDumper::export($staffTimes) ?></pre>
         </div>
         <div role="tabpanel" class="tab-pane" id="totals">
             <h3><code>$totals = Yii::$app->timeSheet->getTotals($times);</code></h3>
