@@ -120,11 +120,8 @@ class SiteController extends Controller
         }
         // create purchase invoices
         $staffTimes = Yii::$app->timeSheet->getStaffTimes($times);
-        //debug($times);
-        debug($staffTimes);
-        die;
         foreach ($staffTimes as $sid => $_times) {
-            //Yii::$app->saasu->createPurchaseInvoice($sid, $_times);
+            Yii::$app->saasu->createPurchaseInvoice($sid, $_times);
         }
 
         Yii::$app->settings->set('TogglSettingsForm', 'startDate', date('Y-m-d'));

@@ -17,7 +17,7 @@ $project = Yii::$app->timeSheet->projects[$pid];
 
 <table class="table">
     <tr>
-        <td width="15%"><?= Yii::t('app', 'To Email Address') ?></td>
+        <td width="15%"><?= Yii::t('app', 'Email') ?></td>
         <td width="85%"><?php echo $project['email']; ?></td>
     </tr>
     <tr>

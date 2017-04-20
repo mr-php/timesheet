@@ -16,6 +16,12 @@ $staff = Yii::$app->timeSheet->staff[$sid];
 <h3><?= $staff['name'] ?></h3>
 
 <table class="table">
+    <?php if (isset($staff['email'])) { ?>
+        <tr>
+            <td width="15%"><?= Yii::t('app', 'Email') ?></td>
+            <td width="85%"><?php echo $staff['email']; ?></td>
+        </tr>
+    <?php } ?>
     <?php if (isset($staff['saasu_contact_uid'])) { ?>
         <tr>
             <td><?= Yii::t('app', 'Saasu Contact UID') ?></td>

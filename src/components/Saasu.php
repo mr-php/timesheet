@@ -121,7 +121,7 @@ class Saasu extends Component
         $instruction->emailMessage->subject = strtr($this->emailSubject, ['{project}' => $project['name']]);
         $instruction->emailMessage->body = strtr($this->emailBody, [
             '{project}' => $project['name'],
-            '{times}' => Yii::$app->view->render('/site/_invoice_times' . '', ['times' => $times]),
+            '{times}' => Yii::$app->view->render('/site/_sale_times' . '', ['times' => $times]),
         ]);
 
         // create an invoice
@@ -175,6 +175,18 @@ class Saasu extends Component
             return;
         }
 
+        // create an instruction
+        $instruction = new InvoiceInstruction();
+        $instruction->emailMessage = new EmailMessage();
+        $instruction->emailToContact = 'true';
+        $instruction->emailMessage->to = isset($staff['email']) ? $staff['email'] : $this->fromEmail;
+        $instruction->emailMessage->from = $this->fromEmail;
+        $instruction->emailMessage->subject = strtr($this->emailSubject, ['{staff}' => $staff['name']]);
+        $instruction->emailMessage->body = strtr($this->emailBody, [
+            '{staff}' => $staff['name'],
+            '{times}' => Yii::$app->view->render('/site/_purchase_times' . '', ['times' => $times]),
+        ]);
+
         // create an invoice
         $invoice = new Invoice();
         $invoice->contactUid = $staff['saasu_contact_uid'];
@@ -211,7 +223,7 @@ class Saasu extends Component
         }
 
         // save entities
-        $this->api->saveEntity($invoice);
+        $this->api->saveEntity($invoice, $instruction);
     }
 
 }
