@@ -18,8 +18,12 @@ use yii\web\View;
     echo date('D, j M', strtotime($date));
     echo ': ';
     echo Helper::formatHours($daily['total']);
-    echo ' = $';
-    echo number_format($totals['sell'][$date]['total'] - $totals['cost'][$date]['total'], 2);
+    echo ' | ';
+    echo number_format($totals['sell'][$date]['total'], 2);
+    echo ' - ';
+    echo number_format($totals['cost'][$date]['total'], 2);
+    echo ' = ';
+    echo '$' . number_format($totals['sell'][$date]['total'] - $totals['cost'][$date]['total'], 2);
     ?>
 </h3>
 <div class="row">
@@ -49,10 +53,10 @@ use yii\web\View;
                             <th width="40%">profile</th>
                             <th width="15%">hours</th>
                             <th width="15%">
-                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
+                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
                             </th>
                             <th width="15%">
-                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
+                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
                             </th>
                             <th width="15%">
                                 P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
@@ -86,10 +90,10 @@ use yii\web\View;
                                     <?= Helper::formatHours($hours) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format($cost, 2) ?>
+                                    <?= number_format($sell, 2) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format($sell, 2) ?>
+                                    <?= number_format($cost, 2) ?>
                                 </td>
                                 <td class="text-right">
                                     <?= number_format($sell - $cost, 2) ?>
@@ -104,10 +108,10 @@ use yii\web\View;
                                 <?= Helper::formatHours($daily['staff'][$sid]['total']) ?>
                             </th>
                             <th class="text-right">
-                                <?= '$' . number_format($totals['cost'][$date]['staff'][$sid]['total'], 2) ?>
+                                <?= '$' . number_format($totals['sell'][$date]['staff'][$sid]['total'], 2) ?>
                             </th>
                             <th class="text-right">
-                                <?= '$' . number_format($totals['sell'][$date]['staff'][$sid]['total'], 2) ?>
+                                <?= '$' . number_format($totals['cost'][$date]['staff'][$sid]['total'], 2) ?>
                             </th>
                             <th class="text-right">
                                 <?= '$' . number_format($totals['sell'][$date]['staff'][$sid]['total'] - $totals['cost'][$date]['staff'][$sid]['total'], 2) ?>
@@ -146,10 +150,10 @@ use yii\web\View;
                             <th width="40%">staff</th>
                             <th width="15%">hours</th>
                             <th width="15%">
-                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
+                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
                             </th>
                             <th width="15%">
-                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
+                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
                             </th>
                             <th width="15%">
                                 P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
@@ -183,10 +187,10 @@ use yii\web\View;
                                     <?= Helper::formatHours($hours) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format($cost, 2) ?>
+                                    <?= number_format($sell, 2) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format($sell, 2) ?>
+                                    <?= number_format($cost, 2) ?>
                                 </td>
                                 <td class="text-right">
                                     <?= number_format($sell - $cost, 2) ?>
@@ -201,10 +205,10 @@ use yii\web\View;
                                 <?= Helper::formatHours($daily['project'][$pid]['total']) ?>
                             </th>
                             <th class="text-right">
-                                <?= '$' . number_format($totals['cost'][$date]['project'][$pid]['total'], 2) ?>
+                                <?= '$' . number_format($totals['sell'][$date]['project'][$pid]['total'], 2) ?>
                             </th>
                             <th class="text-right">
-                                <?= '$' . number_format($totals['sell'][$date]['project'][$pid]['total'], 2) ?>
+                                <?= '$' . number_format($totals['cost'][$date]['project'][$pid]['total'], 2) ?>
                             </th>
                             <th class="text-right">
                                 <?= '$' . number_format($totals['sell'][$date]['project'][$pid]['total'] - $totals['cost'][$date]['project'][$pid]['total'], 2) ?>

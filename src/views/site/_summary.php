@@ -18,8 +18,12 @@ if (!$totals) {
     <?php
     echo Yii::t('app', 'Summary') . ': ';
     echo Helper::formatHours($totals['time']['total']['total']);
-    echo ' = $';
-    echo number_format($totals['sell']['total']['total'] - $totals['cost']['total']['total'], 2);
+    echo ' | ';
+    echo number_format($totals['sell']['total']['total'], 2);
+    echo ' - ';
+    echo number_format($totals['cost']['total']['total'], 2);
+    echo ' = ';
+    echo '$' . number_format($totals['sell']['total']['total'] - $totals['cost']['total']['total'], 2);
     ?>
 </h2>
 
@@ -50,10 +54,10 @@ if (!$totals) {
                             <th width="40%">project</th>
                             <th width="15%">hours</th>
                             <th width="15%">
-                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
+                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
                             </th>
                             <th width="15%">
-                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
+                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
                             </th>
                             <th width="15%">
                                 P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
@@ -87,10 +91,10 @@ if (!$totals) {
                                     <?= Helper::formatHours($hours) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format($cost, 2) ?>
+                                    <?= number_format($sell, 2) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format($sell, 2) ?>
+                                    <?= number_format($cost, 2) ?>
                                 </td>
                                 <td class="text-right">
                                     <?= number_format($sell - $cost, 2) ?>
@@ -105,10 +109,10 @@ if (!$totals) {
                                 <?= Helper::formatHours($totals['time']['total']['staff'][$sid]['total']) ?>
                             </th>
                             <th class="text-right">
-                                <?= '$' . number_format($totals['cost']['total']['staff'][$sid]['total'], 2) ?>
+                                <?= '$' . number_format($totals['sell']['total']['staff'][$sid]['total'], 2) ?>
                             </th>
                             <th class="text-right">
-                                <?= '$' . number_format($totals['sell']['total']['staff'][$sid]['total'], 2) ?>
+                                <?= '$' . number_format($totals['cost']['total']['staff'][$sid]['total'], 2) ?>
                             </th>
                             <th class="text-right">
                                 <?= '$' . number_format($totals['sell']['total']['staff'][$sid]['total'] - $totals['cost']['total']['staff'][$sid]['total'], 2) ?>
@@ -147,10 +151,10 @@ if (!$totals) {
                             <th width="40%">staff</th>
                             <th width="15%">hours</th>
                             <th width="15%">
-                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
+                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
                             </th>
                             <th width="15%">
-                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
+                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
                             </th>
                             <th width="15%">
                                 P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
@@ -184,10 +188,10 @@ if (!$totals) {
                                     <?= Helper::formatHours($hours) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format($cost, 2) ?>
+                                    <?= number_format($sell, 2) ?>
                                 </td>
                                 <td class="text-right">
-                                    <?= number_format($sell, 2) ?>
+                                    <?= number_format($cost, 2) ?>
                                 </td>
                                 <td class="text-right">
                                     <?= number_format($sell - $cost, 2) ?>
@@ -202,10 +206,10 @@ if (!$totals) {
                                 <?= Helper::formatHours($totals['time']['total']['project'][$pid]['total']) ?>
                             </th>
                             <th class="text-right">
-                                <?= '$' . number_format($totals['cost']['total']['project'][$pid]['total'], 2) ?>
+                                <?= '$' . number_format($totals['sell']['total']['project'][$pid]['total'], 2) ?>
                             </th>
                             <th class="text-right">
-                                <?= '$' . number_format($totals['sell']['total']['project'][$pid]['total'], 2) ?>
+                                <?= '$' . number_format($totals['cost']['total']['project'][$pid]['total'], 2) ?>
                             </th>
                             <th class="text-right">
                                 <?= '$' . number_format($totals['sell']['total']['project'][$pid]['total'] - $totals['cost']['total']['project'][$pid]['total'], 2) ?>
