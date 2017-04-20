@@ -18,7 +18,7 @@ use yii\base\Component;
 use yii\base\Exception;
 
 /**
- * Saasu
+ * Class Saasu
  * @package app\components
  *
  * @property SaasuAPI $api

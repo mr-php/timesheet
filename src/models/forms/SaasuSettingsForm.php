@@ -5,6 +5,10 @@ namespace app\models\forms;
 use Yii;
 use yii\base\Model;
 
+/**
+ * Class SaasuSettingsForm
+ * @package app\models\forms
+ */
 class SaasuSettingsForm extends Model
 {
 

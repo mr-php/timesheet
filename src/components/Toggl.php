@@ -7,13 +7,20 @@ use Yii;
 use yii\base\Component;
 
 /**
- * Toggl
+ * Class Toggl
  * @package app\components
  */
 class Toggl extends Component
 {
 
+    /**
+     * @var string
+     */
     public $startDate;
+
+    /**
+     * @var string
+     */
     public $endDate;
 
     /**
@@ -31,6 +38,10 @@ class Toggl extends Component
         }
     }
 
+    /**
+     * @param $staffList
+     * @return array
+     */
     public function import($staffList)
     {
         $toggl = [];

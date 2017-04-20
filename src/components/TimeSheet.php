@@ -9,16 +9,25 @@ use yii\helpers\Inflector;
 use yii\helpers\Json;
 
 /**
- * TimeSheet
+ * Class TimeSheet
  * @package app\components
  */
 class TimeSheet extends Component
 {
 
+    /**
+     * @var array
+     */
     public $staff = [];
 
+    /**
+     * @var array
+     */
     public $projects = [];
 
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         parent::init();
@@ -31,6 +40,10 @@ class TimeSheet extends Component
         }
     }
 
+    /**
+     * @param $togglData
+     * @return array
+     */
     public function getTimes($togglData)
     {
         $times = $this->convertTimeEntries($togglData);
@@ -39,6 +52,10 @@ class TimeSheet extends Component
         return $times;
     }
 
+    /**
+     * @param $times
+     * @return array
+     */
     public function getTotals($times)
     {
         $totals = [];
@@ -97,6 +114,10 @@ class TimeSheet extends Component
         return $totals;
     }
 
+    /**
+     * @param $togglData
+     * @return array
+     */
     public function convertTimeEntries($togglData)
     {
         $times = [];
@@ -126,6 +147,10 @@ class TimeSheet extends Component
         return $times;
     }
 
+    /**
+     * @param $times
+     * @return mixed
+     */
     public function applyBaseRates($times)
     {
         foreach ($times as $pid => $time) {
@@ -175,6 +200,10 @@ class TimeSheet extends Component
         return $times;
     }
 
+    /**
+     * @param $times
+     * @return mixed
+     */
     public function applyCapRates($times)
     {
         foreach ($times as $pid => $time) {
@@ -208,11 +237,21 @@ class TimeSheet extends Component
         return $times;
     }
 
+    /**
+     * @param $sid
+     * @param null $pid
+     * @return mixed
+     */
     public function getStaffProfit($sid, $pid = null)
     {
         return $this->getStaffRate($sid, $pid) * $this->getStaffMultiplier($sid, $pid) - $this->getStaffCost($sid, $pid);
     }
 
+    /**
+     * @param $sid
+     * @param null $pid
+     * @return mixed
+     */
     public function getStaffRate($sid, $pid = null)
     {
         if ($pid && isset($this->staff[$sid]['projects'][$pid]['rate'])) {
@@ -221,6 +260,11 @@ class TimeSheet extends Component
         return $this->staff[$sid]['rate'];
     }
 
+    /**
+     * @param $sid
+     * @param null $pid
+     * @return mixed
+     */
     public function getStaffCost($sid, $pid = null)
     {
         if ($pid && isset($this->staff[$sid]['projects'][$pid]['cost'])) {
@@ -229,6 +273,11 @@ class TimeSheet extends Component
         return $this->staff[$sid]['cost'];
     }
 
+    /**
+     * @param $sid
+     * @param null $pid
+     * @return mixed
+     */
     public function getStaffMultiplier($sid, $pid = null)
     {
         if ($pid && isset($this->staff[$sid]['projects'][$pid]['multiplier'])) {
@@ -237,6 +286,11 @@ class TimeSheet extends Component
         return $this->staff[$sid]['multiplier'];
     }
 
+    /**
+     * @param $sid
+     * @param null $pid
+     * @return mixed
+     */
     public function getStaffTaxRate($sid, $pid = null)
     {
         if ($pid && isset($this->staff[$sid]['projects'][$pid]['tax_rate'])) {
@@ -245,6 +299,10 @@ class TimeSheet extends Component
         return $this->staff[$sid]['tax_rate'];
     }
 
+    /**
+     * @param $pid
+     * @return int
+     */
     public function getProjectTaxRate($pid)
     {
         return isset($this->projects[$pid]['tax_rate']) ? $this->projects[$pid]['tax_rate'] : 0;

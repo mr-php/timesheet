@@ -5,6 +5,10 @@ namespace app\models\forms;
 use Yii;
 use yii\base\Model;
 
+/**
+ * Class TimeSheetSettingsForm
+ * @package app\models\forms
+ */
 class TimeSheetSettingsForm extends Model
 {
     /**
