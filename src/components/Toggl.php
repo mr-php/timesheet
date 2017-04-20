@@ -58,12 +58,19 @@ class Toggl extends Component
             }
             $toggl[$sid]['clients'] = $client->getClients();
             $toggl[$sid]['current'] = $client->GetCurrentTimeEntry();
+
             $params = [];
             if ($this->startDate)
                 $params['start_date'] = date('c', strtotime('00:00', strtotime($this->startDate)));
             if ($this->endDate)
                 $params['end_date'] = date('c', strtotime('00:00', strtotime($this->endDate)));
-            $toggl[$sid]['timeEntries'] = $client->getTimeEntries($params);
+            $toggl[$sid]['timeEntries'] = [];
+            foreach ($client->getTimeEntries($params) as $timeEntry) {
+                if (isset($staff['toggl_workspace_id']) && (!isset($timeEntry['wid']) || $staff['toggl_workspace_id'] != $timeEntry['wid'])) {
+                    continue;
+                }
+                $toggl[$sid]['timeEntries'][] = $timeEntry;
+            }
         }
         return $toggl;
     }
