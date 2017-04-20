@@ -8,6 +8,7 @@ use app\models\forms\TimeSheetSettingsForm;
 use app\models\forms\TogglSettingsForm;
 use Yii;
 use yii\filters\auth\HttpBasicAuth;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii2mod\settings\actions\SettingsAction;
@@ -81,7 +82,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $toggl = Yii::$app->cache->get('toggl');
+        $toggl = Json::decode(Yii::$app->settings->get('app', 'toggl'));
         $times = Yii::$app->timeSheet->getTimes($toggl);
         $totals = Yii::$app->timeSheet->getTotals($times);
         return $this->render('index', [
@@ -98,7 +99,7 @@ class SiteController extends Controller
      */
     public function actionImportToggl()
     {
-        Yii::$app->cache->set('toggl', Yii::$app->toggl->import(Yii::$app->timeSheet->staff));
+        Yii::$app->settings->set('app', 'toggl', Json::encode(Yii::$app->toggl->import(Yii::$app->timeSheet->staff)));
         return $this->redirect(Url::home());
     }
 
@@ -124,7 +125,7 @@ class SiteController extends Controller
      */
     public function actionDump()
     {
-        $toggl = Yii::$app->cache->get('toggl');
+        $toggl = Json::decode(Yii::$app->settings->get('app', 'toggl'));
         $times = Yii::$app->timeSheet->getTimes($toggl);
         $totals = Yii::$app->timeSheet->getTotals($times);
         return $this->render('dump', [

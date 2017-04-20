@@ -23,7 +23,7 @@ $this->title = Yii::$app->name;
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="toggl">
-            <h3><code>$toggl = Yii::$app->cache->get('toggl');</code></h3>
+            <h3><code>$toggl = Yii::$app->settings->get('app', 'toggl');</code></h3>
             <pre><?= VarDumper::export($toggl) ?></pre>
         </div>
         <div role="tabpanel" class="tab-pane" id="times">
