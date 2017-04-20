@@ -1,9 +1,13 @@
 # TimeSheet Docs
 
+- [Screenshots](screenshots.md)
+
+
 ## Deployment
 
 - [Docker](docker.md)
 - [Heroku](heroku.md)
+
 
 ## Guides
 
