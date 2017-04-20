@@ -38,9 +38,15 @@ if (!$totals) {
                         <tr>
                             <th width="40%">project</th>
                             <th width="15%">hours</th>
-                            <th width="15%">C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i></th>
-                            <th width="15%">S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i></th>
-                            <th width="15%">P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i></th>
+                            <th width="15%">
+                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
+                            </th>
+                            <th width="15%">
+                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
+                            </th>
+                            <th width="15%">
+                                P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
+                            </th>
                         </tr>
                         <?php
                         foreach ($projects as $pid => $hours) {
@@ -52,7 +58,7 @@ if (!$totals) {
                             <tr>
                                 <td><?= Yii::$app->timeSheet->projects[$pid]['name'] ?></td>
                                 <td class="text-right">
-                                    <?= number_format($hours, 2) ?>
+                                    <?= Helper::formatHours($hours) ?>
                                 </td>
                                 <td class="text-right">
                                     <?= number_format(($hours * $staffCost) / ($staffTaxRate + 1), 2) ?>
@@ -70,7 +76,7 @@ if (!$totals) {
                         <tr>
                             <th>Total</th>
                             <th class="text-right">
-                                <?= number_format($totals['time']['total']['staff'][$sid]['total'], 2) ?>
+                                <?= Helper::formatHours($totals['time']['total']['staff'][$sid]['total']) ?>
                             </th>
                             <th class="text-right">
                                 <?= '$' . number_format($totals['cost']['total']['staff'][$sid]['total'], 2) ?>
@@ -104,9 +110,15 @@ if (!$totals) {
                         <tr>
                             <th width="40%">staff</th>
                             <th width="15%">hours</th>
-                            <th width="15%">C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i></th>
-                            <th width="15%">S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i></th>
-                            <th width="15%">P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i></th>
+                            <th width="15%">
+                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
+                            </th>
+                            <th width="15%">
+                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
+                            </th>
+                            <th width="15%">
+                                P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
+                            </th>
                         </tr>
                         <?php
                         foreach ($staffs as $sid => $hours) {
@@ -118,7 +130,7 @@ if (!$totals) {
                             <tr>
                                 <td><?= Yii::$app->timeSheet->staff[$sid]['name'] ?></td>
                                 <td class="text-right">
-                                    <?= number_format($hours, 2) ?>
+                                    <?= Helper::formatHours($hours) ?>
                                 </td>
                                 <td class="text-right">
                                     <?= number_format(($hours * $staffCost) / ($staffTaxRate + 1), 2) ?>
@@ -136,7 +148,7 @@ if (!$totals) {
                         <tr>
                             <th>Total</th>
                             <th class="text-right">
-                                <?= number_format($totals['time']['total']['project'][$pid]['total'], 2) ?>
+                                <?= Helper::formatHours($totals['time']['total']['project'][$pid]['total']) ?>
                             </th>
                             <th class="text-right">
                                 <?= '$' . number_format($totals['cost']['total']['project'][$pid]['total'], 2) ?>

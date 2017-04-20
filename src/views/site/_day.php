@@ -37,9 +37,15 @@ use yii\web\View;
                         <tr>
                             <th width="40%">profile</th>
                             <th width="15%">hours</th>
-                            <th width="15%">C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i></th>
-                            <th width="15%">S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i></th>
-                            <th width="15%">P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i></th>
+                            <th width="15%">
+                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
+                            </th>
+                            <th width="15%">
+                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
+                            </th>
+                            <th width="15%">
+                                P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
+                            </th>
                         </tr>
                         <?php
                         foreach ($projects as $pid => $hours) {
@@ -48,7 +54,7 @@ use yii\web\View;
                             <tr>
                                 <td><?= Yii::$app->timeSheet->projects[$pid]['name'] ?></td>
                                 <td class="text-right">
-                                    <?= number_format($hours, 2) ?>
+                                    <?= Helper::formatHours($hours) ?>
                                 </td>
                                 <td class="text-right">
                                     <?= number_format(($hours * Yii::$app->timeSheet->getStaffCost($sid, $pid)) / (Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
@@ -66,7 +72,7 @@ use yii\web\View;
                         <tr>
                             <th>Total</th>
                             <th class="text-right">
-                                <?= number_format($daily['staff'][$sid]['total'], 2) ?>
+                                <?= Helper::formatHours($daily['staff'][$sid]['total']) ?>
                             </th>
                             <th class="text-right">
                                 <?= '$' . number_format($totals['cost'][$date]['staff'][$sid]['total'], 2) ?>
@@ -100,9 +106,15 @@ use yii\web\View;
                         <tr>
                             <th width="40%">staff</th>
                             <th width="15%">hours</th>
-                            <th width="15%">C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i></th>
-                            <th width="15%">S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i></th>
-                            <th width="15%">P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i></th>
+                            <th width="15%">
+                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
+                            </th>
+                            <th width="15%">
+                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
+                            </th>
+                            <th width="15%">
+                                P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
+                            </th>
                         </tr>
                         <?php
                         foreach ($staffs as $sid => $hours) {
@@ -111,7 +123,7 @@ use yii\web\View;
                             <tr>
                                 <td><?= Yii::$app->timeSheet->staff[$sid]['name'] ?></td>
                                 <td class="text-right">
-                                    <?= number_format($hours, 2) ?>
+                                    <?= Helper::formatHours($hours) ?>
                                 </td>
                                 <td class="text-right">
                                     <?= number_format(($hours * Yii::$app->timeSheet->getStaffCost($sid, $pid)) / (Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1), 2) ?>
@@ -129,7 +141,7 @@ use yii\web\View;
                         <tr>
                             <th>Total</th>
                             <th class="text-right">
-                                <?= number_format($daily['project'][$pid]['total'], 2) ?>
+                                <?= Helper::formatHours($daily['project'][$pid]['total']) ?>
                             </th>
                             <th class="text-right">
                                 <?= '$' . number_format($totals['cost'][$date]['project'][$pid]['total'], 2) ?>
