@@ -38,9 +38,9 @@ if (!$totals) {
                         <tr>
                             <th width="40%">project</th>
                             <th width="15%">hours</th>
-                            <th width="15%">C&nbsp;<i class="glyphicon glyphicon-info-sign" title="Cost Ex GST"></i></th>
-                            <th width="15%">S&nbsp;<i class="glyphicon glyphicon-info-sign" title="Sell Ex GST"></i></th>
-                            <th width="15%">P&nbsp;<i class="glyphicon glyphicon-info-sign" title="Profit Ex GST"></i></th>
+                            <th width="15%">C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i></th>
+                            <th width="15%">S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i></th>
+                            <th width="15%">P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i></th>
                         </tr>
                         <?php
                         foreach ($projects as $pid => $hours) {
@@ -104,9 +104,9 @@ if (!$totals) {
                         <tr>
                             <th width="40%">staff</th>
                             <th width="15%">hours</th>
-                            <th width="15%">C&nbsp;<i class="glyphicon glyphicon-info-sign" title="Cost Ex GST"></i></th>
-                            <th width="15%">S&nbsp;<i class="glyphicon glyphicon-info-sign" title="Sell Ex GST"></i></th>
-                            <th width="15%">P&nbsp;<i class="glyphicon glyphicon-info-sign" title="Profit Ex GST"></i></th>
+                            <th width="15%">C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i></th>
+                            <th width="15%">S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i></th>
+                            <th width="15%">P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i></th>
                         </tr>
                         <?php
                         foreach ($staffs as $sid => $hours) {

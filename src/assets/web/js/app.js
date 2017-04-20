@@ -2,9 +2,9 @@
  * Override the default yii confirm dialog. This function is
  * called by yii when a confirmation is requested.
  *
- * @param string message the message to display
- * @param string ok callback triggered when confirmation is true
- * @param string cancelCallback callback triggered when cancelled
+ * @param message the message to display
+ * @param okCallback triggered when confirmation is true
+ * @param cancelCallback callback triggered when cancelled
  */
 yii.confirm = function (message, okCallback, cancelCallback) {
     swal({
@@ -15,3 +15,10 @@ yii.confirm = function (message, okCallback, cancelCallback) {
         allowOutsideClick: true
     }, okCallback);
 };
+
+/**
+ * Bootstrap Tooltips
+ */
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
