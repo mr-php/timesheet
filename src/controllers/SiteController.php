@@ -117,4 +117,20 @@ class SiteController extends Controller
         return $this->redirect(['/site/import-toggl']);
     }
 
+    /**
+     * Dumps the variables.
+     *
+     * @return string
+     */
+    public function actionDump()
+    {
+        $toggl = Yii::$app->cache->get('toggl');
+        $times = Yii::$app->timeSheet->getTimes($toggl);
+        $totals = Yii::$app->timeSheet->getTotals($times);
+        return $this->render('dump', [
+            'toggl' => $toggl,
+            'times' => $times,
+            'totals' => $totals,
+        ]);
+    }
 }

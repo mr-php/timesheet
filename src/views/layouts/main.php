@@ -74,6 +74,10 @@ echo Nav::widget([
                 'data-confirm' => Yii::t('app', 'Are you sure?'),
             ],
         ],
+        [
+            'label' => Yii::t('app', 'Dump'),
+            'url' => ['/site/dump'],
+        ],
     ],
     'options' => ['class' => 'navbar-nav'],
 ]);

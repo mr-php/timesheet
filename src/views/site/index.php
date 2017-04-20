@@ -13,23 +13,21 @@ $this->title = Yii::$app->name;
 ?>
 
 <div class="site-index">
-    <div class="container">
-        <?= $this->render('_current', ['toggl' => $toggl]) ?>
-        <ul id="main-tab" class="nav nav-pills" role="tablist">
-            <li class="active"><a href="#summary">Summary</a></li>
-            <li><a href="#daily">Daily</a></li>
-            <li><a href="#invoices">Invoices</a></li>
-        </ul>
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="summary">
-                <?= $this->render('_summary', ['totals' => $totals]) ?>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="daily">
-                <?= $this->render('_daily', ['totals' => $totals]) ?>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="invoices">
-                <?= $this->render('_invoices', ['times' => $times]) ?>
-            </div>
+    <?= $this->render('_current', ['toggl' => $toggl]) ?>
+    <ul id="main-tab" class="nav nav-pills" role="tablist">
+        <li class="active"><a href="#summary">Summary</a></li>
+        <li><a href="#daily">Daily</a></li>
+        <li><a href="#invoices">Invoices</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="summary">
+            <?= $this->render('_summary', ['totals' => $totals]) ?>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="daily">
+            <?= $this->render('_daily', ['totals' => $totals]) ?>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="invoices">
+            <?= $this->render('_invoices', ['times' => $times]) ?>
         </div>
     </div>
 </div>
