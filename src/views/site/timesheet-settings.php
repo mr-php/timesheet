@@ -14,14 +14,15 @@ $this->title = Yii::t('app', 'TimeSheet Settings');
         'admin' => [
             'name' => 'Admin',
             'toggl_api_key' => '817212b50437a8531fdac89bc22e7dc8',
-            'rate' => 100,
+            'sell' => 100,
             'cost' => 50,
             'multiplier' => 1,
             'tax_rate' => 0.1,
             'projects' => [
                 'none' => [
-                    'rate' => 100,
-                    'multiplier' => 1,
+                    'sell' => 90,
+                    'cost' => 60,
+                    'multiplier' => 0.9,
                 ],
             ],
         ],
