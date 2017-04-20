@@ -267,16 +267,6 @@ class TimeSheet extends Component
      * @param null $pid
      * @return mixed
      */
-    public function getStaffProfit($sid, $pid = null)
-    {
-        return $this->getStaffSell($sid, $pid) * $this->getStaffMultiplier($sid, $pid) - $this->getStaffCost($sid, $pid);
-    }
-
-    /**
-     * @param $sid
-     * @param null $pid
-     * @return mixed
-     */
     public function getStaffSell($sid, $pid = null)
     {
         if ($pid && isset($this->staff[$sid]['projects'][$pid]['sell'])) {
