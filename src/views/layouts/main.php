@@ -1,5 +1,6 @@
 <?php
 
+use app\assets\AppAsset;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
@@ -10,9 +11,8 @@ use yii\helpers\Url;
  * @var $content string
  */
 
-// Register asset bundles
-\yii\web\YiiAsset::register($this);
-\yii\bootstrap\BootstrapAsset::register($this);
+// Register asset bundle
+AppAsset::register($this);
 
 ?>
 
@@ -26,28 +26,6 @@ use yii\helpers\Url;
     <title><?= Html::encode($this->title) ?></title>
     <link rel="shortcut icon" href="<?= Yii::getAlias('@web'); ?>/favicon.png" type="image/png">
     <?php $this->head() ?>
-    <link href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/slate/bootstrap.min.css" rel="stylesheet">
-    <style>
-        html {
-            position: relative;
-            min-height: 100%;
-        }
-
-        body {
-            padding-top: 60px;
-            margin-bottom: 50px;
-        }
-
-        .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 45px;
-            background-color: #3a3f44;
-            border-top: 1px solid rgba(0, 0, 0, 0.6);
-            padding-top: 10px;
-        }
-    </style>
 </head>
 <body>
 <?php $this->beginBody() ?>
