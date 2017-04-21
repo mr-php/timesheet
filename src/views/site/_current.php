@@ -13,10 +13,6 @@ if (!$toggl) {
 }
 foreach ($toggl as $sid => $data) {
     if (isset($data['current']['id'])) {
-        $staff = Yii::$app->timeSheet->staff[$sid];
-        if (isset($staff['toggl_workflow_id']) && (!isset($data['current']['wid']) || $data['current']['wid'] != $staff['toggl_workflow_id'])) {
-            continue;
-        }
         echo Alert::widget([
             'body' => Yii::t('app', '{sid} has a current timer: {description}', [
                 'sid' => Yii::$app->timeSheet->staff[$sid]['name'],

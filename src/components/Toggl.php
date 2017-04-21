@@ -57,7 +57,13 @@ class Toggl extends Component
                 }
             }
             $toggl[$sid]['clients'] = $client->getClients();
-            $toggl[$sid]['current'] = $client->GetCurrentTimeEntry();
+
+            $current = $client->GetCurrentTimeEntry();
+            if (isset($staff['toggl_workspace_id']) && (!isset($current['wid']) || $staff['toggl_workspace_id'] != $current['wid'])) {
+                $toggl[$sid]['current'] = false;
+            } else {
+                $toggl[$sid]['current'] = $current;
+            }
 
             $params = [];
             if ($this->startDate)
