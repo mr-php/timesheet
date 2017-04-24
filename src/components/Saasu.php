@@ -127,6 +127,7 @@ class Saasu extends Component
         $instruction->emailMessage = new EmailMessage();
         $instruction->emailToContact = 'true';
         $instruction->emailMessage->to = $project['email'];
+        $instruction->emailMessage->bcc = $this->fromEmail;
         $instruction->emailMessage->from = $this->fromEmail;
         $instruction->emailMessage->subject = strtr($this->saleEmailSubject, ['{project}' => $project['name']]);
         $instruction->emailMessage->body = strtr($this->saleEmailBody, [
@@ -190,6 +191,7 @@ class Saasu extends Component
         $instruction->emailMessage = new EmailMessage();
         $instruction->emailToContact = 'true';
         $instruction->emailMessage->to = isset($staff['email']) ? $staff['email'] : $this->fromEmail;
+        $instruction->emailMessage->bcc = $this->fromEmail;
         $instruction->emailMessage->from = $this->fromEmail;
         $instruction->emailMessage->subject = strtr($this->purchaseEmailSubject, ['{staff}' => $staff['name']]);
         $instruction->emailMessage->body = strtr($this->purchaseEmailBody, [
