@@ -28,7 +28,7 @@ use yii\web\View;
 </h3>
 <div class="row">
     <div class="col-md-6">
-        <h4><i class="glyphicon glyphicon-user"></i> Hours by Staff</h4>
+        <h4><i class="glyphicon glyphicon-user"></i> Hours by Staff per Project</h4>
         <?php
         foreach ($daily['staff'] as $sid => $projects) {
             if ($sid == 'total') continue;
@@ -123,7 +123,7 @@ use yii\web\View;
         ?>
     </div>
     <div class="col-md-6">
-        <h4><i class="glyphicon glyphicon-briefcase"></i> Hours by Project</h4>
+        <h4><i class="glyphicon glyphicon-briefcase"></i> Hours by Project per Staff</h4>
         <?php
         foreach ($daily['project'] as $pid => $staffs) {
             if ($pid == 'total') continue;

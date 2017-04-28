@@ -29,7 +29,7 @@ if (!$totals) {
 
 <div class="row">
     <div class="col-md-6">
-        <h3><i class="glyphicon glyphicon-user"></i> Hours by Staff</h3>
+        <h3><i class="glyphicon glyphicon-user"></i> Hours by Staff per Project</h3>
         <?php
         foreach ($totals['time']['total']['staff'] as $sid => $projects) {
             if ($sid == 'total') continue;
@@ -124,7 +124,7 @@ if (!$totals) {
         ?>
     </div>
     <div class="col-md-6">
-        <h3><i class="glyphicon glyphicon-briefcase"></i> Hours by Project</h3>
+        <h3><i class="glyphicon glyphicon-briefcase"></i> Hours by Project per Staff</h3>
         <?php
         foreach ($totals['time']['total']['project'] as $pid => $staffs) {
             if ($pid == 'total') continue;
