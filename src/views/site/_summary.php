@@ -51,7 +51,7 @@ if (!$totals) {
                 <div class="col-md-9">
                     <table class="table table-condensed">
                         <tr>
-                            <th width="28%">staff</th>
+                            <th width="28%">project</th>
                             <th width="18%" class="text-right">hours</th>
                             <th width="18%" class="text-right">
                                 S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
@@ -146,7 +146,7 @@ if (!$totals) {
                 <div class="col-md-9">
                     <table class="table table-condensed">
                         <tr>
-                            <th width="28%">project</th>
+                            <th width="28%">staff</th>
                             <th width="18%" class="text-right">hours</th>
                             <th width="18%" class="text-right">
                                 S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
