@@ -3,8 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/* @var $model \app\models\forms\TogglSettingsForm */
-/* @var $this \yii\web\View */
+/**
+ * @var $this \yii\web\View
+ * @var $model \app\models\forms\TogglSettingsForm
+ */
 
 $this->title = Yii::t('app', 'Toggl Settings');
 ?>

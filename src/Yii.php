@@ -22,6 +22,7 @@ Yii::$container = new yii\di\Container;
  *
  * @property \yii\caching\FileCache $cache
  * @property \app\components\Saasu $saasu
+ * @property \app\components\Zipbooks $zipbooks
  * @property \app\components\TimeSheet $timeSheet
  * @property \app\components\Toggl $toggl
  * @property \yii2mod\settings\components\Settings $settings

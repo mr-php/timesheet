@@ -23,14 +23,17 @@ return [
         'saasu' => [
             'class' => 'app\components\Saasu',
         ],
+        'settings' => [
+            'class' => 'yii2mod\settings\components\Settings',
+        ],
         'timeSheet' => [
             'class' => 'app\components\TimeSheet',
         ],
         'toggl' => [
             'class' => 'app\components\Toggl',
         ],
-        'settings' => [
-            'class' => 'yii2mod\settings\components\Settings',
+        'zipbooks' => [
+            'class' => 'app\components\Zipbooks',
         ],
     ],
 ];

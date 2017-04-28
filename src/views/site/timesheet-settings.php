@@ -3,8 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/* @var $model \app\models\forms\TimeSheetSettingsForm */
-/* @var $this \yii\web\View */
+/**
+ * @var $this \yii\web\View
+ * @var $model \app\models\forms\TimeSheetSettingsForm
+ */
 
 $this->title = Yii::t('app', 'TimeSheet Settings');
 ?>

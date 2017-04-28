@@ -6,6 +6,7 @@ use app\components\NullUser;
 use app\models\forms\SaasuSettingsForm;
 use app\models\forms\TimeSheetSettingsForm;
 use app\models\forms\TogglSettingsForm;
+use app\models\forms\ZipbooksSettingsForm;
 use Yii;
 use yii\filters\auth\HttpBasicAuth;
 use yii\helpers\Json;
@@ -72,6 +73,11 @@ class SiteController extends Controller
                 'view' => 'saasu-settings',
                 'modelClass' => SaasuSettingsForm::class,
             ],
+            'zipbooks-settings' => [
+                'class' => SettingsAction::class,
+                'view' => 'zipbooks-settings',
+                'modelClass' => ZipbooksSettingsForm::class,
+            ],
         ];
     }
 
@@ -122,6 +128,29 @@ class SiteController extends Controller
         $staffTimes = Yii::$app->timeSheet->getStaffTimes($times);
         foreach ($staffTimes as $sid => $_times) {
             Yii::$app->saasu->createPurchaseInvoice($sid, $_times);
+        }
+
+        Yii::$app->settings->set('TogglSettingsForm', 'startDate', date('Y-m-d'));
+        return $this->redirect(['/site/import-toggl']);
+    }
+
+    /**
+     * Exports data to Saasu
+     *
+     * @return \yii\web\Response
+     */
+    public function actionExportZipbooks()
+    {
+        // create invoices
+        $toggl = Json::decode(Yii::$app->settings->get('app', 'toggl'));
+        $times = Yii::$app->timeSheet->getTimes($toggl);
+        foreach ($times as $pid => $_times) {
+            Yii::$app->zipbooks->createInvoice($pid, $_times);
+        }
+        // create expenses
+        $staffTimes = Yii::$app->timeSheet->getStaffTimes($times);
+        foreach ($staffTimes as $sid => $_times) {
+            Yii::$app->zipbooks->createExpense($sid, $_times);
         }
 
         Yii::$app->settings->set('TogglSettingsForm', 'startDate', date('Y-m-d'));

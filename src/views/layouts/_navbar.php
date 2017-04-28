@@ -55,6 +55,10 @@ echo Nav::widget([
                     'label' => 'Saasu Settings',
                     'url' => ['/site/saasu-settings'],
                 ],
+                [
+                    'label' => 'Zipbooks Settings',
+                    'url' => ['/site/zipbooks-settings'],
+                ],
             ],
         ],
         [
@@ -70,6 +74,13 @@ echo Nav::widget([
                 [
                     'label' => 'Saasu',
                     'url' => 'https://secure.saasu.com/',
+                    'linkOptions' => [
+                        'target' => '_blank',
+                    ],
+                ],
+                [
+                    'label' => 'ZipBooks',
+                    'url' => 'https://app.zipbooks.com/',
                     'linkOptions' => [
                         'target' => '_blank',
                     ],
