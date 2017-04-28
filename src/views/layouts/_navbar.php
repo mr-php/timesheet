@@ -31,6 +31,13 @@ echo Nav::widget([
             ],
         ],
         [
+            'label' => Yii::t('app', 'Export ZipBooks'),
+            'url' => ['/site/export-zipbooks'],
+            'linkOptions' => [
+                'data-confirm' => Yii::t('app', 'Are you sure?'),
+            ],
+        ],
+        [
             'label' => Yii::t('app', 'Dump'),
             'url' => ['/site/dump'],
         ],
