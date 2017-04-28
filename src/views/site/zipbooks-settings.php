@@ -5,10 +5,10 @@ use yii\widgets\ActiveForm;
 
 /**
  * @var $this \yii\web\View
- * @var $model \app\models\forms\ZipbooksSettingsForm
+ * @var $model \app\models\forms\ZipBooksSettingsForm
  */
 
-$this->title = Yii::t('app', 'Zipbooks Settings');
+$this->title = Yii::t('app', 'ZipBooks Settings');
 ?>
 <?php $form = ActiveForm::begin(); ?>
 

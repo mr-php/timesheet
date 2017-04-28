@@ -6,10 +6,10 @@ use Yii;
 use yii\base\Model;
 
 /**
- * Class ZipbooksSettingsForm
+ * Class ZipBooksSettingsForm
  * @package app\models\forms
  */
-class ZipbooksSettingsForm extends Model
+class ZipBooksSettingsForm extends Model
 {
 
     /**

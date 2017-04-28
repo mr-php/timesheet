@@ -7,10 +7,10 @@ use yii\base\Component;
 use yii\base\Exception;
 
 /**
- * Class Zipbooks
+ * Class ZipBooks
  * @package app\components
  */
-class Zipbooks extends Component
+class ZipBooks extends Component
 {
 
     /**
@@ -46,7 +46,7 @@ class Zipbooks extends Component
         parent::init();
         $settings = ['fromEmail', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseEmailSubject', 'expenseEmailBody'];
         foreach ($settings as $key) {
-            $value = Yii::$app->settings->get('ZipbooksSettingsForm', $key);
+            $value = Yii::$app->settings->get('ZipBooksSettingsForm', $key);
             if ($value) {
                 $this->$key = $value;
             }

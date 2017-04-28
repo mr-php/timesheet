@@ -32,8 +32,8 @@ return [
         'toggl' => [
             'class' => 'app\components\Toggl',
         ],
-        'zipbooks' => [
-            'class' => 'app\components\Zipbooks',
+        'zipBooks' => [
+            'class' => 'app\components\ZipBooks',
         ],
     ],
 ];

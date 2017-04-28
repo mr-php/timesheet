@@ -56,7 +56,7 @@ echo Nav::widget([
                     'url' => ['/site/saasu-settings'],
                 ],
                 [
-                    'label' => 'Zipbooks Settings',
+                    'label' => 'ZipBooks Settings',
                     'url' => ['/site/zipbooks-settings'],
                 ],
             ],
