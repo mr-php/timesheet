@@ -50,7 +50,7 @@ use yii\web\View;
                 <div class="col-md-9">
                     <table class="table table-condensed">
                         <tr>
-                            <th width="28%">staff</th>
+                            <th width="28%">project</th>
                             <th width="18%" class="text-right">hours</th>
                             <th width="18%" class="text-right">
                                 S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
@@ -101,16 +101,18 @@ use yii\web\View;
                         }
                         ?>
                         <tr>
-                            <th width="28%">project</th>
-                            <th width="18%" class="text-right">hours</th>
-                            <th width="18%" class="text-right">
-                                S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
+                            <th>Total</th>
+                            <th class="text-right">
+                                <?= Helper::formatHours($daily['staff'][$sid]['total']) ?>
                             </th>
-                            <th width="18%" class="text-right">
-                                C&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Cost Ex GST"></i>
+                            <th class="text-right">
+                                <?= '$' . number_format($totals['sell'][$date]['staff'][$sid]['total'], 2) ?>
                             </th>
-                            <th width="18%" class="text-right">
-                                P&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Profit Ex GST"></i>
+                            <th class="text-right">
+                                <?= '$' . number_format($totals['cost'][$date]['staff'][$sid]['total'], 2) ?>
+                            </th>
+                            <th class="text-right">
+                                <?= '$' . number_format($totals['sell'][$date]['staff'][$sid]['total'] - $totals['cost'][$date]['staff'][$sid]['total'], 2) ?>
                             </th>
                         </tr>
                     </table>
@@ -143,7 +145,7 @@ use yii\web\View;
                 <div class="col-md-9">
                     <table class="table table-condensed">
                         <tr>
-                            <th width="28%">project</th>
+                            <th width="28%">staff</th>
                             <th width="18%">hours</th>
                             <th width="18%">
                                 S&nbsp;<i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Sell Ex GST"></i>
