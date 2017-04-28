@@ -17,28 +17,32 @@ NavBar::begin([
 echo Nav::widget([
     'items' => [
         [
-            'label' => Yii::t('app', 'Import Toggl'),
+            'label' => '<span class="glyphicon glyphicon-cloud-download"></span>&nbsp;' . Yii::t('app', 'Toggl'),
+            'encode' => false,
             'url' => ['/site/import-toggl'],
             'linkOptions' => [
                 'data-confirm' => Yii::t('app', 'Are you sure?'),
             ],
         ],
         [
-            'label' => Yii::t('app', 'Export Saasu'),
+            'label' => '<span class="glyphicon glyphicon-cloud-upload"></span>&nbsp;' . Yii::t('app', 'Saasu'),
+            'encode' => false,
             'url' => ['/site/export-saasu'],
             'linkOptions' => [
                 'data-confirm' => Yii::t('app', 'Are you sure?'),
             ],
         ],
         [
-            'label' => Yii::t('app', 'Export ZipBooks'),
+            'label' => '<span class="glyphicon glyphicon-cloud-upload"></span>&nbsp;' . Yii::t('app', 'ZipBooks'),
+            'encode' => false,
             'url' => ['/site/export-zipbooks'],
             'linkOptions' => [
                 'data-confirm' => Yii::t('app', 'Are you sure?'),
             ],
         ],
         [
-            'label' => Yii::t('app', 'Dump'),
+            'label' => '<span class="glyphicon glyphicon-oil"></span>&nbsp;' . Yii::t('app', 'Dump'),
+            'encode' => false,
             'url' => ['/site/dump'],
         ],
     ],
@@ -46,9 +50,11 @@ echo Nav::widget([
 ]);
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
+    'dropDownCaret' => false,
     'items' => [
         [
-            'label' => Yii::t('app', 'Settings'),
+            'label' => '<span class="glyphicon glyphicon-wrench"></span>&nbsp;', // . Yii::t('app', 'Settings'),
+            'encode' => false,
             'items' => [
                 [
                     'label' => 'TimeSheet Settings',
@@ -69,7 +75,8 @@ echo Nav::widget([
             ],
         ],
         [
-            'label' => Yii::t('app', 'Links'),
+            'label' => '<span class="glyphicon glyphicon-link"></span>&nbsp;', // . Yii::t('app', 'Links'),
+            'encode' => false,
             'items' => [
                 [
                     'label' => 'Toggl',
