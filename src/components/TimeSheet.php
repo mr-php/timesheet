@@ -234,20 +234,24 @@ class TimeSheet extends Component
     public function applyCapRates($times)
     {
         foreach ($times as $pid => $time) {
-            // set rate to 0 for hours over cap
+            // set sell to 0 for hours over cap
             $capHours = isset($this->projects[$pid]['cap_hours']) ? $this->projects[$pid]['cap_hours'] : 0;
             if ($capHours) {
                 foreach ($time as $sid => $staff) {
                     foreach ($staff as $date => $tasks) {
                         foreach ($tasks as $description => $item) {
                             $capHours -= $item['hours'];
+                            if ($capHours == 0) {
+                                $times[$pid][$sid][$date][$description]['sell'] = 0;
+                                $times[$pid][$sid][$date][$description]['description'] .= ' (cap)';
+                            }
                             if ($capHours < 0) {
                                 $times[$pid][$sid][$date][$description]['hours'] += $capHours;
-                                $times[$pid][$sid][$date][$description] = array(
+                                $times[$pid][$sid][$date][$description . ' (cap)'] = array(
                                     'pid' => $pid,
                                     'sid' => $sid,
                                     'date' => $date,
-                                    'description' => $description,
+                                    'description' => $description . ' (cap)',
                                     'sell' => 0,
                                     'cost' => $item['cost'],
                                     'hours' => $capHours * -1,
