@@ -52,7 +52,8 @@ $project = Yii::$app->timeSheet->projects[$pid];
                                 <td class="text-right">
                                     <?php echo number_format($task['hours'], 2); ?>
                                 </td>
-                                <td class="text-right"><?php echo $task['sell']; ?>
+                                <td class="text-right">
+                                    <?php echo $task['sell']; ?>
                                 </td>
                                 <td class="text-right">
                                     <?php echo '$' . number_format($task['hours'] * $task['sell'], 2); ?>
