@@ -21,3 +21,13 @@ body {
 .img-circle {
     border-radius: 50%;
 }
+
+.fancybox-skin {
+    background: transparent;
+}
+
+.fancybox-opened .fancybox-skin {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
