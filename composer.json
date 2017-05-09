@@ -13,7 +13,8 @@
         "yii2mod/yii2-settings": "*",
         "dmstr/yii2-migrate-command": "*",
         "bower-asset/sweetalert": "1.1.*",
-        "cebe/yii2-gravatar": "*"
+        "cebe/yii2-gravatar": "*",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "config": {
         "fxp-asset": {
