@@ -9,5 +9,5 @@
 Make sure you have the [Heroku Toolbelt](https://toolbelt.heroku.com) installed.
 
 ```
-heroku run --app test-timesheet yii migrate --interactive=0
+heroku run --app YOUR_APP_NAME php yii migrate --interactive=0
 ```
