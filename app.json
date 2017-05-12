@@ -6,8 +6,7 @@
   "repository": "https://github.com/mr-php/timesheet",
   "env": {
     "APP_ADMIN_EMAIL": {
-      "description": "Admin email address.",
-      "value": "admin@mailinator.com"
+      "description": "Admin email address."
     },
     "APP_COOKIE_VALIDATION_KEY": {
       "description": "Cookie validation key.",
