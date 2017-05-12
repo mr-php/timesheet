@@ -13,6 +13,7 @@ return [
     'controllerMap' => [
         'migrate' => [
             'class' => '\dmstr\console\controllers\MigrateController',
+            'migrationPath' => null,
         ],
     ],
 ];
