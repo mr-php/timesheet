@@ -23,6 +23,10 @@
     "APP_TIMEZONE": {
       "description": "Time zone.",
       "value": "Australia/Adelaide"
+    },
+    "HEROKU": {
+      "description": "Heroku (must be set).",
+      "value": "TRUE"
     }
   },
   "addons": [
