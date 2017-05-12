@@ -32,7 +32,7 @@ function debug($var, $name = null, $attributesOnly = true)
 
 // Define application aliases
 Yii::setAlias('@root', dirname(dirname(__DIR__)));
-Yii::setAlias('@app', '@root/src');
+Yii::setAlias('@app', dirname(__DIR__));
 Yii::setAlias('@runtime', '@root/runtime');
 Yii::setAlias('@web', '@root/web');
 Yii::setAlias('@webroot', dirname(__DIR__) . '/web');
