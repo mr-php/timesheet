@@ -8,10 +8,6 @@
 
 Make sure you have the [Heroku Toolbelt](https://toolbelt.heroku.com) installed.
 
-After you have an instance running on Heroku, run these commands in your terminal.
-
 ```
-heroku git:clone -a <your-app-name>
-cd <your-app-name>
-heroku run yii migrate --interactive=0
+heroku run --app test-timesheet yii migrate --interactive=0
 ```
