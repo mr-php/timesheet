@@ -1,0 +1,32 @@
+{
+  "name": "TimeSheet",
+  "description": "TimeSheet application intended to generate invoices on Zipbooks based on time entries at Toggl.",
+  "keywords": ["timesheet", "time tracking", "zipbooks", "toggl"],
+  "website": "https://github.com/mr-php/timesheet",
+  "repository": "https://github.com/mr-php/timesheet",
+  "env": {
+    "APP_ADMIN_EMAIL": {
+      "description": "Admin email address.",
+      "generator": "admin@mailinator.com"
+    },
+    "APP_COOKIE_VALIDATION_KEY": {
+      "description": "Cookie validation key.",
+      "generator": "ENTER_RANDON_STRING_HERE"
+    },
+    "APP_NAME": {
+      "description": "Application name.",
+      "generator": "TimeSheet"
+    },
+    "APP_PASSWORD": {
+      "description": "Access password.",
+      "generator": "secret"
+    },
+    "APP_TIMEZONE": {
+      "description": "Time zone.",
+      "generator": "Australia/Adelaide"
+    }
+  },
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
