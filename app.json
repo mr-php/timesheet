@@ -7,23 +7,23 @@
   "env": {
     "APP_ADMIN_EMAIL": {
       "description": "Admin email address.",
-      "generator": "admin@mailinator.com"
+      "value": "admin@mailinator.com"
     },
     "APP_COOKIE_VALIDATION_KEY": {
       "description": "Cookie validation key.",
-      "generator": "ENTER_RANDON_STRING_HERE"
+      "generator": "secret"
     },
     "APP_NAME": {
       "description": "Application name.",
-      "generator": "TimeSheet"
+      "value": "TimeSheet"
     },
     "APP_PASSWORD": {
       "description": "Access password.",
-      "generator": "secret"
+      "value": "secret"
     },
     "APP_TIMEZONE": {
       "description": "Time zone.",
-      "generator": "Australia/Adelaide"
+      "value": "Australia/Adelaide"
     }
   },
   "addons": [
