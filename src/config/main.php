@@ -37,6 +37,11 @@ Yii::setAlias('@runtime', '@root/runtime');
 Yii::setAlias('@web', '@root/web');
 Yii::setAlias('@webroot', '@root//web');
 
+echo Yii::getAlias('@app');
+echo "\n<br>\n";
+echo Yii::getAlias('@app/migrations');
+die;
+
 // Load $merge configuration files
 $applicationType = php_sapi_name() == 'cli' ? 'console' : 'web';
 $env = YII_ENV;
