@@ -14,15 +14,35 @@
     },
     "APP_NAME": {
       "description": "Application name.",
+      "value": "timesheet"
+    },
+    "APP_TITLE": {
+      "description": "Application title.",
       "value": "TimeSheet"
     },
     "APP_PASSWORD": {
       "description": "Access password.",
       "value": "secret"
     },
+    "APP_PRETTY_URLS": {
+      "description": "Pretty URLs.",
+      "value": "1"
+    },
     "APP_TIMEZONE": {
       "description": "Time zone.",
       "value": "Australia/Adelaide"
+    },
+    "YII_ENV": {
+      "description": "Yii Environment.",
+      "value": "prod"
+    },
+    "YII_DEBUG": {
+      "description": "Yii Debug.",
+      "value": "0"
+    },
+    "HEROKU": {
+      "description": "Heroku (must be set).",
+      "value": "1"
     }
   },
   "addons": [
