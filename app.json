@@ -1,6 +1,6 @@
 {
   "name": "TimeSheet",
-  "description": "TimeSheet application intended to generate invoices on Zipbooks based on time entries at Toggl.",
+  "description": "TimeSheet generates invoices on Zipbooks based on time entries at Toggl.",
   "keywords": ["timesheet", "time tracking", "zipbooks", "toggl"],
   "website": "https://github.com/mr-php/timesheet",
   "repository": "https://github.com/mr-php/timesheet",
