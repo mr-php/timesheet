@@ -1,1 +1,1 @@
-web: ./heroku_release.sh
+web: vendor/bin/heroku-php-apache2 web/
