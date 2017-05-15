@@ -4,6 +4,7 @@ namespace app\models\forms;
 
 use Yii;
 use yii\base\Model;
+use yii\helpers\Html;
 
 /**
  * Class ZipBooksSettingsForm
@@ -21,11 +22,6 @@ class ZipBooksSettingsForm extends Model
      * @var string
      */
     public $password;
-
-    /**
-     * @var string
-     */
-    public $fromEmail;
 
     /**
      * @var string
@@ -73,7 +69,7 @@ class ZipBooksSettingsForm extends Model
     public function rules()
     {
         return [
-            [['email', 'password', 'fromEmail', 'logoFilename', 'invoiceTerms', 'invoiceNotes', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseCategory', 'expenseEmailSubject', 'expenseEmailBody'], 'required'],
+            [['email', 'password', 'logoFilename', 'invoiceTerms', 'invoiceNotes', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseCategory', 'expenseEmailSubject', 'expenseEmailBody'], 'required'],
         ];
     }
 
@@ -85,7 +81,6 @@ class ZipBooksSettingsForm extends Model
         return [
             'email' => Yii::t('app', 'Email'),
             'password' => Yii::t('app', 'Password'),
-            'fromEmail' => Yii::t('app', 'From Email'),
             'logoFilename' => Yii::t('app', 'Logo Filename'),
             'invoiceTerms' => Yii::t('app', 'Invoice Terms'),
             'invoiceNotes' => Yii::t('app', 'Invoice Notes'),
@@ -96,4 +91,21 @@ class ZipBooksSettingsForm extends Model
             'expenseEmailBody' => Yii::t('app', 'Expense Email Body'),
         ];
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeHints()
+    {
+        return [
+            'email' => Yii::t('app', 'ZipBooks login email.'),
+            'password' => Yii::t('app', 'ZipBooks login password.'),
+            'expenseCategory' => Html::a(Yii::t('app', 'View categories'), 'https://app.zipbooks.com/categories', ['target' => '_blank']),
+            'invoiceEmailSubject' => Yii::t('app', 'Vars:') . ' <code>{number}</code>, <code>{invoice}</code>.',
+            'invoiceEmailBody' => Yii::t('app', 'Vars:') . ' <code>{number}</code>, <code>{invoice}</code>, <code>{times}</code>.',
+            //'expenseEmailSubject' => Yii::t('app', 'Vars:') . ' <code>{number}</code>, <code>{invoice}</code>.',
+            //'expenseEmailBody' => Yii::t('app', 'Vars:') . ' <code>{number}</code>, <code>{invoice}</code>, <code>{times}</code>.',
+        ];
+    }
+
 }

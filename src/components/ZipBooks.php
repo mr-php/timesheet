@@ -27,11 +27,6 @@ class ZipBooks extends Component
     /**
      * @var string
      */
-    public $fromEmail;
-
-    /**
-     * @var string
-     */
     public $logoFilename;
 
     /**
@@ -80,7 +75,7 @@ class ZipBooks extends Component
     public function init()
     {
         parent::init();
-        $settings = ['email', 'password', 'fromEmail', 'logoFilename', 'invoiceTerms', 'invoiceNotes', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseCategory', 'expenseEmailSubject', 'expenseEmailBody'];
+        $settings = ['email', 'password', 'logoFilename', 'invoiceTerms', 'invoiceNotes', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseCategory', 'expenseEmailSubject', 'expenseEmailBody'];
         foreach ($settings as $key) {
             $value = Yii::$app->settings->get('ZipBooksSettingsForm', $key);
             if ($value) {

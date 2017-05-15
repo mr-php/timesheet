@@ -16,8 +16,6 @@ $this->title = Yii::t('app', 'ZipBooks Settings');
 
 <?php echo $form->field($model, 'password')->passwordInput(); ?>
 
-<?php echo $form->field($model, 'fromEmail'); ?>
-
 <?php echo $form->field($model, 'logoFilename'); ?>
 
 <?php echo $form->field($model, 'invoiceTerms'); ?>
@@ -30,9 +28,9 @@ $this->title = Yii::t('app', 'ZipBooks Settings');
 
 <?php echo $form->field($model, 'expenseCategory'); ?>
 
-<?php echo $form->field($model, 'expenseEmailSubject'); ?>
+<?php //echo $form->field($model, 'expenseEmailSubject'); ?>
 
-<?php echo $form->field($model, 'expenseEmailBody')->textarea(); ?>
+<?php //echo $form->field($model, 'expenseEmailBody')->textarea(); ?>
 
 <?php echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
 
