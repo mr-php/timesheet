@@ -21,12 +21,32 @@ class ZipBooks extends Component
     /**
      * @var string
      */
+    public $logoFilename;
+
+    /**
+     * @var string
+     */
+    public $invoiceTerms;
+
+    /**
+     * @var string
+     */
+    public $invoiceNotes;
+
+    /**
+     * @var string
+     */
     public $invoiceEmailSubject;
 
     /**
      * @var string
      */
     public $invoiceEmailBody;
+
+    /**
+     * @var string
+     */
+    public $expenseCategory;
 
     /**
      * @var string
@@ -44,7 +64,7 @@ class ZipBooks extends Component
     public function init()
     {
         parent::init();
-        $settings = ['fromEmail', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseEmailSubject', 'expenseEmailBody'];
+        $settings = ['fromEmail', 'logoFilename', 'invoiceTerms', 'invoiceNotes', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseCategory', 'expenseEmailSubject', 'expenseEmailBody'];
         foreach ($settings as $key) {
             $value = Yii::$app->settings->get('ZipBooksSettingsForm', $key);
             if ($value) {
@@ -59,33 +79,45 @@ class ZipBooks extends Component
      */
     public function createInvoice($pid, $times)
     {
+        $project = Yii::$app->timeSheet->projects[$pid];
+
         /** @see https://developer.zipbooks.com/#api-Invoices-PostInvoice */
         $invoice = [
-            'customer' => '',
-            'number' => '',
-            'date' => '',
-            'discount' => '',
-            'accept_credit_cards' => '',
-            'terms' => '',
-            'notes' => '',
-            'logo_filename' => '',
+            'customer' => $project['zipbooks_customer'],
+            'number' => uniqid(),
+            'date' => date('Y-m-d'),
+            //'discount' => 0,
+            'accept_credit_cards' => false,
+            'terms' => $this->invoiceTerms,
+            'notes' => $this->invoiceNotes,
+            'logo_filename' => $this->logoFilename,
             'lineItems' => [],
         ];
-        $i = 1;
-        $invoice['lineItems'][$i] = [
-            'type' => '',
-            'name' => '',
-            'notes' => '',
-            'rate' => '',
-            'quantity' => '',
-        ];
+        $i = 0;
+        foreach ($times as $sid => $dates) {
+            foreach ($dates as $date => $tasks) {
+                foreach ($tasks as $task) {
+                    $i++;
+                    $invoice['lineItems'][$i] = [
+                        'type' => 'time-entry',
+                        'name' => $task['description'],
+                        'notes' => date('Y-m-d', strtotime($task['date'])) . ' ' . Yii::$app->timeSheet->staff[$task['sid']]['name'] . ' ' . Helper::formatHours($task['hours']),
+                        'rate' => $task['sell'],
+                        'quantity' => $task['hours'],
+                    ];
+                }
+            }
+        }
         $this->_call('invoices', $invoice);
 
         /** @see https://developer.zipbooks.com/#api-Invoices-postInvoiceSend */
         $this->_call('invoices/:id/send', [
-            'send_to' => '',
-            'subject' => '',
-            'message' => '',
+            'send_to' => $project['email'],
+            'subject' => strtr($this->invoiceEmailSubject, ['{project}' => $project['name']]),
+            'message' => strtr($this->invoiceEmailBody, [
+                '{project}' => $project['name'],
+                '{times}' => Yii::$app->view->render('/site/_sale_times' . '', ['times' => $times]),
+            ]),
             'bcc' => true,
             'pdf' => true,
         ]);
@@ -98,15 +130,26 @@ class ZipBooks extends Component
      */
     public function createExpense($sid, $times)
     {
+        $staff = Yii::$app->timeSheet->staff[$sid];
+
+        $amount = 0;
+        foreach ($times as $sid => $dates) {
+            foreach ($dates as $date => $tasks) {
+                foreach ($tasks as $task) {
+                    $amount = $task['hours'] * $task['cost'];
+                }
+            }
+        }
+
         /** @see https://developer.zipbooks.com/#api-Expenses-PostExpense */
         $this->_call('expenses', [
-            'amount' => '',
-            'date' => '',
-            'customer_id' => '',
-            'name' => '',
-            'category' => '',
-            'note' => '',
-            'image_filename' => '',
+            'amount' => $amount,
+            'date' => date('Y-m-d'),
+            'customer_id' => $staff['zipbooks_customer_id'],
+            'name' => $staff['name'],
+            'category' => $this->expenseCategory,
+            'note' => Yii::$app->view->render('/site/_purchase_times' . '', ['times' => $times]),
+            //'image_filename' => '',
         ]);
     }
 

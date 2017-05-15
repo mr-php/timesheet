@@ -20,12 +20,32 @@ class ZipBooksSettingsForm extends Model
     /**
      * @var string
      */
+    public $logoFilename;
+
+    /**
+     * @var string
+     */
+    public $invoiceTerms;
+
+    /**
+     * @var string
+     */
+    public $invoiceNotes;
+
+    /**
+     * @var string
+     */
     public $invoiceEmailSubject;
 
     /**
      * @var string
      */
     public $invoiceEmailBody;
+
+    /**
+     * @var string
+     */
+    public $expenseCategory;
 
     /**
      * @var string
@@ -43,7 +63,7 @@ class ZipBooksSettingsForm extends Model
     public function rules()
     {
         return [
-            [['fromEmail', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseEmailSubject', 'expenseEmailBody'], 'required'],
+            [['fromEmail', 'logoFilename', 'invoiceTerms', 'invoiceNotes', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseCategory', 'expenseEmailSubject', 'expenseEmailBody'], 'required'],
         ];
     }
 
@@ -54,8 +74,12 @@ class ZipBooksSettingsForm extends Model
     {
         return [
             'fromEmail' => Yii::t('app', 'From Email'),
+            'logoFilename' => Yii::t('app', 'Logo Filename'),
+            'invoiceTerms' => Yii::t('app', 'Invoice Terms'),
+            'invoiceNotes' => Yii::t('app', 'Invoice Notes'),
             'saleEmailSubject' => Yii::t('app', 'Invoice Email Subject'),
             'saleEmailBody' => Yii::t('app', 'Invoice Email Body'),
+            'expenseCategory' => Yii::t('app', 'Expense Category'),
             'expenseEmailSubject' => Yii::t('app', 'Expense Email Subject'),
             'expenseEmailBody' => Yii::t('app', 'Expense Email Body'),
         ];
