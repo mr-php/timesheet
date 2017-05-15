@@ -132,7 +132,7 @@ class Saasu extends Component
         $instruction->emailMessage->subject = strtr($this->saleEmailSubject, ['{project}' => $project['name']]);
         $instruction->emailMessage->body = strtr($this->saleEmailBody, [
             '{project}' => $project['name'],
-            '{times}' => Yii::$app->view->render('/site/_sale_times' . '', ['times' => $times]),
+            '{times}' => Yii::$app->view->render('/site/_sale-times' . '', ['times' => $times]),
         ]);
 
         // create an invoice
@@ -196,7 +196,7 @@ class Saasu extends Component
         $instruction->emailMessage->subject = strtr($this->purchaseEmailSubject, ['{staff}' => $staff['name']]);
         $instruction->emailMessage->body = strtr($this->purchaseEmailBody, [
             '{staff}' => $staff['name'],
-            '{times}' => Yii::$app->view->render('/site/_purchase_times' . '', ['times' => $times]),
+            '{times}' => Yii::$app->view->render('/site/_purchase-times' . '', ['times' => $times]),
         ]);
 
         // create an invoice

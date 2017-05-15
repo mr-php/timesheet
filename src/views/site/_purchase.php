@@ -86,7 +86,7 @@ $staff = Yii::$app->timeSheet->staff[$sid];
     <tr>
         <td><?= Yii::t('app', 'Times') ?></td>
         <td>
-            <pre><?= $this->render('_purchase_times', ['times' => $times]); ?></pre>
+            <pre><?= $this->render('_purchase-times', ['times' => $times]); ?></pre>
         </td>
     </tr>
 </table>

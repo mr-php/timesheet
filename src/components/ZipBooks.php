@@ -5,6 +5,7 @@ namespace app\components;
 use Yii;
 use yii\base\Component;
 use yii\base\Exception;
+use yii\helpers\Json;
 
 /**
  * Class ZipBooks
@@ -12,6 +13,16 @@ use yii\base\Exception;
  */
 class ZipBooks extends Component
 {
+
+    /**
+     * @var string
+     */
+    public $email;
+
+    /**
+     * @var string
+     */
+    public $password;
 
     /**
      * @var string
@@ -59,12 +70,17 @@ class ZipBooks extends Component
     public $expenseEmailBody;
 
     /**
+     * @var
+     */
+    private $_token;
+
+    /**
      * @inheritdoc
      */
     public function init()
     {
         parent::init();
-        $settings = ['fromEmail', 'logoFilename', 'invoiceTerms', 'invoiceNotes', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseCategory', 'expenseEmailSubject', 'expenseEmailBody'];
+        $settings = ['email', 'password', 'fromEmail', 'logoFilename', 'invoiceTerms', 'invoiceNotes', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseCategory', 'expenseEmailSubject', 'expenseEmailBody'];
         foreach ($settings as $key) {
             $value = Yii::$app->settings->get('ZipBooksSettingsForm', $key);
             if ($value) {
@@ -80,11 +96,12 @@ class ZipBooks extends Component
     public function createInvoice($pid, $times)
     {
         $project = Yii::$app->timeSheet->projects[$pid];
+        $number = uniqid();
 
         /** @see https://developer.zipbooks.com/#api-Invoices-PostInvoice */
         $invoice = [
-            'customer' => $project['zipbooks_customer'],
-            'number' => uniqid(),
+            'customer' => $project['zipbooks_contact_id'],
+            'number' => $number,
             'date' => date('Y-m-d'),
             //'discount' => 0,
             'accept_credit_cards' => false,
@@ -100,23 +117,24 @@ class ZipBooks extends Component
                     $i++;
                     $invoice['lineItems'][$i] = [
                         'type' => 'time-entry',
-                        'name' => $task['description'],
-                        'notes' => date('Y-m-d', strtotime($task['date'])) . ' ' . Yii::$app->timeSheet->staff[$task['sid']]['name'] . ' ' . Helper::formatHours($task['hours']),
+                        'name' => date('Y-m-d', strtotime($task['date'])) . ' ' . Yii::$app->timeSheet->staff[$task['sid']]['name'] . ' ' . Helper::formatHours($task['hours']),
+                        'notes' => $task['description'],
                         'rate' => $task['sell'],
                         'quantity' => $task['hours'],
                     ];
                 }
             }
         }
-        $this->_call('invoices', $invoice);
+        $response = $this->_request('invoices', $invoice);
 
         /** @see https://developer.zipbooks.com/#api-Invoices-postInvoiceSend */
-        $this->_call('invoices/:id/send', [
+        $this->_request('invoices/' . $response['id'] . '/send', [
             'send_to' => $project['email'],
-            'subject' => strtr($this->invoiceEmailSubject, ['{project}' => $project['name']]),
+            'subject' => strtr($this->invoiceEmailSubject, ['{project}' => $project['name'], '{number}' => $number]),
             'message' => strtr($this->invoiceEmailBody, [
                 '{project}' => $project['name'],
-                '{times}' => Yii::$app->view->render('/site/_sale_times' . '', ['times' => $times]),
+                '{number}' => $number,
+                '{times}' => Yii::$app->view->render('/site/_sale-times' . '', ['times' => $times]),
             ]),
             'bcc' => true,
             'pdf' => true,
@@ -130,6 +148,8 @@ class ZipBooks extends Component
      */
     public function createExpense($sid, $times)
     {
+        return; // not working, Client error: `POST https://api.zipbooks.com/v1/expenses` resulted in a `404 Not Found` response
+
         $staff = Yii::$app->timeSheet->staff[$sid];
 
         $amount = 0;
@@ -142,13 +162,13 @@ class ZipBooks extends Component
         }
 
         /** @see https://developer.zipbooks.com/#api-Expenses-PostExpense */
-        $this->_call('expenses', [
+        $this->_request('expenses', [
             'amount' => $amount,
             'date' => date('Y-m-d'),
-            'customer_id' => $staff['zipbooks_customer_id'],
+            'customer_id' => $staff['zipbooks_contact_id'],
             'name' => $staff['name'],
             'category' => $this->expenseCategory,
-            'note' => Yii::$app->view->render('/site/_purchase_times' . '', ['times' => $times]),
+            'note' => Yii::$app->view->render('/site/_purchase-times' . '', ['times' => $times]),
             //'image_filename' => '',
         ]);
     }
@@ -158,31 +178,29 @@ class ZipBooks extends Component
      * @param array $params
      * @return mixed
      */
-    private function _call($action, $params = [])
+    private function _request($action, $params = [])
     {
-        // https://developer.zipbooks.com/#api-Authentication-PostAuthLogin
-        //https://api.zipbooks.com/v1/auth/login
         $client = new \GuzzleHttp\Client();
-
-        if (!$this->token) {
-            $response = $client->request('POST', 'https://api.zipbooks.com/v1/auth/login', [
-                'json' => ['email' => $this->email, 'password' => $this->password],
-            ])->getBody()->getContents();
-            $this->token = $response->token;
-        }
-
-        if ($this->token) {
-            $response = $client->request('POST', 'https://api.zipbooks.com/v1/auth/check')->getBody()->getContents();
-        }
-
-        $url = 'https://api.zipbooks.com/v1/' . $action;
-        return $client->request('POST', $url, [
+        return Json::decode($client->request('POST', 'https://api.zipbooks.com/v1/' . $action, [
             'json' => $params,
-            'auth' => ['user', 'pass']
+            'headers' => ['Authorization' => 'Bearer ' . $this->_token()],
+        ])->getBody());
+    }
 
-        ], [
-            'headers' => ['Authorization' => 'Bearer ' . $this->token],
-        ])->getBody()->getContents();
+    /**
+     * @return mixed
+     */
+    private function _token()
+    {
+        $client = new \GuzzleHttp\Client();
+        if (!$this->_token) {
+            /** @see https://developer.zipbooks.com/#api-Authentication-PostAuthLogin */
+            $response = Json::decode($client->request('POST', 'https://api.zipbooks.com/v1/auth/login', [
+                'json' => ['email' => $this->email, 'password' => $this->password],
+            ])->getBody());
+            $this->_token = $response['token'];
+        }
+        return $this->_token;
     }
 
 }

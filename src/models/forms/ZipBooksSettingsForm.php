@@ -15,6 +15,16 @@ class ZipBooksSettingsForm extends Model
     /**
      * @var string
      */
+    public $email;
+
+    /**
+     * @var string
+     */
+    public $password;
+
+    /**
+     * @var string
+     */
     public $fromEmail;
 
     /**
@@ -63,7 +73,7 @@ class ZipBooksSettingsForm extends Model
     public function rules()
     {
         return [
-            [['fromEmail', 'logoFilename', 'invoiceTerms', 'invoiceNotes', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseCategory', 'expenseEmailSubject', 'expenseEmailBody'], 'required'],
+            [['email', 'password', 'fromEmail', 'logoFilename', 'invoiceTerms', 'invoiceNotes', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseCategory', 'expenseEmailSubject', 'expenseEmailBody'], 'required'],
         ];
     }
 
@@ -73,6 +83,8 @@ class ZipBooksSettingsForm extends Model
     public function attributeLabels()
     {
         return [
+            'email' => Yii::t('app', 'Email'),
+            'password' => Yii::t('app', 'Password'),
             'fromEmail' => Yii::t('app', 'From Email'),
             'logoFilename' => Yii::t('app', 'Logo Filename'),
             'invoiceTerms' => Yii::t('app', 'Invoice Terms'),
