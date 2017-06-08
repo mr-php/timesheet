@@ -114,8 +114,8 @@ class ZipBooks extends Component
                         'type' => 'time-entry',
                         'name' => date('Y-m-d', strtotime($task['date'])) . ' ' . Yii::$app->timeSheet->staff[$task['sid']]['name'] . ' ' . Helper::formatHours($task['hours']),
                         'notes' => $task['description'],
-                        'rate' => $task['sell'],
-                        'quantity' => $task['hours'],
+                        'rate' => round($task['sell'], 2),
+                        'quantity' => round($task['hours'], 2),
                     ];
                 }
             }
@@ -143,29 +143,43 @@ class ZipBooks extends Component
      */
     public function createExpense($sid, $times)
     {
-        return; // not working, Client error: `POST https://api.zipbooks.com/v1/expenses` resulted in a `404 Not Found` response
-
         $staff = Yii::$app->timeSheet->staff[$sid];
 
-        $amount = 0;
+        $journal = [
+            'date' => date('Y-m-d'),
+            'name' => $staff['name'],
+            'note' => Yii::$app->view->render('/site/_purchase-times' . '', ['times' => $times]),
+            'journal_entry_lines' => [],
+        ];
+        $i = 0;
         foreach ($times as $sid => $dates) {
             foreach ($dates as $date => $tasks) {
                 foreach ($tasks as $task) {
-                    $amount = $task['hours'] * $task['cost'];
+                    $amount = round($task['hours'] * $task['cost'], 4);
+                    $name = date('Y-m-d', strtotime($task['date'])) . ' ' . Yii::$app->timeSheet->projects[$task['pid']]['name'] . ' ' . Helper::formatHours($task['hours']) . ' - ' . $task['description'];
+                    $i++;
+                    $journal['journal_entry_lines'][$i] = [
+                        'amount' => $amount,
+                        'kind' => 'debit',
+                        'name' => $name,
+                        'chart_account_id' => $this->expenseCategory,
+                        'customer_id' => $staff['zipbooks_contact_id'],
+                        //'invoice_id' => '',
+                    ];
+                    $i++;
+                    $journal['journal_entry_lines'][$i] = [
+                        'amount' => $amount,
+                        'kind' => 'credit',
+                        'name' => $name,
+                        'chart_account_id' => 4834140,
+                        'customer_id' => $staff['zipbooks_contact_id'],
+                        //'invoice_id' => '',
+                    ];
                 }
             }
         }
 
-        /** @see https://developer.zipbooks.com/#api-Expenses-PostExpense */
-        $this->_request('expenses', [
-            'amount' => $amount,
-            'date' => date('Y-m-d'),
-            'customer_id' => $staff['zipbooks_contact_id'],
-            'name' => $staff['name'],
-            'category' => $this->expenseCategory,
-            'note' => Yii::$app->view->render('/site/_purchase-times' . '', ['times' => $times]),
-            //'image_filename' => '',
-        ]);
+        $this->_request('journal_entries', $journal);
     }
 
     /**
