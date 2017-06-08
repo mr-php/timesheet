@@ -45,6 +45,7 @@ if (!$totals) {
                         ],
                         'size' => 16,
                         'defaultImage' => 'wavatar',
+                        'secure' => true,
                     ]) ?>
                     <strong><?= $staff['name'] ?></strong>
                 </div>
@@ -82,6 +83,7 @@ if (!$totals) {
                                         ],
                                         'size' => 16,
                                         'defaultImage' => 'wavatar',
+                                        'secure' => true,
                                     ]) ?>
                                     <?= $project['name'] ?>
                                 </td>
@@ -140,6 +142,7 @@ if (!$totals) {
                         ],
                         'size' => 16,
                         'defaultImage' => 'wavatar',
+                        'secure' => true,
                     ]) ?>
                     <strong><?= $project['name'] ?></strong>
                 </div>
@@ -177,6 +180,7 @@ if (!$totals) {
                                         ],
                                         'size' => 16,
                                         'defaultImage' => 'wavatar',
+                                        'secure' => true,
                                     ]) ?>
                                     <?= $staff['name'] ?>
                                 </td>

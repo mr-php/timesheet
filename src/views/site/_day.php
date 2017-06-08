@@ -44,6 +44,7 @@ use yii\web\View;
                         ],
                         'size' => 16,
                         'defaultImage' => 'wavatar',
+                        'secure' => true,
                     ]) ?>
                     <strong><?= $staff['name'] ?></strong>
                 </div>
@@ -81,6 +82,7 @@ use yii\web\View;
                                         ],
                                         'size' => 16,
                                         'defaultImage' => 'wavatar',
+                                        'secure' => true,
                                     ]) ?>
                                     <?= $project['name'] ?>
                                 </td>
@@ -139,6 +141,7 @@ use yii\web\View;
                         ],
                         'size' => 16,
                         'defaultImage' => 'wavatar',
+                        'secure' => true,
                     ]) ?>
                     <strong><?= $project['name'] ?></strong>
                 </div>
@@ -176,6 +179,7 @@ use yii\web\View;
                                         ],
                                         'size' => 16,
                                         'defaultImage' => 'wavatar',
+                                        'secure' => true,
                                     ]) ?>
                                     <?= $staff['name'] ?>
                                 </td>
