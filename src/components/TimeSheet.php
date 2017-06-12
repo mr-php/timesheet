@@ -64,7 +64,7 @@ class TimeSheet extends Component
                 $multiplier = $this->getStaffMultiplier($sid, $pid);
                 foreach ($dates as $date => $tasks) {
                     foreach ($tasks as $description => $task) {
-                        $task['hours'] = $task['hours'] / $multiplier;
+                        $task['hours'] = round($task['hours'] / $multiplier, 2);
                         $staffTimes[$sid][$pid][$date][$description] = $task;
                     }
                 }
@@ -165,7 +165,7 @@ class TimeSheet extends Component
                             'hours' => 0,
                         ];
                     }
-                    $times[$pid][$sid][$date][$description]['hours'] += $hours * $multiplier;
+                    $times[$pid][$sid][$date][$description]['hours'] += round($hours * $multiplier, 2);
                 }
             }
         }
