@@ -175,4 +175,14 @@ class SiteController extends Controller
             'totals' => $totals,
         ]);
     }
+    public function actionGenEnv()
+    {
+        $dotEnv = '';
+        foreach ($_ENV as $key => $value) {
+            $dotEnv .= "$key=$value\n";
+        }
+        echo "<pre>";
+        echo $dotEnv;
+        exit();
+    }
 }
