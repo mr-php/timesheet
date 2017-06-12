@@ -5,6 +5,7 @@ namespace app\components;
 use Yii;
 use yii\base\Component;
 use yii\base\Exception;
+use yii\helpers\Inflector;
 use yii\helpers\Json;
 
 /**
@@ -91,7 +92,7 @@ class ZipBooks extends Component
     public function createInvoice($pid, $times)
     {
         $project = Yii::$app->timeSheet->projects[$pid];
-        $number = uniqid();
+        $number = date('Ymd') . '-' . $pid;
 
         /** @see https://developer.zipbooks.com/#api-Invoices-PostInvoice */
         $invoice = [
