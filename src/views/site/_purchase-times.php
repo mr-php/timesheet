@@ -18,16 +18,16 @@ foreach ($times as $pid => $dates) {
     $contents[] = '================================';
     foreach ($dates as $date => $tasks) {
         foreach ($tasks as $task) {
-            $projectTotal += $task['hours'];
-            $total += $task['hours'];
+            $projectTotal += round($task['hours'],2);
+            $total += round($task['hours'],2);
         }
     }
     foreach ($dates as $date => $tasks) {
         $dayTotal = 0;
         $dayTasks = [];
         foreach ($tasks as $task) {
-            $dayTotal += $task['hours'];
-            $dayTasks[] = Helper::formatHours($task['hours']) . ' - ' . htmlspecialchars($task['description']);
+            $dayTotal += round($task['hours'],2);
+            $dayTasks[] = Helper::formatHours(round($task['hours'],2)) . ' - ' . htmlspecialchars($task['description']);
         }
         $contents[] = date('Y-m-d - l', strtotime($date));
         $contents[] = '--------------------------------';

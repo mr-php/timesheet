@@ -44,11 +44,11 @@ $project = Yii::$app->timeSheet->projects[$pid];
                 foreach ($times as $sid => $dates) {
                     foreach ($dates as $date => $tasks) {
                         foreach ($tasks as $task) {
-                            $total['quantity'] += $task['hours'];
-                            $total['amount'] += $task['hours'] * $task['sell'];
+                            $total['quantity'] += round($task['hours'],2);
+                            $total['amount'] += round($task['hours'],2) * $task['sell'];
                             ?>
                             <tr>
-                                <td><?= $date . ' ' . Yii::$app->timeSheet->staff[$task['sid']]['name'] . ' ' . Helper::formatHours($task['hours']) . ' - ' . str_replace("\n", '<br/>', $task['description']) ?></td>
+                                <td><?= $date . ' ' . Yii::$app->timeSheet->staff[$task['sid']]['name'] . ' ' . Helper::formatHours(round($task['hours'],2)) . ' - ' . str_replace("\n", '<br/>', $task['description']) ?></td>
                                 <td class="text-right">
                                     <?php echo number_format($task['hours'], 2); ?>
                                 </td>
