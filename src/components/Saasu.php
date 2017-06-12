@@ -154,7 +154,7 @@ class Saasu extends Component
                     if ($this->layout == InvoiceLayout::Service) {
                         $item = new ServiceInvoiceItem();
                         $item->accountUid = $this->saleAccountUid;
-                        $item->totalAmountInclTax = round($task['hours'] * $task['sell'], 2);
+                        $item->totalAmountInclTax = round($task['sell'], 2) * round($task['hours'], 2);
                     } elseif ($this->layout == InvoiceLayout::Item) {
                         $item = new ItemInvoiceItem();
                         $item->inventoryItemUid = $this->inventoryItemUid;
@@ -218,7 +218,7 @@ class Saasu extends Component
                     if ($this->layout == InvoiceLayout::Service) {
                         $item = new ServiceInvoiceItem();
                         $item->accountUid = $this->purchaseAccountUid;
-                        $item->totalAmountInclTax = round($task['hours'] * $task['cost'], 2);
+                        $item->totalAmountInclTax = round($task['cost'], 2) * round($task['hours'], 2);
                     } elseif ($this->layout == InvoiceLayout::Item) {
                         $item = new ItemInvoiceItem();
                         $item->inventoryItemUid = $this->inventoryItemUid;
