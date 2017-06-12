@@ -1,16 +1,20 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 
 /**
  * @var $this \yii\web\View
  * @var $model \app\models\forms\TogglSettingsForm
  */
 
+$model->load(Yii::$app->request->post());
+
 $this->title = Yii::t('app', 'Toggl Settings');
 ?>
 <?php $form = ActiveForm::begin(); ?>
+
+<?php echo $form->errorSummary($model); ?>
 
 <?php echo $form->field($model, 'startDate'); ?>
 

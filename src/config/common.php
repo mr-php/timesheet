@@ -1,5 +1,12 @@
 <?php
 
+Yii::$container->set('yii\bootstrap\ActiveForm', [
+    'errorSummaryCssClass' => 'alert alert-danger error-summary',
+    'options' => [
+        'autocomplete' => 'off',
+    ],
+]);
+
 // Basic configuration, used in web and console applications
 return [
     'id' => getenv('APP_NAME'),
