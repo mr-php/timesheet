@@ -54,22 +54,12 @@ class ZipBooksSettingsForm extends Model
     public $expenseCategory;
 
     /**
-     * @var string
-     */
-    public $expenseEmailSubject;
-
-    /**
-     * @var string
-     */
-    public $expenseEmailBody;
-
-    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['email', 'password', 'logoFilename', 'invoiceTerms', 'invoiceNotes', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseCategory', 'expenseEmailSubject', 'expenseEmailBody'], 'required'],
+            [['email', 'password', 'logoFilename', 'invoiceTerms', 'invoiceNotes', 'invoiceEmailSubject', 'invoiceEmailBody', 'expenseCategory'], 'required'],
         ];
     }
 
@@ -87,8 +77,6 @@ class ZipBooksSettingsForm extends Model
             'saleEmailSubject' => Yii::t('app', 'Invoice Email Subject'),
             'saleEmailBody' => Yii::t('app', 'Invoice Email Body'),
             'expenseCategory' => Yii::t('app', 'Expense Category'),
-            'expenseEmailSubject' => Yii::t('app', 'Expense Email Subject'),
-            'expenseEmailBody' => Yii::t('app', 'Expense Email Body'),
         ];
     }
 
@@ -103,8 +91,6 @@ class ZipBooksSettingsForm extends Model
             'expenseCategory' => Html::a(Yii::t('app', 'View categories'), 'https://app.zipbooks.com/categories', ['target' => '_blank']),
             'invoiceEmailSubject' => Yii::t('app', 'Vars:') . ' <code>{number}</code>, <code>{invoice}</code>.',
             'invoiceEmailBody' => Yii::t('app', 'Vars:') . ' <code>{number}</code>, <code>{invoice}</code>, <code>{times}</code>.',
-            //'expenseEmailSubject' => Yii::t('app', 'Vars:') . ' <code>{number}</code>, <code>{invoice}</code>.',
-            //'expenseEmailBody' => Yii::t('app', 'Vars:') . ' <code>{number}</code>, <code>{invoice}</code>, <code>{times}</code>.',
         ];
     }
 
