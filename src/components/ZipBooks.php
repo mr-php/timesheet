@@ -143,6 +143,7 @@ class ZipBooks extends Component
      */
     public function createExpense($sid, $times)
     {
+        return;
         $staff = Yii::$app->timeSheet->staff[$sid];
 
         $journal = [
