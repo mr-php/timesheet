@@ -2,7 +2,6 @@
 
 namespace app\components;
 
-use AJT\Toggl\TogglClient;
 use Yii;
 use yii\base\Component;
 use yii\helpers\Inflector;

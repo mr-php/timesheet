@@ -41,6 +41,7 @@ class Toggl extends Component
     /**
      * @param $staffList
      * @return array
+     * @throws \Exception
      */
     public function import($staffList)
     {

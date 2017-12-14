@@ -140,7 +140,6 @@ class ZipBooks extends Component
     /**
      * @param string $sid
      * @param array $times
-     * @throws Exception
      */
     public function createExpense($sid, $times)
     {
