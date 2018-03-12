@@ -104,6 +104,7 @@ class SiteController extends Controller
      * Imports data from Toggl
      *
      * @return \yii\web\Response
+     * @throws \Exception
      */
     public function actionImportToggl()
     {
@@ -112,9 +113,22 @@ class SiteController extends Controller
     }
 
     /**
+     * Imports data from Upwork
+     *
+     * @return \yii\web\Response
+     * @throws \Exception
+     */
+    public function actionImportUpwork()
+    {
+        Yii::$app->settings->set('app', 'upwork', Json::encode(Yii::$app->upwork->import(Yii::$app->timeSheet->staff)));
+        return $this->redirect(Url::home());
+    }
+
+    /**
      * Exports data to Saasu
      *
      * @return \yii\web\Response
+     * @throws \yii\base\Exception
      */
     public function actionExportSaasu()
     {
@@ -175,6 +189,10 @@ class SiteController extends Controller
             'totals' => $totals,
         ]);
     }
+
+    /**
+     *
+     */
     public function actionGenEnv()
     {
         $dotEnv = '';

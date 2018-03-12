@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "389d23b02881effe924b5a8addec8848",
+    "content-hash": "9e8b7830684fecae282149f2a6ffec65",
     "packages": [
         {
             "name": "ajt/guzzle-toggl",
@@ -1143,16 +1143,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.1",
+            "version": "v3.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "1de51a6c76359897ab32c309934b93d036bccb60"
+                "reference": "72689b934d6c6ecf73eca874e98933bf055313c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/1de51a6c76359897ab32c309934b93d036bccb60",
-                "reference": "1de51a6c76359897ab32c309934b93d036bccb60",
+                "url": "https://api.github.com/repos/symfony/config/zipball/72689b934d6c6ecf73eca874e98933bf055313c9",
+                "reference": "72689b934d6c6ecf73eca874e98933bf055313c9",
                 "shasum": ""
             },
             "require": {
@@ -1201,20 +1201,20 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-19T20:09:36+00:00"
+            "time": "2018-01-21T19:05:02+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.32",
+            "version": "v2.8.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "b59aacf238fadda50d612c9de73b74751872a903"
+                "reference": "d64be24fc1eba62f9daace8a8918f797fc8e87cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/b59aacf238fadda50d612c9de73b74751872a903",
-                "reference": "b59aacf238fadda50d612c9de73b74751872a903",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/d64be24fc1eba62f9daace8a8918f797fc8e87cc",
+                "reference": "d64be24fc1eba62f9daace8a8918f797fc8e87cc",
                 "shasum": ""
             },
             "require": {
@@ -1261,20 +1261,20 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-05T15:25:56+00:00"
+            "time": "2018-01-03T07:36:31+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.0.1",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "c9d4a26759ff75a077e4e334315cb632739b661a"
+                "reference": "760e47a4ee64b4c48f4b30017011e09d4c0f05ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/c9d4a26759ff75a077e4e334315cb632739b661a",
-                "reference": "c9d4a26759ff75a077e4e334315cb632739b661a",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/760e47a4ee64b4c48f4b30017011e09d4c0f05ed",
+                "reference": "760e47a4ee64b4c48f4b30017011e09d4c0f05ed",
                 "shasum": ""
             },
             "require": {
@@ -1310,20 +1310,20 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-21T14:14:53+00:00"
+            "time": "2018-01-03T07:38:00+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.1",
+            "version": "v3.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "f6a99b95b338799645fe9f7880d7d4ca1bf79cc1"
+                "reference": "eab73b6c21d27ae4cd037c417618dfd4befb0bfe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/f6a99b95b338799645fe9f7880d7d4ca1bf79cc1",
-                "reference": "f6a99b95b338799645fe9f7880d7d4ca1bf79cc1",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/eab73b6c21d27ae4cd037c417618dfd4befb0bfe",
+                "reference": "eab73b6c21d27ae4cd037c417618dfd4befb0bfe",
                 "shasum": ""
             },
             "require": {
@@ -1368,7 +1368,62 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-12-04T18:15:22+00:00"
+            "time": "2018-01-21T19:05:02+00:00"
+        },
+        {
+            "name": "upwork/php-upwork",
+            "version": "v1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/upwork/php-upwork.git",
+                "reference": "678b54b66f50833da5e3d52fda3511cc1b12e43a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/upwork/php-upwork/zipball/678b54b66f50833da5e3d52fda3511cc1b12e43a",
+                "reference": "678b54b66f50833da5e3d52fda3511cc1b12e43a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/php-invoker": "*",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "ext-oauth": "This extension from PECL provides OAuth consumer and provider bindings. See more under http://www.php.net/oauth"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Upwork\\API": "src/"
+                },
+                "files": [
+                    "src/Upwork/API/constants.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Maksym Novozhylov",
+                    "email": "mnovozhilov@upwork.com",
+                    "homepage": "http://mnov.tel",
+                    "role": "Software Engineer, Platform/Integrity"
+                }
+            ],
+            "description": "PHP bindings for Upwork API",
+            "homepage": "http://www.upwork.com",
+            "keywords": [
+                "api",
+                "php",
+                "upwork"
+            ],
+            "time": "2017-02-15T00:00:00+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -1422,16 +1477,16 @@
         },
         {
             "name": "yii2mod/yii2-editable",
-            "version": "1.4",
+            "version": "1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yii2mod/yii2-editable.git",
-                "reference": "3d0992de1a5abe7b3ca15930d1eb542a08c88d8a"
+                "reference": "21099a75670b6a406484afadf05ddd415774f4a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yii2mod/yii2-editable/zipball/3d0992de1a5abe7b3ca15930d1eb542a08c88d8a",
-                "reference": "3d0992de1a5abe7b3ca15930d1eb542a08c88d8a",
+                "url": "https://api.github.com/repos/yii2mod/yii2-editable/zipball/21099a75670b6a406484afadf05ddd415774f4a6",
+                "reference": "21099a75670b6a406484afadf05ddd415774f4a6",
                 "shasum": ""
             },
             "require": {
@@ -1464,7 +1519,7 @@
                 "yii2 editable column",
                 "yii2 editable field"
             ],
-            "time": "2017-04-12T18:51:12+00:00"
+            "time": "2018-01-15T15:00:16+00:00"
         },
         {
             "name": "yii2mod/yii2-enum",
@@ -1517,16 +1572,16 @@
         },
         {
             "name": "yii2mod/yii2-settings",
-            "version": "2.3",
+            "version": "2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yii2mod/yii2-settings.git",
-                "reference": "fea01205ea5ac870830593bd6fdfdc4c73ed0493"
+                "reference": "e121515f5b5ff18dd70e14310dc6b6a41d25e50b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yii2mod/yii2-settings/zipball/fea01205ea5ac870830593bd6fdfdc4c73ed0493",
-                "reference": "fea01205ea5ac870830593bd6fdfdc4c73ed0493",
+                "url": "https://api.github.com/repos/yii2mod/yii2-settings/zipball/e121515f5b5ff18dd70e14310dc6b6a41d25e50b",
+                "reference": "e121515f5b5ff18dd70e14310dc6b6a41d25e50b",
                 "shasum": ""
             },
             "require": {
@@ -1562,7 +1617,7 @@
                 "storage",
                 "yii2"
             ],
-            "time": "2017-09-11T13:35:13+00:00"
+            "time": "2017-12-24T22:30:06+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -1666,16 +1721,16 @@
         },
         {
             "name": "yiisoft/yii2-bootstrap",
-            "version": "2.0.7",
+            "version": "2.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "02a54d868343ed11d02f0f0f8cbbecb590e0cb3f"
+                "reference": "3f49c47924bb9fa5363c3fc7b073d954168cf438"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/02a54d868343ed11d02f0f0f8cbbecb590e0cb3f",
-                "reference": "02a54d868343ed11d02f0f0f8cbbecb590e0cb3f",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/3f49c47924bb9fa5363c3fc7b073d954168cf438",
+                "reference": "3f49c47924bb9fa5363c3fc7b073d954168cf438",
                 "shasum": ""
             },
             "require": {
@@ -1690,7 +1745,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "yii\\bootstrap\\": ""
+                    "yii\\bootstrap\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1699,8 +1754,22 @@
             ],
             "authors": [
                 {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                },
+                {
+                    "name": "Alexander Makarov",
+                    "email": "sam@rmcreative.ru",
+                    "homepage": "http://rmcreative.ru/"
+                },
+                {
+                    "name": "Antonio Ramirez",
+                    "email": "amigo.cobos@gmail.com"
+                },
+                {
                     "name": "Qiang Xue",
-                    "email": "qiang.xue@gmail.com"
+                    "email": "qiang.xue@gmail.com",
+                    "homepage": "http://www.yiiframework.com/"
                 }
             ],
             "description": "The Twitter Bootstrap extension for the Yii framework",
@@ -1708,7 +1777,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2017-10-09T19:48:22+00:00"
+            "time": "2018-02-16T10:41:52+00:00"
         },
         {
             "name": "yiisoft/yii2-composer",

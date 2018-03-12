@@ -39,6 +39,9 @@ return [
         'toggl' => [
             'class' => 'app\components\Toggl',
         ],
+        'upwork' => [
+            'class' => 'app\components\Upwork',
+        ],
         'zipBooks' => [
             'class' => 'app\components\ZipBooks',
         ],

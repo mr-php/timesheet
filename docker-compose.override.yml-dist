@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+
+  php:
+    build: .
+    environment:
+      - PHP_USER_ID=82
+      - GITHUB_API_TOKEN=${GITHUB_API_TOKEN}
+      - VIRTUAL_HOST=timesheet.127.0.0.1.xip.io
+    networks:
+      - default
+      - nginx-proxy
+
+  db:
+    networks:
+      - default
+    #ports:
+    #  - 3306:3306
+
+networks:
+  nginx-proxy:
+    external:
+      name: nginx-proxy

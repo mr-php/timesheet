@@ -25,6 +25,7 @@ Yii::$container = new yii\di\Container;
  * @property \yii2mod\settings\components\Settings $settings
  * @property \app\components\TimeSheet $timeSheet
  * @property \app\components\Toggl $toggl
+ * @property \app\components\Upwork $upwork
  * @property \app\components\ZipBooks $zipBooks
  */
 abstract class BaseApplication extends yii\base\Application

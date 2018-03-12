@@ -1,16 +1,25 @@
 version: '2'
+
 services:
-    php:
-        image: ${STACK_PHP_IMAGE}
-        depends_on:
-            - db
-    db:
-        command: --character-set-server=utf8 --collation-server=utf8_general_ci
-        image: percona:5.7
-        environment:
-            - MYSQL_ROOT_PASSWORD=root
-            - MYSQL_USER=timesheet
-            - MYSQL_DATABASE=timesheet
-            - MYSQL_PASSWORD=timesheet
-        ports:
-            - '3306'
+
+  php:
+    image: ${STACK_PHP_IMAGE}
+    depends_on:
+      - db
+    volumes:
+      - ./composer.json:/app/composer.json
+      - ./composer.lock:/app/composer.lock
+      - ./vendor:/app/vendor
+      - ./src:/app/src
+      - ./web:/app/web
+      - ./tests:/app/tests
+      - ./codeception.yml:/app/codeception.yml
+
+  db:
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci
+    image: percona:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=timesheet
+      - MYSQL_DATABASE=timesheet
+      - MYSQL_PASSWORD=timesheet

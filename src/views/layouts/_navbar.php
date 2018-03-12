@@ -25,6 +25,14 @@ echo Nav::widget([
             ],
         ],
         [
+            'label' => '<span class="glyphicon glyphicon-cloud-download"></span>&nbsp;' . Yii::t('app', 'Upwork'),
+            'encode' => false,
+            'url' => ['/site/import-upwork'],
+            'linkOptions' => [
+                'data-confirm' => Yii::t('app', 'Are you sure?'),
+            ],
+        ],
+        [
             'label' => '<span class="glyphicon glyphicon-cloud-upload"></span>&nbsp;' . Yii::t('app', 'Saasu'),
             'encode' => false,
             'url' => ['/site/export-saasu'],
@@ -65,6 +73,10 @@ echo Nav::widget([
                     'url' => ['/site/toggl-settings'],
                 ],
                 [
+                    'label' => 'Upwork Settings',
+                    'url' => ['/site/upwork-settings'],
+                ],
+                [
                     'label' => 'Saasu Settings',
                     'url' => ['/site/saasu-settings'],
                 ],
@@ -81,6 +93,13 @@ echo Nav::widget([
                 [
                     'label' => 'Toggl',
                     'url' => 'https://toggl.com/app',
+                    'linkOptions' => [
+                        'target' => '_blank',
+                    ],
+                ],
+                [
+                    'label' => 'Upwork',
+                    'url' => 'https://upwork.com/',
                     'linkOptions' => [
                         'target' => '_blank',
                     ],

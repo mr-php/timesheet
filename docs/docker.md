@@ -1,23 +1,16 @@
 # Docker
 
-## Requirements
-
-- [Docker Toolbox](https://www.docker.com/products/docker-toolbox)
-  - Docker `>=1.10`
-  - docker-compose `>=1.7.0`
-
-
 ## Setup
 
 Prepare `docker-compose` environment
 
     cp .env-dist .env
+    cp docker-compose.override.yml-dist docker-compose.override.yml
 
 and application    
     
     cp src/app.env-dist src/app.env
-    cp src/config/local.php-dist src/config/local.php
-    mkdir web/assets
+    chmod a+w web/assets/ runtime/
 
 Start stack
 
@@ -25,9 +18,10 @@ Start stack
 
 Run composer installation
 
-    docker-compose run --rm php composer install
+    docker-compose exec php composer install
+    docker-compose exec php yii migrate --interactive=0
 
-Access the app at `http://127.0.0.1:20080`, the default login is:
+Access the app at `https://timesheet.127.0.0.1.xip.io/`, the default login is:
 
     username: admin
     password: secret
@@ -51,13 +45,5 @@ Run package update in container
 
     $ yii help
 
-      
-### CLI
-    
-    docker run dmstr/yii2-app yii
 
-
-## Resources
-    
-- [Docker documentation](https://docs.docker.com)
 
