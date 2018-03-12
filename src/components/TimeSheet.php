@@ -47,7 +47,8 @@ class TimeSheet extends Component
     {
         $times = $this->convertTimeEntries($togglData);
         $times = $this->applyBaseRates($times);
-        $times = $this->applyCapRates($times);
+        $times = $this->applyProjectCapRates($times);
+        $times = $this->applyProjectStaffCapRates($times);
         return $times;
     }
 
@@ -230,34 +231,78 @@ class TimeSheet extends Component
      * @param $times
      * @return mixed
      */
-    public function applyCapRates($times)
+    public function applyProjectCapRates($times)
     {
         foreach ($times as $pid => $time) {
             // set sell to 0 for hours over cap
-            $capHours = isset($this->projects[$pid]['cap_hours']) ? $this->projects[$pid]['cap_hours'] : 0;
+            $projectCapHours = isset($this->projects[$pid]['cap_hours']) ? $this->projects[$pid]['cap_hours'] : 0;
             $capped = false;
-            if ($capHours) {
+            if ($projectCapHours) {
                 foreach ($time as $sid => $staff) {
                     foreach ($staff as $date => $tasks) {
                         foreach ($tasks as $description => $item) {
                             if ($capped) {
                                 $times[$pid][$sid][$date][$description]['sell'] = 0;
-                                $times[$pid][$sid][$date][$description]['description'] .= ' (cap)';
+                                $times[$pid][$sid][$date][$description]['description'] .= ' (project cap)';
                             } else {
-                                $capHours -= $item['hours'];
+                                $projectCapHours -= $item['hours'];
                                 // hour cap has been hit
-                                if ($capHours <= 0) {
+                                if ($projectCapHours <= 0) {
                                     // split the time into billable/capped
-                                    if ($capHours < 0) {
-                                        $times[$pid][$sid][$date][$description]['hours'] += $capHours;
-                                        $times[$pid][$sid][$date][$description . ' (cap)'] = array(
+                                    if ($projectCapHours < 0) {
+                                        $times[$pid][$sid][$date][$description]['hours'] += $projectCapHours;
+                                        $times[$pid][$sid][$date][$description . ' (project cap)'] = array(
                                             'pid' => $pid,
                                             'sid' => $sid,
                                             'date' => $date,
-                                            'description' => $description . ' (cap)',
+                                            'description' => $description . ' (project cap)',
                                             'sell' => 0,
                                             'cost' => $item['cost'],
-                                            'hours' => $capHours * -1,
+                                            'hours' => $projectCapHours * -1,
+                                        );
+                                    }
+                                    $capped = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return $times;
+    }
+
+    /**
+     * @param $times
+     * @return mixed
+     */
+    public function applyProjectStaffCapRates($times)
+    {
+        foreach ($times as $pid => $time) {
+            foreach ($time as $sid => $staff) {
+                $staffCapHours = isset($this->staff[$sid]['projects'][$pid]['cap_hours']) ? $this->staff[$sid]['projects'][$pid]['cap_hours'] : 0;
+                $capped = false;
+                if ($staffCapHours) {
+                    foreach ($staff as $date => $tasks) {
+                        foreach ($tasks as $description => $item) {
+                            if ($capped) {
+                                $times[$pid][$sid][$date][$description]['sell'] = 0;
+                                $times[$pid][$sid][$date][$description]['description'] .= ' (staff cap)';
+                            } else {
+                                $staffCapHours -= $item['hours'];
+                                // hour cap has been hit
+                                if ($staffCapHours <= 0) {
+                                    // split the time into billable/capped
+                                    if ($staffCapHours < 0) {
+                                        $times[$pid][$sid][$date][$description]['hours'] += $staffCapHours;
+                                        $times[$pid][$sid][$date][$description . ' (staff cap)'] = array(
+                                            'pid' => $pid,
+                                            'sid' => $sid,
+                                            'date' => $date,
+                                            'description' => $description . ' (staff cap)',
+                                            'sell' => 0,
+                                            'cost' => $item['cost'],
+                                            'hours' => $staffCapHours * -1,
                                         );
                                     }
                                     $capped = true;
