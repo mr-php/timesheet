@@ -301,7 +301,7 @@ class TimeSheet extends Component
                                             'date' => $date,
                                             'description' => $description . ' (staff cap)',
                                             'sell' => 0,
-                                            'cost' => $item['cost'],
+                                            'cost' => 0, //$item['cost'],
                                             'hours' => $staffCapHours * -1,
                                         );
                                     }
