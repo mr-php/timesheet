@@ -243,6 +243,7 @@ class TimeSheet extends Component
                         foreach ($tasks as $description => $item) {
                             if ($capped) {
                                 $times[$pid][$sid][$date][$description]['sell'] = 0;
+                                $times[$pid][$sid][$date][$description]['cost'] = 0;
                                 $times[$pid][$sid][$date][$description]['description'] .= ' (project cap)';
                             } else {
                                 $projectCapHours -= $item['hours'];
@@ -287,6 +288,7 @@ class TimeSheet extends Component
                         foreach ($tasks as $description => $item) {
                             if ($capped) {
                                 $times[$pid][$sid][$date][$description]['sell'] = 0;
+                                $times[$pid][$sid][$date][$description]['cost'] = 0;
                                 $times[$pid][$sid][$date][$description]['description'] .= ' (staff cap)';
                             } else {
                                 $staffCapHours -= $item['hours'];
