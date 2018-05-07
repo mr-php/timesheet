@@ -57,7 +57,12 @@ class Toggl extends Component
                     $toggl[$sid]['projects'][$project['id']] = $project;
                 }
             }
-            $toggl[$sid]['clients'] = $client->getClients();
+            $clients = [];
+            try{
+                $clients = $client->getClients();
+            } catch (\Exception $e) {
+            }
+            $toggl[$sid]['clients'] = $clients;
 
             $current = $client->GetCurrentTimeEntry();
             if (isset($staff['toggl_workspace_id']) && (!isset($current['wid']) || $staff['toggl_workspace_id'] != $current['wid'])) {
