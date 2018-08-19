@@ -24,14 +24,14 @@ echo Nav::widget([
                 'data-confirm' => Yii::t('app', 'Are you sure?'),
             ],
         ],
-        [
-            'label' => '<span class="glyphicon glyphicon-cloud-download"></span>&nbsp;' . Yii::t('app', 'Upwork'),
-            'encode' => false,
-            'url' => ['/site/import-upwork'],
-            'linkOptions' => [
-                'data-confirm' => Yii::t('app', 'Are you sure?'),
-            ],
-        ],
+//         [
+//             'label' => '<span class="glyphicon glyphicon-cloud-download"></span>&nbsp;' . Yii::t('app', 'Upwork'),
+//             'encode' => false,
+//             'url' => ['/site/import-upwork'],
+//             'linkOptions' => [
+//                 'data-confirm' => Yii::t('app', 'Are you sure?'),
+//             ],
+//         ],
         [
             'label' => '<span class="glyphicon glyphicon-cloud-upload"></span>&nbsp;' . Yii::t('app', 'Saasu'),
             'encode' => false,
@@ -40,14 +40,14 @@ echo Nav::widget([
                 'data-confirm' => Yii::t('app', 'Are you sure?'),
             ],
         ],
-        [
-            'label' => '<span class="glyphicon glyphicon-cloud-upload"></span>&nbsp;' . Yii::t('app', 'ZipBooks'),
-            'encode' => false,
-            'url' => ['/site/export-zipbooks'],
-            'linkOptions' => [
-                'data-confirm' => Yii::t('app', 'Are you sure?'),
-            ],
-        ],
+//         [
+//             'label' => '<span class="glyphicon glyphicon-cloud-upload"></span>&nbsp;' . Yii::t('app', 'ZipBooks'),
+//             'encode' => false,
+//             'url' => ['/site/export-zipbooks'],
+//             'linkOptions' => [
+//                 'data-confirm' => Yii::t('app', 'Are you sure?'),
+//             ],
+//         ],
         [
             'label' => '<span class="glyphicon glyphicon-oil"></span>&nbsp;' . Yii::t('app', 'Dump'),
             'encode' => false,
