@@ -34,6 +34,7 @@ $staff = Yii::$app->timeSheet->staff[$sid];
             <table class="table table-condensed">
                 <tr>
                     <th width="70%"><?= Yii::t('app', 'description') ?></th>
+                    <th width="70%"><?= Yii::t('app', 'code') ?></th>
                     <th width="10%"><?= Yii::t('app', 'quantity') ?></th>
                     <th width="10%"><?= Yii::t('app', 'amount') ?></th>
                     <th width="10%"><?= Yii::t('app', 'total') ?></th>
@@ -48,7 +49,12 @@ $staff = Yii::$app->timeSheet->staff[$sid];
                             $total['amount'] += round($task['hours'], 2) * $task['cost'];
                             ?>
                             <tr>
-                                <td><?= $date . ' ' . Yii::$app->timeSheet->projects[$task['pid']]['name'] . ' ' . Helper::formatHours(round($task['hours'],2)) . ' - ' . str_replace("\n", '<br/>', $task['description']) ?></td>
+                                <td>
+                                    <?= $date . ' ' . Yii::$app->timeSheet->projects[$task['pid']]['name'] . ' ' . Helper::formatHours(round($task['hours'],2)) . ' - ' . str_replace("\n", '<br/>', $task['description']) ?>
+                                </td>
+                                <td>
+                                    <?= Yii::$app->timeSheet->projects[$task['pid']]['saasu_purchase_account_uid'] ?? Yii::$app->saasu->purchaseAccountUid ?>
+                                </td>
                                 <td class="text-right">
                                     <?php echo number_format($task['hours'], 2); ?>
                                 </td>
