@@ -153,11 +153,11 @@ class Saasu extends Component
                 foreach ($tasks as $task) {
                     if ($this->layout == InvoiceLayout::Service) {
                         $item = new ServiceInvoiceItem();
-                        $item->accountUid = $this->saleAccountUid;
+                        $item->accountUid = Yii::$app->timeSheet->staff[$task['sid']]['saasu_sale_account_uid'] ?? $this->saleAccountUid;
                         $item->totalAmountInclTax = round($task['sell'], 2) * round($task['hours'], 2);
                     } elseif ($this->layout == InvoiceLayout::Item) {
                         $item = new ItemInvoiceItem();
-                        $item->inventoryItemUid = $this->inventoryItemUid;
+                        $item->inventoryItemUid = Yii::$app->timeSheet->staff[$task['sid']]['saasu_sale_inventory_item_uid'] ?? $this->inventoryItemUid;
                         $item->quantity = round($task['hours'], 2);
                         $item->unitPriceInclTax = round($task['sell'], 2);
                     } else {
@@ -217,11 +217,11 @@ class Saasu extends Component
                 foreach ($tasks as $task) {
                     if ($this->layout == InvoiceLayout::Service) {
                         $item = new ServiceInvoiceItem();
-                        $item->accountUid = $this->purchaseAccountUid;
+                        $item->accountUid = Yii::$app->timeSheet->staff[$task['sid']]['saasu_purchase_account_uid'] ?? $this->purchaseAccountUid;
                         $item->totalAmountInclTax = round($task['cost'], 2) * round($task['hours'], 2);
                     } elseif ($this->layout == InvoiceLayout::Item) {
                         $item = new ItemInvoiceItem();
-                        $item->inventoryItemUid = $this->inventoryItemUid;
+                        $item->inventoryItemUid = Yii::$app->timeSheet->staff[$task['sid']]['saasu_purchase_inventory_item_uid'] ?? $this->inventoryItemUid;
                         $item->quantity = round($task['hours'], 2);
                         $item->unitPriceInclTax = round($task['cost'], 2);
                     } else {
