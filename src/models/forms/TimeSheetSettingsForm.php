@@ -54,7 +54,7 @@ class TimeSheetSettingsForm extends Model
                         'name' => 'Test',
                         'email' => 'timesheet-staff@mailinator.com',
                         'toggl_api_key' => 'a67aaf4b789d150863f5f2b6583fb4ff',
-                        'xero_contact_uid' => 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+                        'xero_contact_id' => 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
                         'xero_tax_code' => 'BASEXCLUDED', // OUTPUT|BASEXCLUDED
                         'xero_sale_account_id' => '200',
                         'xero_purchase_account_id' => '310',
