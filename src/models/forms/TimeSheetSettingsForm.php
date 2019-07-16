@@ -58,7 +58,7 @@ class TimeSheetSettingsForm extends Model
                         'xero_tax_code' => 'BASEXCLUDED', // OUTPUT|BASEXCLUDED
                         'xero_sale_account_id' => '200',
                         'xero_purchase_account_id' => '310',
-                        'xero_item_code' => 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+                        'xero_item_code' => 'MY-ITEM',
                         //'zipbooks_contact_id' => 1234567890,
                         //'saasu_contact_uid' => 1234567890,
                         //'saasu_tax_code' => 'G11,G14', // G11 = inc gst

@@ -21,12 +21,12 @@ $staff = Yii::$app->timeSheet->staff[$sid];
         <td width="85%"><?php echo $staff['email']; ?></td>
     </tr>
     <tr>
-        <td><?= Yii::t('app', 'Saasu Contact UID') ?></td>
-        <td><?= $staff['saasu_contact_uid'] ?></td>
+        <td><?= Yii::t('app', 'Xero Contact UID') ?></td>
+        <td><?= $staff['xero_contact_id'] ?></td>
     </tr>
     <tr>
-        <td><?= Yii::t('app', 'Saasu Tax Code') ?></td>
-        <td><?= $staff['saasu_tax_code'] ?></td>
+        <td><?= Yii::t('app', 'Xero Tax Code') ?></td>
+        <td><?= $staff['xero_tax_code'] ?></td>
     </tr>
     <tr>
         <td>Items</td>
@@ -34,7 +34,8 @@ $staff = Yii::$app->timeSheet->staff[$sid];
             <table class="table table-condensed">
                 <tr>
                     <th width="70%"><?= Yii::t('app', 'description') ?></th>
-                    <th width="70%"><?= Yii::t('app', 'code') ?></th>
+                    <th width="70%"><?= Yii::t('app', 'xero account code') ?></th>
+                    <th width="70%"><?= Yii::t('app', 'xero item code') ?></th>
                     <th width="10%"><?= Yii::t('app', 'quantity') ?></th>
                     <th width="10%"><?= Yii::t('app', 'amount') ?></th>
                     <th width="10%"><?= Yii::t('app', 'total') ?></th>
@@ -53,7 +54,13 @@ $staff = Yii::$app->timeSheet->staff[$sid];
                                     <?= $date . ' ' . Yii::$app->timeSheet->projects[$task['pid']]['name'] . ' ' . Helper::formatHours(round($task['hours'],2)) . ' - ' . str_replace("\n", '<br/>', $task['description']) ?>
                                 </td>
                                 <td>
-                                    <?= Yii::$app->timeSheet->projects[$task['pid']]['saasu_purchase_account_uid'] ?? Yii::$app->saasu->purchaseAccountUid ?>
+                                    <?= Yii::$app->timeSheet->staff[$task['sid']]['saasu_purchase_account_uid'] ?? Yii::$app->saasu->purchaseAccountUid ?>
+                                </td>
+                                <td>
+                                    <?= Yii::$app->timeSheet->staff[$task['sid']]['xero_sale_account_id'] ?>
+                                </td>
+                                <td>
+                                    <?= Yii::$app->timeSheet->staff[$task['sid']]['xero_item_code'] ?>
                                 </td>
                                 <td class="text-right">
                                     <?php echo number_format($task['hours'], 2); ?>
@@ -74,6 +81,12 @@ $staff = Yii::$app->timeSheet->staff[$sid];
                 ?>
                 <tr>
                     <td><?= Yii::t('app', 'Total') ?></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
                     <td class="text-right">
                         <?php echo number_format($total['quantity'], 2); ?>
                     </td>
