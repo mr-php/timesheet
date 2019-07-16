@@ -133,7 +133,9 @@ class TimeSheet extends Component
                     }
                 }
             }
-            ksort($totals[$type]);
+            if (!empty($totals[$type])) {
+                ksort($totals[$type]);
+            }
         }
         return $totals;
     }

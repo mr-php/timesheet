@@ -125,7 +125,7 @@ echo Nav::widget([
                 ],
                 [
                     'label' => 'Xero',
-                    'url' => 'https://xero.com/',
+                    'url' => 'https://go.xero.com/',
                     'linkOptions' => [
                         'target' => '_blank',
                     ],
