@@ -12,6 +12,9 @@ $model->load(Yii::$app->request->post());
 
 $this->title = Yii::t('app', 'Toggl Settings');
 ?>
+
+<h1><?php echo $this->title; ?></h1>
+
 <?php $form = ActiveForm::begin(); ?>
 
 <?php echo $form->errorSummary($model); ?>

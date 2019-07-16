@@ -27,6 +27,7 @@ Yii::$container = new yii\di\Container;
  * @property \app\components\Toggl $toggl
  * @property \app\components\Upwork $upwork
  * @property \app\components\ZipBooks $zipBooks
+ * @property \app\components\Xero $xero
  */
 abstract class BaseApplication extends yii\base\Application
 {

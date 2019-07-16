@@ -5,12 +5,12 @@ use yii\bootstrap\ActiveForm;
 
 /**
  * @var $this \yii\web\View
- * @var $model \app\models\forms\SaasuSettingsForm
+ * @var $model \app\models\forms\XeroSettingsForm
  */
 
 $model->load(Yii::$app->request->post());
 
-$this->title = Yii::t('app', 'Saasu Settings');
+$this->title = Yii::t('app', 'Xero Settings');
 ?>
 
 <h1><?php echo $this->title; ?></h1>
@@ -19,17 +19,17 @@ $this->title = Yii::t('app', 'Saasu Settings');
 
 <?php echo $form->errorSummary($model); ?>
 
-<?php echo $form->field($model, 'wsAccessKey'); ?>
+<?php echo $form->field($model, 'consumerKey'); ?>
 
-<?php echo $form->field($model, 'fileUid'); ?>
+<?php echo $form->field($model, 'consumerSecret'); ?>
 
-<?php echo $form->field($model, 'layout'); ?>
+<?php echo $form->field($model, 'publicKey'); ?>
 
-<?php echo $form->field($model, 'saleAccountUid'); ?>
+<?php echo $form->field($model, 'privateKey'); ?>
 
-<?php echo $form->field($model, 'purchaseAccountUid'); ?>
+<?php echo $form->field($model, 'saleAccountId'); ?>
 
-<?php echo $form->field($model, 'inventoryItemUid'); ?>
+<?php echo $form->field($model, 'purchaseAccountId'); ?>
 
 <?php echo $form->field($model, 'fromEmail'); ?>
 

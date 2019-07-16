@@ -40,6 +40,14 @@ echo Nav::widget([
                 'data-confirm' => Yii::t('app', 'Are you sure?'),
             ],
         ],
+        [
+            'label' => '<span class="glyphicon glyphicon-cloud-upload"></span>&nbsp;' . Yii::t('app', 'Xero'),
+            'encode' => false,
+            'url' => ['/site/export-xero'],
+            'linkOptions' => [
+                'data-confirm' => Yii::t('app', 'Are you sure?'),
+            ],
+        ],
 //         [
 //             'label' => '<span class="glyphicon glyphicon-cloud-upload"></span>&nbsp;' . Yii::t('app', 'ZipBooks'),
 //             'encode' => false,
@@ -72,18 +80,22 @@ echo Nav::widget([
                     'label' => 'Toggl Settings',
                     'url' => ['/site/toggl-settings'],
                 ],
-                [
-                    'label' => 'Upwork Settings',
-                    'url' => ['/site/upwork-settings'],
-                ],
+                //[
+                //    'label' => 'Upwork Settings',
+                //    'url' => ['/site/upwork-settings'],
+                //],
                 [
                     'label' => 'Saasu Settings',
                     'url' => ['/site/saasu-settings'],
                 ],
                 [
-                    'label' => 'ZipBooks Settings',
-                    'url' => ['/site/zipbooks-settings'],
+                    'label' => 'Xero Settings',
+                    'url' => ['/site/xero-settings'],
                 ],
+                //[
+                //    'label' => 'ZipBooks Settings',
+                //    'url' => ['/site/zipbooks-settings'],
+                //],
             ],
         ],
         [
@@ -97,13 +109,13 @@ echo Nav::widget([
                         'target' => '_blank',
                     ],
                 ],
-                [
-                    'label' => 'Upwork',
-                    'url' => 'https://upwork.com/',
-                    'linkOptions' => [
-                        'target' => '_blank',
-                    ],
-                ],
+                //[
+                //    'label' => 'Upwork',
+                //    'url' => 'https://upwork.com/',
+                //    'linkOptions' => [
+                //        'target' => '_blank',
+                //    ],
+                //],
                 [
                     'label' => 'Saasu',
                     'url' => 'https://secure.saasu.com/',
@@ -112,12 +124,19 @@ echo Nav::widget([
                     ],
                 ],
                 [
-                    'label' => 'ZipBooks',
-                    'url' => 'https://app.zipbooks.com/',
+                    'label' => 'Xero',
+                    'url' => 'https://xero.com/',
                     'linkOptions' => [
                         'target' => '_blank',
                     ],
                 ],
+                //[
+                //    'label' => 'ZipBooks',
+                //    'url' => 'https://app.zipbooks.com/',
+                //    'linkOptions' => [
+                //        'target' => '_blank',
+                //    ],
+                //],
                 [
                     'label' => 'GitHub',
                     'url' => 'https://github.com/mr-php/timesheet',

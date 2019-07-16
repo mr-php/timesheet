@@ -6,6 +6,7 @@ use app\components\NullUser;
 use app\models\forms\SaasuSettingsForm;
 use app\models\forms\TimeSheetSettingsForm;
 use app\models\forms\TogglSettingsForm;
+use app\models\forms\XeroSettingsForm;
 use app\models\forms\ZipBooksSettingsForm;
 use Yii;
 use yii\filters\auth\HttpBasicAuth;
@@ -77,6 +78,11 @@ class SiteController extends Controller
                 'class' => SettingsAction::class,
                 'view' => 'zipbooks-settings',
                 'modelClass' => ZipBooksSettingsForm::class,
+            ],
+            'xero-settings' => [
+                'class' => SettingsAction::class,
+                'view' => 'xero-settings',
+                'modelClass' => XeroSettingsForm::class,
             ],
         ];
     }
@@ -165,6 +171,30 @@ class SiteController extends Controller
         $staffTimes = Yii::$app->timeSheet->getStaffTimes($times);
         foreach ($staffTimes as $sid => $_times) {
             Yii::$app->zipBooks->createExpense($sid, $_times);
+        }
+
+        Yii::$app->settings->set('TogglSettingsForm', 'startDate', date('Y-m-d'));
+        return $this->redirect(['/site/import-toggl']);
+    }
+
+    /**
+     * Exports data to Xero
+     *
+     * @return \yii\web\Response
+     * @throws \XeroPHP\Remote\Exception
+     */
+    public function actionExportXero()
+    {
+        // create sale invoices
+        $toggl = Json::decode(Yii::$app->settings->get('app', 'toggl'));
+        $times = Yii::$app->timeSheet->getTimes($toggl);
+        foreach ($times as $pid => $_times) {
+            Yii::$app->xero->createSaleInvoice($pid, $_times);
+        }
+        // create purchase invoices
+        $staffTimes = Yii::$app->timeSheet->getStaffTimes($times);
+        foreach ($staffTimes as $sid => $_times) {
+            Yii::$app->xero->createPurchaseInvoice($sid, $_times);
         }
 
         Yii::$app->settings->set('TogglSettingsForm', 'startDate', date('Y-m-d'));
