@@ -43,38 +43,12 @@ class XeroSettingsForm extends Model
     public $purchaseAccountId;
 
     /**
-     * @var string
-     */
-    public $fromEmail;
-
-    /**
-     * @var string
-     */
-    public $saleEmailSubject;
-
-    /**
-     * @var string
-     */
-    public $saleEmailBody;
-
-    /**
-     * @var string
-     */
-    public $purchaseEmailSubject;
-
-    /**
-     * @var string
-     */
-    public $purchaseEmailBody;
-
-    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['consumerKey', 'consumerSecret', 'publicKey', 'privateKey', 'saleAccountId', 'purchaseAccountId',
-                'fromEmail', 'saleEmailSubject', 'saleEmailBody', 'purchaseEmailSubject', 'purchaseEmailBody'], 'required'],
+            [['consumerKey', 'consumerSecret', 'publicKey', 'privateKey', 'saleAccountId', 'purchaseAccountId'], 'required'],
         ];
     }
 
@@ -88,13 +62,8 @@ class XeroSettingsForm extends Model
             'consumerSecret' => Yii::t('app', 'Consumer Secret'),
             'publicKey' => Yii::t('app', 'Public Key'),
             'privateKey' => Yii::t('app', 'Private Key'),
-            'saleAccountUid' => Yii::t('app', 'Sale Account ID'),
-            'purchaseAccountUid' => Yii::t('app', 'Purchase Account ID'),
-            'fromEmail' => Yii::t('app', 'From Email'),
-            'saleEmailSubject' => Yii::t('app', 'Sale Email Subject'),
-            'saleEmailBody' => Yii::t('app', 'Sale Email Body'),
-            'purchaseEmailSubject' => Yii::t('app', 'Purchase Email Subject'),
-            'purchaseEmailBody' => Yii::t('app', 'Purchase Email Body'),
+            'saleAccountId' => Yii::t('app', 'Sale Account ID'),
+            'purchaseAccountId' => Yii::t('app', 'Purchase Account ID'),
         ];
     }
 }

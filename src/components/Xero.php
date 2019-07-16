@@ -56,31 +56,6 @@ class Xero extends Component
     public $purchaseAccountId;
 
     /**
-     * @var string
-     */
-    public $fromEmail;
-
-    /**
-     * @var string
-     */
-    public $saleEmailSubject;
-
-    /**
-     * @var string
-     */
-    public $saleEmailBody;
-
-    /**
-     * @var string
-     */
-    public $purchaseEmailSubject;
-
-    /**
-     * @var string
-     */
-    public $purchaseEmailBody;
-
-    /**
      * @var PrivateApplication
      */
     private $_xero;
@@ -91,8 +66,7 @@ class Xero extends Component
     public function init()
     {
         parent::init();
-        $settings = ['consumerKey', 'consumerSecret', 'publicKey', 'privateKey', 'saleAccountId', 'purchaseAccountId',
-            'fromEmail', 'saleEmailSubject', 'saleEmailBody', 'purchaseEmailSubject', 'purchaseEmailBody'];
+        $settings = ['consumerKey', 'consumerSecret', 'publicKey', 'privateKey', 'saleAccountId', 'purchaseAccountId'];
         foreach ($settings as $key) {
             $value = Yii::$app->settings->get('XeroSettingsForm', $key);
             if ($value) {
@@ -185,7 +159,7 @@ class Xero extends Component
         $invoice = (new Accounting\Invoice($this->xero))
             ->setType('ACCREC')
             ->setContact((new Accounting\Contact($this->xero))->setContactID($project['xero_contact_id']))
-            ->setStatus('DRAFT')
+            ->setStatus('SUBMITTED') // SUBMITTED|AUTHORISED|DRAFT
             ->setDate(new \DateTime('now'))
             ->setDueDate(new \DateTime('+7 days'))
             ->setReference("Development for {$project['name']}");
@@ -222,7 +196,7 @@ class Xero extends Component
         $invoice = (new Accounting\Invoice($this->xero))
             ->setType('ACCPAY')
             ->setContact((new Accounting\Contact($this->xero))->setContactID($staff['xero_contact_id']))
-            ->setStatus('DRAFT')
+            ->setStatus('SUBMITTED') // SUBMITTED|AUTHORISED|DRAFT
             ->setDate(new \DateTime('now'))
             ->setDueDate(new \DateTime('+7 days'))
             ->setReference("Development by {$staff['name']}");
