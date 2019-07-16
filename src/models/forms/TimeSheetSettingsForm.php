@@ -54,10 +54,11 @@ class TimeSheetSettingsForm extends Model
                         'name' => 'Test',
                         'email' => 'timesheet-staff@mailinator.com',
                         'toggl_api_key' => 'a67aaf4b789d150863f5f2b6583fb4ff',
-                        'xero_contact_uid' => 1234567890,
+                        'xero_contact_uid' => 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
                         'xero_tax_code' => 'BASEXCLUDED', // OUTPUT|BASEXCLUDED
-                        'xero_sale_account_id' => 1234567890,
-                        'xero_purchase_account_id' => 1234567890,
+                        'xero_sale_account_id' => '200',
+                        'xero_purchase_account_id' => '310',
+                        'xero_item_code' => 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
                         //'zipbooks_contact_id' => 1234567890,
                         //'saasu_contact_uid' => 1234567890,
                         //'saasu_tax_code' => 'G11,G14', // G11 = inc gst
@@ -80,7 +81,7 @@ class TimeSheetSettingsForm extends Model
                     'none' => [
                         'name' => 'No Project',
                         'email' => 'timesheet-project@mailinator.com',
-                        'xero_contact_id' => 1234567890,
+                        'xero_contact_id' => 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
                         'xero_tax_code' => 'OUTPUT', // OUTPUT|BASEXCLUDED
                         //'zipbooks_contact_id' => 1234567890,
                         //'saasu_contact_uid' => 1234567890,

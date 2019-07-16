@@ -194,11 +194,11 @@ class Xero extends Component
                 foreach ($tasks as $task) {
                     $staff = Yii::$app->timeSheet->staff[$task['sid']];
                     $lineItem = (new Accounting\Invoice\LineItem($this->xero))
-                        ->setDescription(date('Y-m-d', strtotime($task['date'])) . ' ' . $staff['name'] . ' ' . Helper::formatHours($task['hours']) . ' - ' . $task['description'])
+                        ->setDescription(date('Y-m-d', strtotime($task['date'])) . ' - ' . $task['description'])
                         ->setQuantity(round($task['hours'], 2))
                         ->setUnitAmount(round($task['sell'], 2))
                         ->setAccountCode($staff['xero_sale_account_id'])
-                        //->setTaxAmount(($amount - $discount) / ($product->quantity * 10))
+                        ->setItemCode($staff['xero_item_code'])
                         ->setTaxType($project['xero_tax_code']); // OUTPUT|BASEXCLUDED
                     $invoice->addLineItem($lineItem);
                 }
@@ -231,10 +231,10 @@ class Xero extends Component
                 foreach ($tasks as $task) {
                     $project = Yii::$app->timeSheet->projects[$task['pid']];
                     $lineItem = (new Accounting\Invoice\LineItem($this->xero))
-                        ->setDescription(date('Y-m-d', strtotime($task['date'])) . ' ' . $project['name'] . ' ' . Helper::formatHours($task['hours']) . ' - ' . $task['description'])
+                        ->setDescription(date('Y-m-d', strtotime($task['date'])) . ' ' . $project['name'] . ' - ' . $task['description'])
                         ->setQuantity(round($task['hours'], 2))
                         ->setUnitAmount(round($task['cost'], 2))
-                        //->setTaxAmount(($amount - $discount) / ($product->quantity * 10))
+                        ->setItemCode($staff['xero_item_code'])
                         ->setTaxType($staff['xero_tax_code'])
                         ->setAccountCode($staff['xero_purchase_account_id']);
                     $invoice->addLineItem($lineItem);
