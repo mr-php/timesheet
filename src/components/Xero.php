@@ -216,12 +216,12 @@ class Xero extends Component
     {
         //debug($this->xero->loadByGUID('Accounting\\Invoice', 'b87932ae-1272-4b01-b67e-c9e6616fadf3')); die;
         $staff = Yii::$app->timeSheet->staff[$sid];
-        if (!isset($staff['xero_contact_uid'])) {
+        if (!isset($staff['xero_contact_id'])) {
             return;
         }
         $invoice = (new Accounting\Invoice($this->xero))
             ->setType('ACCPAY')
-            ->setContact((new Accounting\Contact($this->xero))->setContactID($staff['xero_contact_uid']))
+            ->setContact((new Accounting\Contact($this->xero))->setContactID($staff['xero_contact_id']))
             ->setStatus('DRAFT')
             ->setDate(new \DateTime('now'))
             ->setDueDate(new \DateTime('+7 days'))
@@ -235,8 +235,8 @@ class Xero extends Component
                         ->setQuantity(round($task['hours'], 2))
                         ->setUnitAmount(round($task['cost'], 2))
                         //->setTaxAmount(($amount - $discount) / ($product->quantity * 10))
-                        //->setTaxType('OUTPUT') // $staff['xero_tax_code']
-                        ->setAccountCode($staff['saasu_purchase_account_uid']);
+                        ->setTaxType($staff['xero_tax_code'])
+                        ->setAccountCode($staff['xero_purchase_account_id']);
                     $invoice->addLineItem($lineItem);
                 }
             }
