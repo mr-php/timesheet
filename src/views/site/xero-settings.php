@@ -23,9 +23,9 @@ $this->title = Yii::t('app', 'Xero Settings');
 
 <?php echo $form->field($model, 'consumerSecret'); ?>
 
-<?php echo $form->field($model, 'publicKey'); ?>
+<?php echo $form->field($model, 'publicKey')->textarea(); ?>
 
-<?php echo $form->field($model, 'privateKey'); ?>
+<?php echo $form->field($model, 'privateKey')->textarea(); ?>
 
 <?php echo $form->field($model, 'saleAccountId'); ?>
 

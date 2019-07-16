@@ -42,6 +42,9 @@ return [
         'upwork' => [
             'class' => 'app\components\Upwork',
         ],
+        'xero' => [
+            'class' => 'app\components\Xero',
+        ],
         'zipBooks' => [
             'class' => 'app\components\ZipBooks',
         ],

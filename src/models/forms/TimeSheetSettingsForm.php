@@ -54,9 +54,15 @@ class TimeSheetSettingsForm extends Model
                         'name' => 'Test',
                         'email' => 'timesheet-staff@mailinator.com',
                         'toggl_api_key' => 'a67aaf4b789d150863f5f2b6583fb4ff',
-                        'zipbooks_contact_id' => 1234567890,
-                        'saasu_contact_uid' => 1234567890,
-                        'saasu_tax_code' => 'G11,G14', // G11 = inc gst
+                        'xero_contact_uid' => 1234567890,
+                        'xero_tax_code' => 'G11,G14', // G11 = inc gst
+                        'xero_sale_account_id' => 1234567890,
+                        'xero_purchase_account_id' => 1234567890,
+                        //'zipbooks_contact_id' => 1234567890,
+                        //'saasu_contact_uid' => 1234567890,
+                        //'saasu_tax_code' => 'G11,G14', // G11 = inc gst
+                        //'saasu_sale_account_id' => 1234567890,
+                        //'saasu_purchase_account_id' => 1234567890,
                         'sell' => 100,
                         'cost' => 50,
                         'multiplier' => 1,
@@ -74,9 +80,11 @@ class TimeSheetSettingsForm extends Model
                     'none' => [
                         'name' => 'No Project',
                         'email' => 'timesheet-project@mailinator.com',
-                        'zipbooks_contact_id' => 1234567890,
-                        'saasu_contact_uid' => 1234567890,
-                        'saasu_tax_code' => 'G1,G2', // G1 = inc gst
+                        'xero_contact_id' => 1234567890,
+                        'xero_tax_code' => 'G1,G2', // G1 = inc gst
+                        //'zipbooks_contact_id' => 1234567890,
+                        //'saasu_contact_uid' => 1234567890,
+                        //'saasu_tax_code' => 'G1,G2', // G1 = inc gst
                         'tax_rate' => 0.1,
                         'base_rate' => 150,
                         'base_hours' => 2,

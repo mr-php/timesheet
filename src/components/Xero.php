@@ -45,11 +45,61 @@ class Xero extends Component
      * @var
      */
     public $webhookKey;
+    /**
+     * @var int
+     */
+    public $saleAccountId;
+
+    /**
+     * @var int
+     */
+    public $purchaseAccountId;
+
+    /**
+     * @var string
+     */
+    public $fromEmail;
+
+    /**
+     * @var string
+     */
+    public $saleEmailSubject;
+
+    /**
+     * @var string
+     */
+    public $saleEmailBody;
+
+    /**
+     * @var string
+     */
+    public $purchaseEmailSubject;
+
+    /**
+     * @var string
+     */
+    public $purchaseEmailBody;
 
     /**
      * @var PrivateApplication
      */
     private $_xero;
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+        $settings = ['consumerKey', 'consumerSecret', 'publicKey', 'privateKey', 'saleAccountId', 'purchaseAccountId',
+            'fromEmail', 'saleEmailSubject', 'saleEmailBody', 'purchaseEmailSubject', 'purchaseEmailBody'];
+        foreach ($settings as $key) {
+            $value = Yii::$app->settings->get('XeroSettingsForm', $key);
+            if ($value) {
+                $this->$key = $value;
+            }
+        }
+    }
 
     /**
      * @return PrivateApplication
@@ -130,6 +180,7 @@ class Xero extends Component
      */
     public function createSaleInvoice($pid, $times)
     {
+        //debug($this->xero->loadByGUID('Accounting\\Invoice', 'bd87e11d-c85c-4c10-87a3-fddeddc3ec34')); die;
         $project = Yii::$app->timeSheet->projects[$pid];
         $invoice = (new Accounting\Invoice($this->xero))
             ->setType('ACCREC')
@@ -146,9 +197,9 @@ class Xero extends Component
                         ->setDescription(date('Y-m-d', strtotime($task['date'])) . ' ' . $staff['name'] . ' ' . Helper::formatHours($task['hours']) . ' - ' . $task['description'])
                         ->setQuantity(round($task['hours'], 2))
                         ->setUnitAmount(round($task['sell'], 2))
+                        ->setAccountCode($staff['xero_sale_account_id'])
                         //->setTaxAmount(($amount - $discount) / ($product->quantity * 10))
-                        //->setTaxType('OUTPUT') // $project['xero_tax_code']
-                        ->setAccountCode($staff['xero_sale_account_id']);
+                        ->setTaxType($project['xero_tax_code']); // OUTPUT|BASEXCLUDED
                     $invoice->addLineItem($lineItem);
                 }
             }
@@ -163,6 +214,7 @@ class Xero extends Component
      */
     public function createPurchaseInvoice($sid, $times)
     {
+        //debug($this->xero->loadByGUID('Accounting\\Invoice', 'b87932ae-1272-4b01-b67e-c9e6616fadf3')); die;
         $staff = Yii::$app->timeSheet->staff[$sid];
         if (!isset($staff['xero_contact_uid'])) {
             return;
