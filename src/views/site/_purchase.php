@@ -54,9 +54,6 @@ $staff = Yii::$app->timeSheet->staff[$sid];
                                     <?= $date . ' ' . Yii::$app->timeSheet->projects[$task['pid']]['name'] . ' ' . Helper::formatHours(round($task['hours'],2)) . ' - ' . str_replace("\n", '<br/>', $task['description']) ?>
                                 </td>
                                 <td>
-                                    <?= Yii::$app->timeSheet->staff[$task['sid']]['saasu_purchase_account_uid'] ?? Yii::$app->saasu->purchaseAccountUid ?>
-                                </td>
-                                <td>
                                     <?= Yii::$app->timeSheet->staff[$task['sid']]['xero_sale_account_id'] ?>
                                 </td>
                                 <td>
@@ -81,8 +78,6 @@ $staff = Yii::$app->timeSheet->staff[$sid];
                 ?>
                 <tr>
                     <td><?= Yii::t('app', 'Total') ?></td>
-                    <td>
-                    </td>
                     <td>
                     </td>
                     <td>
