@@ -159,7 +159,7 @@ class Xero extends Component
         $invoice = (new Accounting\Invoice($this->xero))
             ->setType('ACCREC')
             ->setContact((new Accounting\Contact($this->xero))->setContactID($project['xero_contact_id']))
-            ->setStatus('SUBMITTED') // SUBMITTED|AUTHORISED|DRAFT
+            ->setStatus('SUBMITTED')// SUBMITTED|AUTHORISED|DRAFT
             ->setDate(new \DateTime('now'))
             ->setDueDate(new \DateTime('+7 days'))
             ->setReference("Development for {$project['name']}");
@@ -179,6 +179,7 @@ class Xero extends Component
             }
         }
         $invoice->save();
+        $invoice->sendEmail();
     }
 
     /**
@@ -196,7 +197,7 @@ class Xero extends Component
         $invoice = (new Accounting\Invoice($this->xero))
             ->setType('ACCPAY')
             ->setContact((new Accounting\Contact($this->xero))->setContactID($staff['xero_contact_id']))
-            ->setStatus('SUBMITTED') // SUBMITTED|AUTHORISED|DRAFT
+            ->setStatus('SUBMITTED')// SUBMITTED|AUTHORISED|DRAFT
             ->setDate(new \DateTime('now'))
             ->setDueDate(new \DateTime('+7 days'))
             ->setReference("Development by {$staff['name']}");
@@ -216,5 +217,7 @@ class Xero extends Component
             }
         }
         $invoice->save();
+        //$invoice->sendEmail(); // only for ACCREC not ACCPAY
     }
+
 }

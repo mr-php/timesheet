@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "08039ab1453e43acdd8fc244fbabe19b",
+    "content-hash": "a5dc5d1e6572f338685a492b0184a876",
     "packages": [
         {
             "name": "ajt/guzzle-toggl",
@@ -329,16 +329,16 @@
         },
         {
             "name": "calcinai/xero-php",
-            "version": "v1.7.1",
+            "version": "v1.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/calcinai/xero-php.git",
-                "reference": "18490e0f600dba19da07f76b190367713c18bba7"
+                "reference": "ae8e8ff234b3714163d66970132ea925a0e105f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/calcinai/xero-php/zipball/18490e0f600dba19da07f76b190367713c18bba7",
-                "reference": "18490e0f600dba19da07f76b190367713c18bba7",
+                "url": "https://api.github.com/repos/calcinai/xero-php/zipball/ae8e8ff234b3714163d66970132ea925a0e105f4",
+                "reference": "ae8e8ff234b3714163d66970132ea925a0e105f4",
                 "shasum": ""
             },
             "require": {
@@ -363,7 +363,7 @@
             ],
             "description": "A client implementation of the Xero API, with a cleaner OAuth interface and ORM-like abstraction.",
             "homepage": "https://github.com/calcinai/xero-php",
-            "time": "2018-05-10T04:29:43+00:00"
+            "time": "2019-02-06T21:19:24+00:00"
         },
         {
             "name": "cebe/markdown",
