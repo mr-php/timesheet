@@ -31,16 +31,6 @@ $this->title = Yii::t('app', 'Xero Settings');
 
 <?php echo $form->field($model, 'purchaseAccountId'); ?>
 
-<?php echo $form->field($model, 'fromEmail'); ?>
-
-<?php echo $form->field($model, 'saleEmailSubject'); ?>
-
-<?php echo $form->field($model, 'saleEmailBody')->textarea(); ?>
-
-<?php echo $form->field($model, 'purchaseEmailSubject'); ?>
-
-<?php echo $form->field($model, 'purchaseEmailBody')->textarea(); ?>
-
 <?php echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
 
 <?php ActiveForm::end(); ?>
