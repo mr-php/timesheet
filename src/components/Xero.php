@@ -170,7 +170,7 @@ class Xero extends Component
                     $lineItem = (new Accounting\Invoice\LineItem($this->xero))
                         ->setDescription(date('Y-m-d', strtotime($task['date'])) . ' - ' . $task['description'])
                         ->setQuantity(round($task['hours'], 2))
-                        ->setUnitAmount(round($task['sell'], 2))
+                        ->setUnitAmount(round($task['sell'] / (Yii::$app->timeSheet->getProjectTaxRate($pid) + 1), 2))
                         ->setAccountCode($staff['xero_sale_account_id'])
                         ->setItemCode($staff['xero_item_code'])
                         ->setTaxType($project['xero_tax_code']); // OUTPUT|BASEXCLUDED
@@ -179,7 +179,7 @@ class Xero extends Component
             }
         }
         $invoice->save();
-        $invoice->sendEmail();
+        //$invoice->sendEmail(); // easier to send it manually
     }
 
     /**
@@ -201,14 +201,14 @@ class Xero extends Component
             ->setDate(new \DateTime('now'))
             ->setDueDate(new \DateTime('+7 days'))
             ->setReference("Development by {$staff['name']}");
-        foreach ($times as $sid => $dates) {
+        foreach ($times as $pid => $dates) {
             foreach ($dates as $date => $tasks) {
                 foreach ($tasks as $task) {
                     $project = Yii::$app->timeSheet->projects[$task['pid']];
                     $lineItem = (new Accounting\Invoice\LineItem($this->xero))
                         ->setDescription(date('Y-m-d', strtotime($task['date'])) . ' ' . $project['name'] . ' - ' . $task['description'])
                         ->setQuantity(round($task['hours'], 2))
-                        ->setUnitAmount(round($task['cost'], 2))
+                        ->setUnitAmount(round($task['cost'] / (Yii::$app->timeSheet->getStaffTaxRate($sid, $pid) + 1), 2))
                         ->setItemCode($staff['xero_item_code'])
                         ->setTaxType($staff['xero_tax_code'])
                         ->setAccountCode($staff['xero_purchase_account_id']);

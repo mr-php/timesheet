@@ -212,7 +212,7 @@ class Saasu extends Component
         $invoice->summary = "Development by {$staff['name']}";
         $invoice->tags = ['timesheet'];
         $invoice->invoiceItems = [];
-        foreach ($times as $sid => $dates) {
+        foreach ($times as $pid => $dates) {
             foreach ($dates as $date => $tasks) {
                 foreach ($tasks as $task) {
                     if ($this->layout == InvoiceLayout::Service) {
