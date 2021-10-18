@@ -9,6 +9,7 @@ use app\models\forms\TogglSettingsForm;
 use app\models\forms\XeroSettingsForm;
 use app\models\forms\ZipBooksSettingsForm;
 use Yii;
+use yii\base\Exception;
 use yii\filters\auth\HttpBasicAuth;
 use yii\helpers\Json;
 use yii\helpers\Url;
@@ -20,6 +21,8 @@ use yii2mod\settings\actions\SettingsAction;
  */
 class SiteController extends Controller
 {
+
+    public $enableCsrfValidation = false;
 
     /**
      * @inheritdoc
@@ -199,6 +202,48 @@ class SiteController extends Controller
 
         Yii::$app->settings->set('TogglSettingsForm', 'startDate', date('Y-m-d'));
         return $this->redirect(['/site/import-toggl']);
+    }
+
+    /**
+     * Xero OAuth2
+     */
+    public function actionAuthXero($code = null, $state = null)
+    {
+        //debug(Url::to(['site/auth-xero'],'http')); die;
+        $provider = new \Calcinai\OAuth2\Client\Provider\Xero([
+            'clientId' => Yii::$app->settings->get('XeroSettingsForm', 'consumerKey'),
+            'clientSecret' => Yii::$app->settings->get('XeroSettingsForm', 'consumerSecret'),
+            'redirectUri' => Url::to(['site/auth-xero'], 'http'),
+        ]);
+
+        if (!$code) {
+            // If we don't have an authorization code then get one
+            $authUrl = $provider->getAuthorizationUrl([
+                'scope' => 'openid email profile accounting.transactions',
+            ]);
+            Yii::$app->session->set('oauth2state', $provider->getState());
+            $this->redirect($authUrl);
+
+            // Check given state against previously stored one to mitigate CSRF attack
+        } elseif (empty($state) || ($state !== Yii::$app->session->get('oauth2state'))) {
+            Yii::$app->session->remove('oauth2state');
+            throw new Exception('Invalid state');
+        } else {
+            // Try to get an access token (using the authorization code grant)
+            $token = $provider->getAccessToken('authorization_code', [
+                'code' => $code
+            ]);
+            //If you added the openid/profile scopes you can access the authorizing user's identity.
+            //$identity = $provider->getResourceOwner($token);
+            //debug($identity);
+            //Get the tenants that this user is authorized to access
+            $tenants = $provider->getTenants($token);
+            //debug($tenants);
+
+            Yii::$app->settings->set('XeroSettingsForm', 'accessToken', $token->getToken());
+            //Yii::$app->settings->set('XeroSettingsForm', 'identity', $identity);
+            Yii::$app->settings->set('XeroSettingsForm', 'tenantId', $tenants[0]->tenantId);
+        }
     }
 
     /**

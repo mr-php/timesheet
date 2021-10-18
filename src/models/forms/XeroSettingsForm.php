@@ -25,12 +25,12 @@ class XeroSettingsForm extends Model
     /**
      * @var string
      */
-    public $publicKey;
+    public $token;
 
     /**
      * @var string
      */
-    public $privateKey;
+    public $tenantId;
 
     /**
      * @var int
@@ -48,7 +48,7 @@ class XeroSettingsForm extends Model
     public function rules()
     {
         return [
-            [['consumerKey', 'consumerSecret', 'publicKey', 'privateKey', 'saleAccountId', 'purchaseAccountId'], 'required'],
+            [['consumerKey', 'consumerSecret', 'token', 'tenantId', 'saleAccountId', 'purchaseAccountId'], 'required'],
         ];
     }
 
@@ -60,8 +60,8 @@ class XeroSettingsForm extends Model
         return [
             'consumerKey' => Yii::t('app', 'Consumer Key'),
             'consumerSecret' => Yii::t('app', 'Consumer Secret'),
-            'publicKey' => Yii::t('app', 'Public Key'),
-            'privateKey' => Yii::t('app', 'Private Key'),
+            'token' => Yii::t('app', 'Token'),
+            'tenantId' => Yii::t('app', 'Tenant ID'),
             'saleAccountId' => Yii::t('app', 'Sale Account ID'),
             'purchaseAccountId' => Yii::t('app', 'Purchase Account ID'),
         ];

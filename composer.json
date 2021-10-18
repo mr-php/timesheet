@@ -15,7 +15,7 @@
         "bower-asset/sweetalert": "1.1.*",
         "cebe/yii2-gravatar": "*",
         "upwork/php-upwork": "^1.2",
-        "calcinai/xero-php": "1.8.*"
+        "calcinai/xero-php": "^2.4"
     },
     "config": {
         "fxp-asset": {
