@@ -26,6 +26,11 @@ class XeroSettingsForm extends Model
      * @var string
      */
     public $accessToken;
+    
+    /**
+     * @var string
+     */
+    public $tenantId;
 
     /**
      * @var int
