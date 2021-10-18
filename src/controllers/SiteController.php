@@ -209,7 +209,6 @@ class SiteController extends Controller
      */
     public function actionXeroAuth($code = null, $state = null)
     {
-        //debug(Url::to(['site/auth-xero'],'http')); die;
         $provider = new \Calcinai\OAuth2\Client\Provider\Xero([
             'clientId' => Yii::$app->settings->get('XeroSettingsForm', 'consumerKey'),
             'clientSecret' => Yii::$app->settings->get('XeroSettingsForm', 'consumerSecret'),
@@ -240,11 +239,9 @@ class SiteController extends Controller
             $tenants = $provider->getTenants($accessToken);
             //debug($tenants);
 
-            debug($accessToken);
-            debug(serialize($accessToken));
-            Yii::$app->settings->set('XeroSettingsForm', 'accessToken', serialize($accessToken));
+            Yii::$app->settings->set('XeroSettingsForm', 'accessToken', Json::encode($accessToken->jsonSerialize()));
             //Yii::$app->settings->set('XeroSettingsForm', 'identity', $identity);
-            Yii::$app->settings->set('XeroSettingsForm', 'tenants', serialize($tenants));
+            Yii::$app->settings->set('XeroSettingsForm', 'tenantId', $tenants[0]->tenantId);
             return $this->redirect(Url::home());
         }
     }

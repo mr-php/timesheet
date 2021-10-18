@@ -28,11 +28,6 @@ class XeroSettingsForm extends Model
     public $accessToken;
 
     /**
-     * @var string
-     */
-    public $tenants;
-
-    /**
      * @var int
      */
     public $saleAccountId;
@@ -49,7 +44,7 @@ class XeroSettingsForm extends Model
     {
         return [
             [['consumerKey', 'consumerSecret', 'saleAccountId', 'purchaseAccountId'], 'required'],
-            [['accessToken', 'tenants'], 'safe'],
+            [['accessToken', 'tenantId'], 'safe'],
         ];
     }
 
@@ -61,7 +56,7 @@ class XeroSettingsForm extends Model
         return [
             'consumerKey' => Yii::t('app', 'Consumer Key'),
             'consumerSecret' => Yii::t('app', 'Consumer Secret'),
-            'token' => Yii::t('app', 'Token'),
+            'accessToken' => Yii::t('app', 'Access Token'),
             'tenantId' => Yii::t('app', 'Tenant ID'),
             'saleAccountId' => Yii::t('app', 'Sale Account ID'),
             'purchaseAccountId' => Yii::t('app', 'Purchase Account ID'),

@@ -23,6 +23,10 @@ $this->title = Yii::t('app', 'Xero Settings');
 
 <?php echo $form->field($model, 'consumerSecret'); ?>
 
+<?php echo $form->field($model, 'accessToken')->textarea(); ?>
+
+<?php echo $form->field($model, 'tenantId'); ?>
+
 <?php echo $form->field($model, 'saleAccountId'); ?>
 
 <?php echo $form->field($model, 'purchaseAccountId'); ?>

@@ -8,6 +8,7 @@ use XeroPHP\Application;
 use XeroPHP\Models\Accounting;
 use Yii;
 use yii\base\Component;
+use yii\helpers\Json;
 
 /**
  * XeroApi
@@ -24,9 +25,9 @@ class Xero extends Component
     public $accessToken;
 
     /**
-     * @var XeroTenant[]
+     * @var string
      */
-    public $tenants;
+    public $tenantId;
 
     /**
      * @var int
@@ -49,22 +50,8 @@ class Xero extends Component
     public function init()
     {
         parent::init();
-        //$settings = ['consumerKey', 'consumerSecret', 'publicKey', 'privateKey', 'saleAccountId', 'purchaseAccountId'];
-        $settings = ['accessToken', 'tenants'];
-        foreach ($settings as $key) {
-            $value = Yii::$app->settings->get('XeroSettingsForm', $key);
-            if ($value) {
-                if (is_resource($value))
-                    // For some databases (like Postgres) binary columns return as a resource, fetch the content first
-                    $value = stream_get_contents($value, -1, 0);
-                debug($value);
-                //$this->$key = unserialize($value);
-
-            }
-        }
-        die;
-        $settings = ['saleAccountId', 'purchaseAccountId'];
-        foreach ($settings as $key) {
+        $this->accessToken = new AccessToken(Json::decode(Yii::$app->settings->get('XeroSettingsForm', 'accessToken')));
+        foreach (['tenantId', 'saleAccountId', 'purchaseAccountId'] as $key) {
             $value = Yii::$app->settings->get('XeroSettingsForm', $key);
             if ($value) {
                 $this->$key = $value;
@@ -81,7 +68,7 @@ class Xero extends Component
             $accessToken = $this->accessToken;
             if ($accessToken->hasExpired()) {
                 $accessToken = $this->accessToken->getRefreshToken();
-                Yii::$app->settings->set('XeroSettingsForm', 'accessToken', serialize($accessToken));
+                Yii::$app->settings->set('XeroSettingsForm', 'accessToken', Json::encode($accessToken->jsonSerialize()));
             }
             $this->_xero = new Application($accessToken->getToken(), $this->tenants[0]->tenantId);
         }
