@@ -240,6 +240,8 @@ class SiteController extends Controller
             $tenants = $provider->getTenants($accessToken);
             //debug($tenants);
 
+            debug($accessToken);
+            debug(serialize($accessToken));
             Yii::$app->settings->set('XeroSettingsForm', 'accessToken', serialize($accessToken));
             //Yii::$app->settings->set('XeroSettingsForm', 'identity', $identity);
             Yii::$app->settings->set('XeroSettingsForm', 'tenants', serialize($tenants));
