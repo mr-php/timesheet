@@ -25,12 +25,12 @@ class XeroSettingsForm extends Model
     /**
      * @var string
      */
-    public $token;
+    public $accessToken;
 
     /**
      * @var string
      */
-    public $tenantId;
+    public $tenants;
 
     /**
      * @var int
@@ -48,7 +48,7 @@ class XeroSettingsForm extends Model
     public function rules()
     {
         return [
-            [['consumerKey', 'consumerSecret', 'token', 'tenantId', 'saleAccountId', 'purchaseAccountId'], 'required'],
+            [['consumerKey', 'consumerSecret', 'accessToken', 'tenants', 'saleAccountId', 'purchaseAccountId'], 'required'],
         ];
     }
 

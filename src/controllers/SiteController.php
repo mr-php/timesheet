@@ -207,13 +207,13 @@ class SiteController extends Controller
     /**
      * Xero OAuth2
      */
-    public function actionAuthXero($code = null, $state = null)
+    public function actionXeroAuth($code = null, $state = null)
     {
         //debug(Url::to(['site/auth-xero'],'http')); die;
         $provider = new \Calcinai\OAuth2\Client\Provider\Xero([
             'clientId' => Yii::$app->settings->get('XeroSettingsForm', 'consumerKey'),
             'clientSecret' => Yii::$app->settings->get('XeroSettingsForm', 'consumerSecret'),
-            'redirectUri' => Url::to(['site/auth-xero'], 'http'),
+            'redirectUri' => Url::to(['site/xero-auth'], 'https'),
         ]);
 
         if (!$code) {
@@ -230,19 +230,20 @@ class SiteController extends Controller
             throw new Exception('Invalid state');
         } else {
             // Try to get an access token (using the authorization code grant)
-            $token = $provider->getAccessToken('authorization_code', [
+            $accessToken = $provider->getAccessToken('authorization_code', [
                 'code' => $code
             ]);
             //If you added the openid/profile scopes you can access the authorizing user's identity.
             //$identity = $provider->getResourceOwner($token);
             //debug($identity);
             //Get the tenants that this user is authorized to access
-            $tenants = $provider->getTenants($token);
+            $tenants = $provider->getTenants($accessToken);
             //debug($tenants);
 
-            Yii::$app->settings->set('XeroSettingsForm', 'accessToken', $token->getToken());
+            Yii::$app->settings->set('XeroSettingsForm', 'accessToken', serialize($accessToken));
             //Yii::$app->settings->set('XeroSettingsForm', 'identity', $identity);
-            Yii::$app->settings->set('XeroSettingsForm', 'tenantId', $tenants[0]->tenantId);
+            Yii::$app->settings->set('XeroSettingsForm', 'tenants', serialize($tenants));
+            return $this->redirect(Url::home());
         }
     }
 

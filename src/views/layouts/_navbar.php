@@ -88,6 +88,10 @@ echo Nav::widget([
                     'label' => 'Xero Settings',
                     'url' => ['/site/xero-settings'],
                 ],
+                [
+                    'label' => 'Xero Auth',
+                    'url' => ['/site/xero-auth'],
+                ],
                 //[
                 //    'label' => 'Saasu Settings',
                 //    'url' => ['/site/saasu-settings'],
