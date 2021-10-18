@@ -57,9 +57,12 @@ class Xero extends Component
                 if (is_resource($value))
                     // For some databases (like Postgres) binary columns return as a resource, fetch the content first
                     $value = stream_get_contents($value, -1, 0);
-                $this->$key = unserialize($value);
+                debug($value);
+                //$this->$key = unserialize($value);
+
             }
         }
+        die;
         $settings = ['saleAccountId', 'purchaseAccountId'];
         foreach ($settings as $key) {
             $value = Yii::$app->settings->get('XeroSettingsForm', $key);
