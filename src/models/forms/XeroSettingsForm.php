@@ -48,7 +48,8 @@ class XeroSettingsForm extends Model
     public function rules()
     {
         return [
-            [['consumerKey', 'consumerSecret', 'accessToken', 'tenants', 'saleAccountId', 'purchaseAccountId'], 'required'],
+            [['consumerKey', 'consumerSecret', 'saleAccountId', 'purchaseAccountId'], 'required'],
+            [['accessToken', 'tenants'], 'safe'],
         ];
     }
 
