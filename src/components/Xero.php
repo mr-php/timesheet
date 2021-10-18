@@ -70,7 +70,7 @@ class Xero extends Component
                 $accessToken = $this->accessToken->getRefreshToken();
                 Yii::$app->settings->set('XeroSettingsForm', 'accessToken', Json::encode($accessToken->jsonSerialize()));
             }
-            $this->_xero = new Application($accessToken->getToken(), $this->tenants[0]->tenantId);
+            $this->_xero = new Application($accessToken->getToken(), $this->tenantId);
         }
         return $this->_xero;
     }
